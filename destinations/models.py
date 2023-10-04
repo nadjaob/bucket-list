@@ -9,10 +9,10 @@ class Destination(models.Model):
   flag_image = models.URLField()
   best_season = models.CharField(max_length=50)
   travel_experience = models.CharField(max_length=50)
-  # categories = models.ManyToManyField(
-  #   'categories.Category',
-  #   related_name='destinations'
-  # )
+  categories = models.ManyToManyField(
+    'categories.Category',
+    related_name='destinations'
+  )
   # created_by = models.ForeignKey(
   #   'users.User',
   #   related_name='destinations',
