@@ -22,7 +22,7 @@ from .serializers.populated import PopulatedDestinationSerializer
 # Generic view
 class DestinationView(GenericAPIView):
   queryset=Destination.objects.all()
-  serializer_class=DestinationSerializer
+  serializer_class=PopulatedDestinationSerializer
 
 # /destinations
 class DestinationListView(DestinationView, UserListCreateAPIView):
