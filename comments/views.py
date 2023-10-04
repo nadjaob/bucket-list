@@ -14,8 +14,10 @@ class CommentView(GenericAPIView):
   queryset = Comment.objects.all()
   serializer_class = CommentSerializer
 
+# /comments
 class CommentListView(CommentView, UserListCreateAPIView):
   permission_classes = [IsAuthenticatedOrReadOnly]
 
+# /comments/:pk
 class CommentDetailView(CommentView, RetrieveUpdateDestroyAPIView):
   permission_classes = [IsOwnerOrReadOnly]

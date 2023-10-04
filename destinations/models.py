@@ -11,24 +11,25 @@ class Destination(models.Model):
   travel_experience = models.CharField(max_length=50)
   categories = models.ManyToManyField(
     'categories.Category',
-    related_name='destinations'
+    related_name='destinations',
+    blank=True
   )
-  # created_by = models.ForeignKey(
-  #   'users.User',
-  #   related_name='destinations',
-  #   on_delete=models.SET_NULL,
-  #   null=True
-  # )
-  # bucketlist = models.ManyToManyField(
-  #   'users.User',
-  #   related_name='bucketlist',
-  #   blank=True
-  # )
-  # visited = models.ManyToManyField(
-  #   'users.User',
-  #   related_name='visited',
-  #   blank=True
-  # )
+  created_by = models.ForeignKey(
+    'users.User',
+    related_name='created',
+    on_delete=models.SET_NULL,
+    null=True
+  )
+  bucketlist = models.ManyToManyField(
+    'users.User',
+    related_name='bucketlist',
+    blank=True
+  )
+  visited = models.ManyToManyField(
+    'users.User',
+    related_name='visited',
+    blank=True
+  )
 
   def __str__(self):
     return f"{self.name} - {self.country}"

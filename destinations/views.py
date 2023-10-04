@@ -34,8 +34,32 @@ class DestinationDetailView(DestinationView, RetrieveUpdateDestroyAPIView):
 
 # /destinations/:id/bucketlist
 class DestinationBucketlistView(DestinationView, UpdateAPIView):
-  pass
+  permission_classes = [IsAuthenticated]
+ 
+  def patch(self, request, *args, **kwargs):
+    destination = self.get_object()
+   
+    if request.user in destination.bucketlist.all():
+      destination.bucketlist.remove(request.user)
+      destination.save()
+      return Response(status=204)
+    else:
+      destination.bucketlist.add(request.user)
+      destination.save()
+      return Response(status=201)
 
 # /destinations/:id/visited
 class DestinationVisitedView(DestinationView, UpdateAPIView):
-  pass
+  permission_classes = [IsAuthenticated]
+ 
+  def patch(self, request, *args, **kwargs):
+    destination = self.get_object()
+   
+    if request.user in destination.visited.all():
+      destination.visited.remove(request.user)
+      destination.save()
+      return Response(status=204)
+    else:
+      destination.visited.add(request.user)
+      destination.save()
+      return Response(status=201)
