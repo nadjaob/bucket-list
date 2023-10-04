@@ -1,4 +1,6 @@
 from .common import DestinationSerializer
+from comments.serializers.common import CommentSerializer
+
 
 class PopulatedDestinationSerializer(DestinationSerializer):
-  pass
+  comments = CommentSerializer(many=True)

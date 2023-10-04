@@ -1,0 +1,62 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$zdwmn0ecCCe5TYNhMAS5yL$MrI4DVkC8u7gW3yFtNMfbMr6PjyhbaT9jSemRw5YlHU=",
+    "last_login": "2023-10-04T14:30:56Z",
+    "is_superuser": true,
+    "username": "nadjaob",
+    "first_name": "",
+    "last_name": "",
+    "email": "nadja.oblaender@gmx.de",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-10-04T14:30:45Z",
+    "bio": "Hi, welcome to my profile page!",
+    "profile_image": "https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280.png",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$03cMT9MbSLmfYeh0CzD8eL$+VNmCyPDOD4hIx/xxJmjJeqpPfVP9seTr5rBh5peL+I=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "kerstin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-04T14:53:18Z",
+    "bio": "Hi I am Kerstin!",
+    "profile_image": "https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280.png",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$S6IbEjwdHTfHgqOtEVUA4v$xKBXmKpOyGNdNODHnUqBQe3wDdZ+iJgliMlkJjvPoY0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "lukas",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-04T15:01:01.079Z",
+    "bio": "Hi I am Lukas!!",
+    "profile_image": "https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280.png",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
