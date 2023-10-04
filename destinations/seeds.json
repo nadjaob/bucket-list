@@ -1,0 +1,15 @@
+[
+{
+  "model": "destinations.destination",
+  "pk": 1,
+  "fields": {
+    "name": "Machu Picchu",
+    "description": "Machu Picchu, also spelled Machupijchu, site of ancient Inca ruins located about 50 miles (80 km) northwest of Cuzco, Peru, in the Cordillera de Vilcabamba of the Andes Mountains.\r\nIt is perched above the Urubamba River valley in a narrow saddle between two sharp peaks—Machu Picchu (“Old Peak”) and Huayna Picchu (“New Peak”)—at an elevation of 7,710 feet (2,350 metres).\r\nOne of the few major pre-Columbian ruins found nearly intact, Machu Picchu was designated a UNESCO World Heritage site in 1983.",
+    "destination_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/1200px-Machu_Picchu%2C_Peru.jpg",
+    "country": "Peru",
+    "flag_image": "https://cdn.britannica.com/48/3448-004-33B5D198/Flag-Peru.jpg",
+    "best_season": "April to October",
+    "travel_experience": "Beginner"
+  }
+}
+]
