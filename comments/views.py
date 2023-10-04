@@ -1,11 +1,12 @@
-# Rest framework
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, GenericAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-# Model
 from .models import Comment
 
-# Serializer
 from .serializers.common import CommentSerializer
+
+from lib.views import UserListCreateAPIView
+from lib.permissions import IsOwnerOrReadOnly
 
 
 # Generic views
@@ -13,8 +14,8 @@ class CommentView(GenericAPIView):
   queryset = Comment.objects.all()
   serializer_class = CommentSerializer
 
-class CommentListView(CommentView, ListCreateAPIView):
-  pass
+class CommentListView(CommentView, UserListCreateAPIView):
+  permission_classes = [IsAuthenticatedOrReadOnly]
 
 class CommentDetailView(CommentView, RetrieveUpdateDestroyAPIView):
-  pass
+  permission_classes = [IsOwnerOrReadOnly]
