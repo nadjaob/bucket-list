@@ -1,5 +1,13 @@
 import { useEffect } from 'react'
 import axios from 'axios'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+// GLOBAL COMPONENTS
+import Header from './components/Header'
+import Footer from './components/Footer'
+
+// PAGE COMPONENTS
+import Home from './components/Home'
 
 export default function App() {
   useEffect(() => {
@@ -14,5 +22,13 @@ export default function App() {
     getData()
   }, [])
 
-  return <h1>Hello World</h1>
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  )
 }
