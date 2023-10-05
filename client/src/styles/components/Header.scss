@@ -1,0 +1,45 @@
+.navbar-container {
+  position: fixed;
+  width: 100%;
+  padding: 12px 0;
+  background: transparent;
+  transition: background 0.5s;
+
+  &.scrolled {
+    background-color: $grey;
+    transition: background-color 0.5s;
+    // padding: 6px 0px;
+    // transition: padding 0.5s;
+  }
+
+  // &.scrolled img {
+  //   width: 60%;
+  //   transition: width 1s;
+  // }
+
+  .navbar-row {
+    display: flex;
+    align-items: center;
+  
+    .navbar-right {
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+  
+      a {
+        color: #fff;
+        text-decoration: none;
+        padding: 6px 0px;
+      }
+
+      .login-button {
+        @extend %button-white-round;
+      }
+    }
+  }
+}
+
+
+
+
+
