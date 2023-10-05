@@ -8,4 +8,4 @@ class PopulatedDestinationSerializer(DestinationSerializer):
   comments = PopulatedCommentSerializer(many=True)
   categories = CategorySerializer(many=True)
   visited = UserSerializer(many=True)
-  created_by = UserSerializer()
+  user = UserSerializer()

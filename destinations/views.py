@@ -22,7 +22,7 @@ from .serializers.populated import PopulatedDestinationSerializer
 # Generic view
 class DestinationView(GenericAPIView):
   queryset=Destination.objects.all()
-  serializer_class=PopulatedDestinationSerializer
+  serializer_class=DestinationSerializer
 
 # /destinations
 class DestinationListView(DestinationView, UserListCreateAPIView):
@@ -31,10 +31,12 @@ class DestinationListView(DestinationView, UserListCreateAPIView):
 # /destinations/:id
 class DestinationDetailView(DestinationView, RetrieveUpdateDestroyAPIView):
   permission_classes=[IsOwnerOrReadOnly]
+  serializer_class=PopulatedDestinationSerializer
 
 # /destinations/:id/bucketlist
 class DestinationBucketlistView(DestinationView, UpdateAPIView):
   permission_classes = [IsAuthenticated]
+  serializer_class=PopulatedDestinationSerializer
  
   def patch(self, request, *args, **kwargs):
     destination = self.get_object()

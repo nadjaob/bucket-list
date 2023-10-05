@@ -14,7 +14,7 @@ class Destination(models.Model):
     related_name='destinations',
     blank=True
   )
-  created_by = models.ForeignKey(
+  user = models.ForeignKey(
     'users.User',
     related_name='created',
     on_delete=models.SET_NULL,

@@ -13,7 +13,7 @@ class Comment(models.Model):
     'users.User',
     related_name='comments',
     on_delete=models.CASCADE,
-    default=1
+    default=1,
   )
 
   def __str__(self):

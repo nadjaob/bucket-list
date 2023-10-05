@@ -13,7 +13,7 @@ from lib.permissions import IsOwnerOrReadOnly
 # Generic views
 class CommentView(GenericAPIView):
   queryset = Comment.objects.all()
-  serializer_class = PopulatedCommentSerializer
+  serializer_class = CommentSerializer
 
 # /comments
 class CommentListView(CommentView, UserListCreateAPIView):
