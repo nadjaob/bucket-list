@@ -1,8 +1,11 @@
 from .common import DestinationSerializer
-from comments.serializers.common import CommentSerializer
+from comments.serializers.populated import PopulatedCommentSerializer
 from categories.serializers.common import CategorySerializer
+from users.serializers.common import UserSerializer
 
 
 class PopulatedDestinationSerializer(DestinationSerializer):
-  comments = CommentSerializer(many=True)
+  comments = PopulatedCommentSerializer(many=True)
   categories = CategorySerializer(many=True)
+  visited = UserSerializer(many=True)
+  created_by = UserSerializer()

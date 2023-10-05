@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Comment
 
 from .serializers.common import CommentSerializer
+from .serializers.populated import PopulatedCommentSerializer
 
 from lib.views import UserListCreateAPIView
 from lib.permissions import IsOwnerOrReadOnly
@@ -12,7 +13,7 @@ from lib.permissions import IsOwnerOrReadOnly
 # Generic views
 class CommentView(GenericAPIView):
   queryset = Comment.objects.all()
-  serializer_class = CommentSerializer
+  serializer_class = PopulatedCommentSerializer
 
 # /comments
 class CommentListView(CommentView, UserListCreateAPIView):

@@ -1,6 +1,7 @@
 from rest_framework.generics import CreateAPIView
 from django.views.generic import DetailView
 from .serializers.common import RegistrationSerializer, UserSerializer
+from .serializers.populated import PopulatedUserSerializer
 from django.contrib.auth import get_user_model
 
 from rest_framework.views import APIView
@@ -17,7 +18,7 @@ class UserDetailView(APIView):
     def get(self, request, username):    
       try:
         user = User.objects.get(username=username)
-        serialized_user = UserSerializer(user)
+        serialized_user = PopulatedUserSerializer(user)
         return Response(serialized_user.data)
       except User.DoesNotExist as e:
         return Response({ 'error': str(e) }, status.HTTP_404_NOT_FOUND)
