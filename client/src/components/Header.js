@@ -30,7 +30,7 @@ export default function Header() {
         <Row className='navbar-row'>
           <Col><img src={logo} /></Col>
           <Col className='navbar-right'>
-            <NavLink>Destinations</NavLink>
+            <NavLink to='/destinations'>Destinations</NavLink>
             <NavLink className='login-button'>Login</NavLink>
           </Col>
         </Row>

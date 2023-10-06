@@ -1,7 +1,14 @@
-$grey: #222222;
+$grey: #222;
+$white: #fff;
+$black: #000;
 
 %button-white-round {
   padding: 6px 28px;
   border: 1px solid white;
   border-radius: 20px;
+}
+
+%image-cover {
+  object-fit: cover;
+  width: 100%;
 }

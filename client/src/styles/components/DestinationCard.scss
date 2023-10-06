@@ -1,0 +1,38 @@
+.destinationcard-container {
+  position: relative;
+  height: 300px;
+  background: $black;
+  border-radius: 15px;
+  cursor: pointer;
+
+  > img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .details-container {
+    position: absolute;
+    bottom: 10px;
+    padding-left: 15px;
+  
+    .country-container {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    
+      img {
+        width: 20px;
+      }
+    }
+  }
+}
+
+
+
