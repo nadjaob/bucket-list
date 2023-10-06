@@ -1,5 +1,6 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../App'
 
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
@@ -13,6 +14,7 @@ import { setToken } from '../lib/auth'
 
 export default function UserForm({ request, fields, title, handleCloseLogin, handleCloseRegister }) {
 
+  const { user, setUser } = useContext(UserContext)
   const [formData, setFormData] = useState(stateValues(fields))
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
@@ -33,11 +35,13 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
     e.preventDefault()
     try {
       const { data } = await request(formData)
-      console.log(data)
+      const userId = formData.username
+      console.log(userId)
 
       if (data.access) {
         setToken('access-token', data.access)
         setToken('refresh-token', data.refresh)
+        setUser(true)
       }
 
       handleCloseLogin()

@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../App'
 
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
@@ -13,13 +14,15 @@ import logo from '../images/logo-bucketlist.png'
 // COMPONENTS
 import Login from './Login'
 import Register from './Register'
+import { deleteToken } from '../lib/auth'
 
 
 export default function Header() {
 
-  const [navbar, setNavbar] = useState(false)
-  const [showLogin, setShowLogin] = useState(false)
-  const [showRegister, setShowRegister] = useState(false)
+  const { user, setUser } = useContext(UserContext)
+  const [ navbar, setNavbar ] = useState(false)
+  const [ showLogin, setShowLogin ] = useState(false)
+  const [ showRegister, setShowRegister ] = useState(false)
 
   // NAVBAR CHANGES ON SCROLL
   window.addEventListener('scroll', () => {
@@ -47,7 +50,18 @@ export default function Header() {
             <Col><Link to='/'><img src={logo} /></Link></Col>
             <Col className='navbar-right'>
               <NavLink to='/destinations'>Destinations</NavLink>
-              <NavLink onClick={handleShowLogin} className='login-button'>Login</NavLink>
+              {user ?
+                <>
+                  <NavLink>Profile</NavLink>
+                  <NavLink to='/' className='login-button' onClick={() => {
+                    setUser(false)
+                    deleteToken('access-token')
+                    deleteToken('refresh-token')
+                  }}>Logout</NavLink>
+                </>
+                :
+                <NavLink onClick={handleShowLogin} className='login-button'>Login</NavLink>
+              }
             </Col>
           </Row>
         </Container>

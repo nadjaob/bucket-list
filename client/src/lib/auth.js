@@ -18,3 +18,7 @@ export const tokenIsValid = (tokenName) => {
     return true
   }
 }
+
+export const deleteToken = (tokenName) => {
+  return localStorage.removeItem(tokenName)
+}

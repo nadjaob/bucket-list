@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { tokenIsValid } from './lib/auth'
 
 // GLOBAL COMPONENTS
 import Header from './components/Header'
@@ -10,8 +11,24 @@ import Footer from './components/Footer'
 import Home from './components/Home'
 import Destinations from './components/Destinations'
 
+// USER
+export const UserContext = createContext(() => {
+  if (tokenIsValid('refresh-token')) {
+    return true
+  }
+  return false
+})
+
+
+
 export default function App() {
-  
+  const [user, setUser] = useState(() => {
+    if (tokenIsValid('refresh-token')) {
+      return true
+    }
+    return false
+  })
+
   // useEffect(() => {
   //   async function getData(){
   //     try {
@@ -26,12 +43,14 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/destinations' element={<Destinations />} />
-      </Routes>
-      <Footer />
+      <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/destinations' element={<Destinations />} />
+        </Routes>
+        <Footer />
+      </UserContext.Provider>
     </BrowserRouter>
   )
 }
