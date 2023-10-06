@@ -20,6 +20,7 @@ import { deleteToken } from '../lib/auth'
 export default function Header() {
 
   const { user, setUser } = useContext(UserContext)
+  const [ usernameURL, setUsernameURL ] = useState('')
   const [ navbar, setNavbar ] = useState(false)
   const [ showLogin, setShowLogin ] = useState(false)
   const [ showRegister, setShowRegister ] = useState(false)
@@ -52,7 +53,7 @@ export default function Header() {
               <NavLink to='/destinations'>Destinations</NavLink>
               {user ?
                 <>
-                  <NavLink>Profile</NavLink>
+                  <NavLink to={usernameURL}>Profile</NavLink>
                   <NavLink to='/' className='login-button' onClick={() => {
                     setUser(false)
                     deleteToken('access-token')
@@ -71,7 +72,12 @@ export default function Header() {
         {showRegister ?
           <Register handleCloseLogin={handleCloseLogin} handleCloseRegister={handleCloseRegister} />
           :
-          <Login handleCloseLogin={handleCloseLogin} handleShowRegister={handleShowRegister} handleCloseRegister={handleCloseRegister} />
+          <Login
+            handleCloseLogin={handleCloseLogin}
+            handleShowRegister={handleShowRegister}
+            handleCloseRegister={handleCloseRegister}
+            setUsernameURL={setUsernameURL}
+          />
         }
       </Modal>
     </>

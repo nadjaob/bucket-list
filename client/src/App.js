@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 // PAGE COMPONENTS
 import Home from './components/Home'
 import Destinations from './components/Destinations'
+import UserProfile from './components/UserProfile'
 
 // USER
 export const UserContext = createContext(() => {
@@ -48,6 +49,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />
+          <Route path='/:username' element={<UserProfile />} />
         </Routes>
         <Footer />
       </UserContext.Provider>

@@ -12,7 +12,7 @@ import Form from 'react-bootstrap/Form'
 import { stateValues, fieldValues } from '../utils/common'
 import { setToken } from '../lib/auth'
 
-export default function UserForm({ request, fields, title, handleCloseLogin, handleCloseRegister }) {
+export default function UserForm({ request, fields, title, handleCloseLogin, handleCloseRegister, setUsernameURL }) {
 
   const { user, setUser } = useContext(UserContext)
   const [formData, setFormData] = useState(stateValues(fields))
@@ -36,7 +36,7 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
     try {
       const { data } = await request(formData)
       const userId = formData.username
-      console.log(userId)
+      setUsernameURL(userId)
 
       if (data.access) {
         setToken('access-token', data.access)
@@ -46,7 +46,7 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
 
       handleCloseLogin()
       handleCloseRegister()
-      navigate('/destinations')
+      navigate(`/${userId}`)
 
     } catch (error) {
       console.log(error)
