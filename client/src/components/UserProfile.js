@@ -1,11 +1,18 @@
+import { useParams } from 'react-router-dom'
+
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+// IMAGES
 import sliderImage from '../images/rocky-mountains-canada.jpg'
 
 export default function UserProfile() {
+
+  const { username } = useParams()
+  console.log('params', username)
+
   return (
     <Container fluid className='slider-container'>
       <Row>

@@ -35,18 +35,18 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
     e.preventDefault()
     try {
       const { data } = await request(formData)
-      const userId = formData.username
-      setUsernameURL(userId)
 
       if (data.access) {
         setToken('access-token', data.access)
         setToken('refresh-token', data.refresh)
         setUser(true)
+        const userId = formData.username
+        setUsernameURL(userId)
+        navigate(`/${userId}`)
       }
 
       handleCloseLogin()
       handleCloseRegister()
-      navigate(`/${userId}`)
 
     } catch (error) {
       console.log(error)
