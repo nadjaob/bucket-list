@@ -1,0 +1,45 @@
+.header-bg-image {
+  background-position: center;
+  background-size: cover;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.categories {
+  margin: 10px 0 30px;
+}
+
+.category-button {
+  @extend %button-white-round;
+  margin-right: 11px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.3);
+  border-width: 2px;
+}
+
+.description-container {
+  text-align: center;
+  padding: 70px 0 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  
+  a {
+    @extend %button-white-round;
+  }
+}
+
+.details-container-w-border {
+  padding: 30px 70px 17px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  margin: 60px;
+}

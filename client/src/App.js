@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import Home from './components/Home'
 import Destinations from './components/Destinations'
 import UserProfile from './components/UserProfile'
+import SingleDestination from './components/SingleDestination'
 
 // USER
 export const UserContext = createContext(() => {
@@ -49,6 +50,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />
+          <Route path='/destinations/:id' element={<SingleDestination />} />
           <Route path='/:username' element={<UserProfile />} />
         </Routes>
         <Footer />

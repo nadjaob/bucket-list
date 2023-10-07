@@ -33,8 +33,6 @@ export default function UserProfile() {
     getUserData()
   }, [])
 
-  console.log(userData)
-
   return (
     <>
       {userData ?

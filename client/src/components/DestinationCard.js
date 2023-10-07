@@ -3,9 +3,12 @@ import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 
 export default function DestinationCard({ destination }) {
+
+  const destinationId = `/destinations/${destination.id}`
+
   return (
     <Col md='4'>
-      <Link to='/'>
+      <Link to={destinationId}>
         <div className='destinationcard-container'>
           <img src={destination.destination_image} alt={destination.name} />
           <div className='details-container'>
