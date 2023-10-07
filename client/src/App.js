@@ -13,6 +13,7 @@ import Destinations from './components/Destinations'
 import UserProfile from './components/UserProfile'
 import SingleDestination from './components/SingleDestination'
 
+
 // USER
 export const UserContext = createContext(() => {
   if (tokenIsValid('refresh-token')) {
@@ -24,12 +25,29 @@ export const UserContext = createContext(() => {
 
 
 export default function App() {
+
+  const [usernameURL, setUsernameURL] = useState('')
+  const [userId, setUserId] = useState()
+
   const [user, setUser] = useState(() => {
     if (tokenIsValid('refresh-token')) {
       return true
     }
     return false
   })
+
+  useEffect(() => {
+    async function getUserId() {
+      try {
+        const { data } = await axios.get(`/api/auth/${usernameURL}`)
+        setUserId(data.id)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getUserId()
+  }, [usernameURL])
+
 
   // useEffect(() => {
   //   async function getData(){
@@ -46,11 +64,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user: user, setUser: setUser }}>
-        <Header />
+        <Header usernameURL={usernameURL} setUsernameURL={setUsernameURL} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />
-          <Route path='/destinations/:id' element={<SingleDestination />} />
+          <Route path='/destinations/:id' element={<SingleDestination userId={userId} />} />
           <Route path='/:username' element={<UserProfile />} />
         </Routes>
         <Footer />

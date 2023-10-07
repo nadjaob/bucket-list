@@ -9,9 +9,16 @@ import Col from 'react-bootstrap/Col'
 
 // COMPONENTS
 import Spinner from './Spinner'
+import axiosAuth from '../lib/axios'
+
+// ICONS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function SingleDestination() {
+export default function SingleDestination({ userId }) {
+
+  console.log(userId)
 
   const [destination, setDestination] = useState()
 
@@ -21,6 +28,7 @@ export default function SingleDestination() {
     async function getDestination(){
       try {
         const { data } = await axios.get(`/api/destinations/${id}`)
+        console.log('first render', data)
         setDestination(data)
       } catch (error) {
         console.log(error.message)
@@ -30,6 +38,16 @@ export default function SingleDestination() {
   }, [])
 
   console.log(destination)
+
+  async function handleBucketlist() {
+    try {
+      const { data } = await axiosAuth.patch(`/api/destinations/${id}/bucketlist/`)
+      console.log('success')
+    } catch (error) {
+      console.log(error)
+      console.log('failed')
+    }
+  }
 
   return (
     <>
@@ -62,8 +80,12 @@ export default function SingleDestination() {
               <Col md={{ span: 8, offset: 2 }} className='description-container'>
                 <p>{destination.description}</p>
                 <div className='buttons-container'>
-                  <Link>Add to my bucket list</Link>
-                  <Link>Cross off my bucket list</Link>
+                  <Link onClick={handleBucketlist}><span className='space-before-icon'>{destination.bucketlist.includes(userId) ? 'Add' : 'Remove'} to my bucket list</span>
+                    <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
+                  </Link>
+                  <Link><span className='space-before-icon'>Cross off my bucket list</span>
+                    <FontAwesomeIcon icon={faCheck} style={{ color: '#ffffff' }} />
+                  </Link>
                 </div>
                 <div className='details-container-w-border'>
                   <p>Travel experience: {destination.travel_experience}<br />
@@ -74,7 +96,7 @@ export default function SingleDestination() {
           </Container>
 
           <Container>
-            
+
           </Container>
         </>
         :

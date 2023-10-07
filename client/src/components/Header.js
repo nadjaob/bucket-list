@@ -17,10 +17,9 @@ import Register from './Register'
 import { deleteToken } from '../lib/auth'
 
 
-export default function Header() {
+export default function Header({ usernameURL, setUsernameURL }) {
 
   const { user, setUser } = useContext(UserContext)
-  const [ usernameURL, setUsernameURL ] = useState('')
   const [ navbar, setNavbar ] = useState(false)
   const [ showLogin, setShowLogin ] = useState(false)
   const [ showRegister, setShowRegister ] = useState(false)
