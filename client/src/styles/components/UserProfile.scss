@@ -1,0 +1,62 @@
+.profile-image {
+  position: relative;
+  top: -70px;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    max-width: 270px;
+    border-radius: 150px;
+    float: right;
+  }
+
+}
+
+.profile-details {
+  padding-top: 40px;
+  text-align: center;
+
+  .button {
+    @extend %button-white-round;
+  }
+}
+
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  border: none;
+  background: none;
+
+  li {
+    border-top: 2px solid white;
+  }
+
+  button {
+    padding: 10px 20px;
+  }
+
+  li:first-child button {
+    padding-left: 0px;
+  }
+
+  li:last-child button {
+    padding-right: 0px;
+  }
+
+  .nav-link {
+    color: $lightgrey;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .nav-link.active, .nav-link:hover, .nav-link:focus {
+    border-color: $grey;
+    background: none;
+    color: $white;
+  }
+
+  .nav-item:focus-visible {
+    outline: none;
+  }
+}
+

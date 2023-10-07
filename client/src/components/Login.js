@@ -9,8 +9,6 @@ import UserForm from './UserForm'
 
 export default function Login({ handleCloseLogin, handleShowRegister, handleCloseRegister, setUsernameURL }) {
 
-
-
   const fields = [
     {
       type: 'text',

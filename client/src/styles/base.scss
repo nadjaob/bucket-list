@@ -10,3 +10,8 @@ body {
 // .container-fluid {
 //   padding: 0px;
 // }
+
+.header-image {
+  @extend %image-cover;
+  height: 300px;
+}
