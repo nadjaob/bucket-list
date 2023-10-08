@@ -7,6 +7,12 @@ body {
   color: $white;
 }
 
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+
 // .container-fluid {
 //   padding: 0px;
 // }
@@ -21,7 +27,17 @@ body {
   gap: 8px;
   align-items: baseline;
 
+  h2 {
+    font-size: 16px;
+    font-weight: normal;
+  }
+
   img {
     width: 20px;
   }
+}
+
+a {
+  color: $white;
+  text-decoration: none;
 }

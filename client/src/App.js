@@ -48,6 +48,8 @@ export default function App() {
     getUserId()
   }, [usernameURL])
 
+  console.log('user id', userId)
+
 
   // useEffect(() => {
   //   async function getData(){
