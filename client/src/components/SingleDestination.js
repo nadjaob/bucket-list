@@ -20,17 +20,21 @@ import { faHeart, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 export default function SingleDestination({ userId }) {
 
+  const { id } = useParams()
+  console.log('id is', id)
+
   console.log(userId)
   const { user, setUser } = useContext(UserContext)
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState({ 'destination': id })
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
+  const [reviewSent, setReviewSent] = useState(false)
 
   const [destination, setDestination] = useState()
   const [bucketlist, setBucketlist] = useState(false)
   const [visited, setVisited] = useState(false)
 
-  const { id } = useParams()
+
 
   useEffect(() => {
     async function getDestination(){
@@ -43,7 +47,7 @@ export default function SingleDestination({ userId }) {
       }
     }
     getDestination()
-  }, [bucketlist, visited])
+  }, [bucketlist, visited, reviewSent])
 
   console.log(destination)
 
@@ -93,6 +97,7 @@ export default function SingleDestination({ userId }) {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     setErrors('')
+    setReviewSent(false)
   }
 
   async function handleSubmit(e) {
@@ -105,7 +110,11 @@ export default function SingleDestination({ userId }) {
     setValidated(true)
     e.preventDefault()
     try {
-      const { data } = await axiosAuth.post('/api/comments', formData)
+      const { data } = await axiosAuth.post('/api/comments/', formData)
+      setFormData({ 'destination': id })
+      e.target.reset()
+      setValidated(false)
+      setReviewSent(true)
     } catch (error) {
       console.log(error)
       const errorMessage = error.response.data.detail
@@ -182,25 +191,31 @@ export default function SingleDestination({ userId }) {
           <Container>
             <Row>
               <h3 className='mb-5'>Other people say about this destination:</h3>
-              <Col md='9'>
-                {destination.comments.map(comment => {
-                  return (
-                    <div key={comment.id} className='comment-container'>
-                      <div className='user-title-container'>
-                        <Link to={`/${comment.user.username}`}><img className='user-img-sm' src={comment.user.profile_image} alt={comment.user.username} /></Link>
-                        <div className='user-title-information'>
-                          <Link to={`/${comment.user.username}`}><p>{comment.user.username}</p></Link>
-                          <p className='fw-bold'>{comment.title}</p>
-                        </div>
-                      </div>
-                      <p className='mt-2'>{comment.content}</p>
-                    </div>
-                  )
-                })}
-                {user &&
+              <Col md='7'>
+                {destination.comments.length > 0 ?
                   <>
-                    <h5>Leave a comment!</h5>
-                    <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' className='mt-5'>
+                    {destination.comments.map(comment => {
+                      return (
+                        <div key={comment.id} className='comment-container'>
+                          <div className='user-title-container'>
+                            <Link to={`/${comment.user.username}`}><img className='user-img-sm' src={comment.user.profile_image} alt={comment.user.username} /></Link>
+                            <div className='user-title-information'>
+                              <Link to={`/${comment.user.username}`}><p>{comment.user.username}</p></Link>
+                              <p className='fw-bold'>{comment.title}</p>
+                            </div>
+                          </div>
+                          <p className='mt-2'>{comment.content}</p>
+                        </div>
+                      )
+                    })} 
+                  </>
+                  :
+                  <p>Unfortunately there are no comments yet.</p>
+                }
+                {user &&
+                  <Col md='6'>
+                    <h5 className='mt-5'>Share your experience!</h5>
+                    <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' className='form-comment'>
                       <Form.Group>
                         <Form.Label hidden htmlFor='title'>Title</Form.Label>
                         <Form.Control required type='text' name='title' placeholder='Title' value={formData['title']} onChange={handleChange}></Form.Control>
@@ -208,15 +223,16 @@ export default function SingleDestination({ userId }) {
                       </Form.Group>
                       <Form.Group>
                         <Form.Label hidden htmlFor='title'>Comment</Form.Label>
-                        <Form.Control required type='textarea' name='content' placeholder='Your comment' value={formData['content']} onChange={handleChange}></Form.Control>
+                        <Form.Control required type='textarea' row='3' name='content' placeholder='Your comment' value={formData['content']} onChange={handleChange}></Form.Control>
                         <Form.Control.Feedback type="invalid">Your comment is required.</Form.Control.Feedback>
                       </Form.Group>
                       <button className='form-button' type='submit'>Submit comment</button>
                       {errors && <p>{errors}</p>}
                     </Form>
-                  </>
+                  </Col>
                 }
               </Col>
+              <Col md='2'></Col>
               <Col md='3'>
                 <h4 className='h4-sidebar'>Created by</h4>
                 <div className='user-title-container'>
@@ -227,18 +243,22 @@ export default function SingleDestination({ userId }) {
                   </div>
                 </div>
 
-                <h4 className='h4-sidebar mt-4'>Visited by</h4>
-                {destination.visited.map(user => {
-                  return (
-                    <div key={user.id} className='user-title-container'>
-                      <Link to={`/${user.username}`}><img className='user-img-sm' src={user.profile_image} alt={user.username} /></Link>
-                      <div className='user-title-information'>
-                        <Link to={`/${user.username}`}><p className='fw-bold'>{user.username}</p></Link>
-                        <p className='user-bio-sm'>{user.bio}</p>
+                {destination.visited.length > 0 &&
+                <>
+                  <h4 className='h4-sidebar mt-4'>Visited by</h4>
+                  {destination.visited.map(user => {
+                    return (
+                      <div key={user.id} className='user-title-container'>
+                        <Link to={`/${user.username}`}><img className='user-img-sm' src={user.profile_image} alt={user.username} /></Link>
+                        <div className='user-title-information'>
+                          <Link to={`/${user.username}`}><p className='fw-bold'>{user.username}</p></Link>
+                          <p className='user-bio-sm'>{user.bio}</p>
+                        </div>
                       </div>
-                    </div>
-                  )
-                })}
+                    )
+                  })}
+                </>
+                }
               </Col>
             </Row>
           </Container>

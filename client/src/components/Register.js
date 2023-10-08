@@ -45,7 +45,7 @@ export default function Register({ handleCloseLogin, handleCloseRegister }) {
         <p>Sign up to be able to add your favourite destinations to your bucket list!</p>
         <UserForm fields={fields} request={register} title='Sign up' handleCloseLogin={handleCloseLogin} handleCloseRegister={handleCloseRegister} />
       </Modal.Body>
-      <Modal.Footer>Already have an account? <Link onClick={handleCloseRegister}>Log in</Link></Modal.Footer>
+      <Modal.Footer>Already have an account? <Link className='fw-bold' onClick={handleCloseRegister}>Log in</Link></Modal.Footer>
     </>
   )
 }

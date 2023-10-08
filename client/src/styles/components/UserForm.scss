@@ -1,6 +1,11 @@
 .modal-content {
-  background: rgb(34 34 34 / 80%);
+  background: rgb(34 34 34 / 90%);
   padding: 10px 15px;
+
+  .btn-close {
+    filter: brightness(0) invert(1);
+    opacity: 1;
+  }
 
   .modal-header {
     border-bottom: none;
@@ -11,13 +16,7 @@
   }
 
   input {
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid white;
-    width: 100%;
-    background: none;
-    margin-bottom: 10px;
-    color: $white;
+    @extend %text-input;
   }
 
   .form-button {

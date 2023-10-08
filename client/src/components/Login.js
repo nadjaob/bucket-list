@@ -33,7 +33,7 @@ export default function Login({ handleCloseLogin, handleShowRegister, handleClos
         <p>Log in to be able to add your favourite destinations to your bucket list!</p>
         <UserForm fields={fields} request={login} title='Login' handleCloseLogin={handleCloseLogin} handleCloseRegister={handleCloseRegister} setUsernameURL={setUsernameURL} />
       </Modal.Body>
-      <Modal.Footer>Don&apos;t have an account? <Link onClick={handleShowRegister}>Sign up</Link></Modal.Footer>
+      <Modal.Footer>Don&apos;t have an account? <Link className='fw-bold' onClick={handleShowRegister}>Sign up</Link></Modal.Footer>
     </>
   )
 }

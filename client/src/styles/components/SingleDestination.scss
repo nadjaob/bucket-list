@@ -62,7 +62,7 @@
 
 .comment-container {
   padding: 30px 0px 12px;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid $lightgrey;
 
   &:first-child {
     padding-top: 0px;
@@ -105,4 +105,10 @@
 
 .form-button {
   @extend %button-white-round;
+}
+
+.form-comment input {
+  @extend %text-input;
+
+  
 }
