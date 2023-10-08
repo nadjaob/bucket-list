@@ -41,6 +41,32 @@
 }
 
 
+// SEARCH BAR
 
+.search-container {
+  position: relative;
+  right: -54px;
+  top: 3px;
+
+  input, input:focus-visible {
+    background: rgba(255,255,255,0.4);
+    border-radius: 20px;
+    border: none;
+    padding: 3px;
+  }
+
+  a {
+    z-index: 10;
+  }
+}
+
+.dropdown {
+  position: absolute;
+  width: 100%;
+}
+
+.search-list {
+  background: rgba(255,255,255,0.8);
+}
 
 

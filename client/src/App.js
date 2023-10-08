@@ -28,6 +28,7 @@ export default function App() {
 
   const [usernameURL, setUsernameURL] = useState('')
   const [userId, setUserId] = useState()
+  const [renderApp, setRenderApp] = useState(false)
 
   const [user, setUser] = useState(() => {
     if (tokenIsValid('refresh-token')) {
@@ -50,6 +51,10 @@ export default function App() {
 
   console.log('user id', userId)
 
+  useEffect(() => {
+    console.log('app was rendered')
+  }, [renderApp])
+
 
   // useEffect(() => {
   //   async function getData(){
@@ -66,7 +71,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user: user, setUser: setUser }}>
-        <Header usernameURL={usernameURL} setUsernameURL={setUsernameURL} />
+        <Header usernameURL={usernameURL} setUsernameURL={setUsernameURL} setRenderApp={setRenderApp} renderApp={renderApp} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />
