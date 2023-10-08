@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
+import Modal from 'react-bootstrap/Modal'
 
 // COMPONENTS
 import Spinner from './Spinner'
@@ -15,7 +16,7 @@ import axiosAuth from '../lib/axios'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faCheck, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function SingleDestination({ userId }) {
@@ -29,6 +30,8 @@ export default function SingleDestination({ userId }) {
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
   const [reviewSent, setReviewSent] = useState(false)
+  const [reviewDeleted, setReviewDeleted] = useState(false)
+  const [show, setShow] = useState(false)
 
   const [destination, setDestination] = useState()
   const [bucketlist, setBucketlist] = useState(false)
@@ -47,7 +50,7 @@ export default function SingleDestination({ userId }) {
       }
     }
     getDestination()
-  }, [bucketlist, visited, reviewSent])
+  }, [bucketlist, visited, reviewSent, reviewDeleted])
 
   console.log(destination)
 
@@ -92,7 +95,8 @@ export default function SingleDestination({ userId }) {
     }
   }
 
-  // COMMENT
+
+  // ADD COMMENT
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -115,13 +119,33 @@ export default function SingleDestination({ userId }) {
       e.target.reset()
       setValidated(false)
       setReviewSent(true)
+      handleClose()
     } catch (error) {
       console.log(error)
       const errorMessage = error.response.data.detail
       console.error(errorMessage)
       setErrors(errorMessage)
     }
+  }
 
+  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false)
+
+
+  // DELETE COMMENT
+
+  const deleteComment = (e, index) => {
+    setReviewDeleted(false)
+    e.preventDefault()
+    async function deleteReviewNow() {
+      try {
+        const { data } = await axiosAuth.delete(`/api/comments/${index}/`)
+        setReviewDeleted(true)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    deleteReviewNow()
   }
 
   return (
@@ -197,12 +221,19 @@ export default function SingleDestination({ userId }) {
                     {destination.comments.map(comment => {
                       return (
                         <div key={comment.id} className='comment-container'>
-                          <div className='user-title-container'>
-                            <Link to={`/${comment.user.username}`}><img className='user-img-sm' src={comment.user.profile_image} alt={comment.user.username} /></Link>
-                            <div className='user-title-information'>
-                              <Link to={`/${comment.user.username}`}><p>{comment.user.username}</p></Link>
-                              <p className='fw-bold'>{comment.title}</p>
+                          <div className='comment-container-inside'>
+                            <div className='user-title-container'>
+                              <Link to={`/${comment.user.username}`}><img className='user-img-sm' src={comment.user.profile_image} alt={comment.user.username} /></Link>
+                              <div className='user-title-information'>
+                                <Link to={`/${comment.user.username}`}><p>{comment.user.username}</p></Link>
+                                <p className='fw-bold'>{comment.title}</p>
+                              </div>
                             </div>
+                            {userId === comment.user.id &&
+                            <div className='trash-icon'>
+                              <FontAwesomeIcon onClick={(e) => deleteComment(e, comment.id)} icon={faTrashCan} style={{ color: '#fff' }} />
+                            </div>
+                            }
                           </div>
                           <p className='mt-2'>{comment.content}</p>
                         </div>
@@ -213,23 +244,33 @@ export default function SingleDestination({ userId }) {
                   <p>Unfortunately there are no comments yet.</p>
                 }
                 {user &&
-                  <Col md='6'>
-                    <h5 className='mt-5'>Share your experience!</h5>
-                    <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' className='form-comment'>
-                      <Form.Group>
-                        <Form.Label hidden htmlFor='title'>Title</Form.Label>
-                        <Form.Control required type='text' name='title' placeholder='Title' value={formData['title']} onChange={handleChange}></Form.Control>
-                        <Form.Control.Feedback type="invalid">Title is required.</Form.Control.Feedback>
-                      </Form.Group>
-                      <Form.Group>
-                        <Form.Label hidden htmlFor='title'>Comment</Form.Label>
-                        <Form.Control required type='textarea' row='3' name='content' placeholder='Your comment' value={formData['content']} onChange={handleChange}></Form.Control>
-                        <Form.Control.Feedback type="invalid">Your comment is required.</Form.Control.Feedback>
-                      </Form.Group>
-                      <button className='form-button' type='submit'>Submit comment</button>
-                      {errors && <p>{errors}</p>}
-                    </Form>
-                  </Col>
+                  <>
+                    <Link className='button-border' onClick={handleShow}><span className='space-before-icon'>Leave a comment</span>
+                      <FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} size='sm' />
+                    </Link>
+                    <Modal show={show} onHide={handleClose} backdrop='static' keyboard={false} centered size='lg'>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Share your experience!</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <p>Leave a comment about your unforgettable journey!</p>
+                        <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' className='form-comment'>
+                          <Form.Group>
+                            <Form.Label hidden htmlFor='title'>Title</Form.Label>
+                            <Form.Control required type='text' name='title' placeholder='Title' value={formData['title']} onChange={handleChange}></Form.Control>
+                            <Form.Control.Feedback type="invalid">Title is required.</Form.Control.Feedback>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Label hidden htmlFor='title'>Comment</Form.Label>
+                            <Form.Control required as='textarea' rows={3} name='content' placeholder='Your comment' value={formData['content']} onChange={handleChange}></Form.Control>
+                            <Form.Control.Feedback type="invalid">Your comment is required.</Form.Control.Feedback>
+                          </Form.Group>
+                          <button className='form-button' type='submit'>Submit comment</button>
+                          {errors && <p>{errors}</p>}
+                        </Form>
+                      </Modal.Body>
+                    </Modal>
+                  </>
                 }
               </Col>
               <Col md='2'></Col>

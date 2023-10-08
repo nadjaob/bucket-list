@@ -3,7 +3,7 @@ $lightgrey: #c6c6c6;
 $white: #fff;
 $black: #000;
 
-%button-white-round {
+%button-white-round, .button-border {
   padding: 6px 28px 8px;
   border: 1px solid white;
   border-radius: 20px;
@@ -37,5 +37,6 @@ $black: #000;
   }
   &::placeholder {
     color: $white;
+    font-size: 14px;
   }
 }

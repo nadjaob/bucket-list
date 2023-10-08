@@ -37,14 +37,14 @@
     @extend %button-white-round;
   }
 
-  .space-before-icon {
-    margin-right: 10px;
-  }
-
   .active-button {
     background: rgba(255,255,255,0.1);
     cursor: context-menu;
   }
+}
+
+.space-before-icon {
+  margin-right: 10px;
 }
 
 
@@ -62,15 +62,18 @@
 
 .comment-container {
   padding: 30px 0px 12px;
-  border-bottom: 1px solid $lightgrey;
+  border-top: 1px solid $lightgrey;
+
+  .comment-container-inside {
+    display: flex;
+    justify-content: space-between;
+  }
 
   &:first-child {
     padding-top: 0px;
-  }
-
-  &:last-child {
     border: none;
   }
+
 }
 
 .user-img-sm {
@@ -100,6 +103,11 @@
   padding-bottom: 10px;
 }
 
+.trash-icon svg:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
 
 // FORM ADD COMMENT
 
@@ -107,8 +115,6 @@
   @extend %button-white-round;
 }
 
-.form-comment input {
+.form-comment input, .form-comment textarea {
   @extend %text-input;
-
-  
 }
