@@ -41,7 +41,6 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
         const { data } = await axios.get('/api/destinations')
         setDestinations(data)
         const regex = new RegExp(value, 'i')
-        
         const filteredArray = destinations.filter(destination => {
           const filteredCategories = destination.categories.map(category => {
             return category.name
@@ -49,10 +48,8 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
           return (
             value &&
             (regex.test(destination.name) ||
-            regex.test(destination.country) 
-            // filteredCategories.map(category => {
-            //   return regex.test(category)
-            // })
+            regex.test(destination.country) ||
+            regex.test(filteredCategories)
             ))
         })
         setFilteredDestinations(filteredArray)
@@ -172,7 +169,7 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
               <NavLink to='/destinations'>Destinations</NavLink>
               {user ?
                 <>
-                  <NavLink to={usernameURL} onClick={changeUserProfile}>Profile</NavLink>
+                  <NavLink to={`/${usernameURL}`} onClick={changeUserProfile}>Profile</NavLink>
                   <NavLink to='/' className='login-button' onClick={() => {
                     setUser(false)
                     deleteToken('access-token')

@@ -32,10 +32,11 @@ export default function Destinations() {
   }, [])
 
   const [filter, setFilter] = useState({
-    country: 'All',
+    countries: 'All',
     categories: 'All',
   })
   const [countryFilter, setCountryFilter] = useState([])
+  const [categoryFilter, setCategoryFilter] = useState([])
   const [filteredDestinations, setFilteredDestinations] = useState([])
 
   const allCountries = destinations.map(destination => {
@@ -50,26 +51,28 @@ export default function Destinations() {
   })
   const categoriesList = [...new Set(allCategories.flat())]
 
-
   const handleChange = (e) => {
-    if (e.target.name === 'country') {
+    if (e.target.name === 'countries') {
       if (!e.target.checked) {
-        setCountryFilter(countryFilter => {
-          return countryFilter.filter(country => country !== e.target.id)
-        })
+        setCountryFilter(countryFilter.filter(country => {
+          return country !== e.target.id
+        }))
       } else {
         setCountryFilter([ ...countryFilter, e.target.id])
       }
-      
       setFilter({ ...filter, [e.target.name]: countryFilter })
     }
-    console.log('countryfilter', countryFilter)
-    if (filter[e.target.name] === e.target.id) {
-      setFilter({ ...filter, [e.target.name]: 'All' })
-    } else {
-      setFilter({ ...filter, [e.target.name]: e.target.id })
+    if (e.target.name === 'categories') {
+      if (!e.target.checked) {
+        setCategoryFilter(categoryFilter.filter(category => {
+          return category !== e.target.id
+        }))
+      } else {
+        setCategoryFilter([ ...categoryFilter, e.target.id])
+      }
+      setFilter({ ...filter, [e.target.name]: categoryFilter })
     }
-    // setFilter(newFilterState)
+
   }
 
   useEffect(() => {
@@ -77,10 +80,10 @@ export default function Destinations() {
       const categoriesArray = destination.categories.map(category => {
         return category.name
       })
-      console.log('my array to check', categoriesArray)
+      console.log('my categories', categoriesArray)
       return (
-        (destination.country === filter.country || filter.country === 'All') &&
-        (categoriesArray.includes(filter.categories) || filter.categories === 'All')
+        (filter.countries.includes(destination.country) || filter.countries === 'All') &&
+        (categoriesArray.some(r => filter.categories.indexOf(r) >= 0) || filter.categories === 'All')
       )
     })
     setFilteredDestinations(filteredArray)
@@ -113,7 +116,7 @@ export default function Destinations() {
                   <Accordion.Body>
                     {countriesList.map((country, index) => {
                       return (
-                        <Form.Check key={index} onChange={handleChange} type='checkbox' name='country' id={country} label={country} />
+                        <Form.Check key={index} onChange={handleChange} type='checkbox' name='countries' id={country} label={country} />
                       )
                     })}
                   </Accordion.Body>

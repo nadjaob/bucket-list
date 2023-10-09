@@ -1,11 +1,19 @@
-.slider-container {
-  position: absolute;
-  top: 0px;
-  z-index: -2;
+.carousel {
+
+  img {
+    width: 100%;
+    height: 80vh;
+    object-fit: cover;
+  }
 }
 
-.slider-image {
-  max-height: 100vh;
-  object-fit: cover;
-  width: 100%;
+.button-slider {
+  @extend %button-white-round;
+}
+
+.carousel-caption {
+  text-align: left;
+  right: 10%;
+  bottom: 4rem;
+  left: 10%;
 }

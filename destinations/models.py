@@ -12,7 +12,8 @@ class Destination(models.Model):
   categories = models.ManyToManyField(
     'categories.Category',
     related_name='destinations',
-    blank=True
+    blank=True,
+    null=True
   )
   user = models.ForeignKey(
     'users.User',
