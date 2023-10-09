@@ -18,17 +18,20 @@ class Destination(models.Model):
     'users.User',
     related_name='created',
     on_delete=models.SET_NULL,
-    null=True
+    null=True,
+    blank=True
   )
   bucketlist = models.ManyToManyField(
     'users.User',
     related_name='bucketlist',
-    blank=True
+    blank=True,
+    null=True
   )
   visited = models.ManyToManyField(
     'users.User',
     related_name='visited',
-    blank=True
+    blank=True,
+    null=True
   )
 
   def __str__(self):

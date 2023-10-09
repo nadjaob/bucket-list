@@ -1,0 +1,102 @@
+[
+  {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+      "title": "An Unforgettable Journey",
+      "content": "This destination left me in awe. It's a place where natural beauty and cultural richness come together to create an unforgettable experience. I highly recommend it!",
+      "destination": 1,
+      "user": 2
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 2,
+    "fields": {
+      "title": "A Must-Visit Place",
+      "content": "I had the chance to visit this destination, and I was blown away. The landscapes, the people, and the cuisine were all amazing. Don't miss out on the opportunity to explore this gem!",
+      "destination": 2,
+      "user": 3
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 3,
+    "fields": {
+      "title": "Incredible Memories",
+      "content": "My trip to this destination was filled with incredible memories. From the historic sites to the vibrant markets, there's something for everyone. It's a place that will stay in my heart forever.",
+      "destination": 3,
+      "user": 5
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 4,
+    "fields": {
+      "title": "A Journey of Discovery",
+      "content": "Exploring this destination was a journey of discovery. The local culture, traditions, and the warmth of the people were truly inspiring. I can't wait to return and explore more!",
+      "destination": 4,
+      "user": 1
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 5,
+    "fields": {
+      "title": "Traveler's Paradise",
+      "content": "This destination is a traveler's paradise. From breathtaking landscapes to unique experiences, it offers a wide range of adventures. I had an amazing time exploring every corner.",
+      "destination": 5,
+      "user": 4
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 6,
+    "fields": {
+      "title": "A World of Wonders",
+      "content": "Visiting this destination felt like stepping into a world of wonders. The diversity of experiences, the rich history, and the friendly locals make it a must-see place for any traveler.",
+      "destination": 6,
+      "user": 2
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 7,
+    "fields": {
+      "title": "Unforgettable Adventures",
+      "content": "My adventures in this destination were truly unforgettable. Whether it was exploring ancient ruins, enjoying delicious cuisine, or meeting locals, every moment was a treasure.",
+      "destination": 7,
+      "user": 3
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 8,
+    "fields": {
+      "title": "Captivating Beauty",
+      "content": "The captivating beauty of this destination is beyond words. From serene beaches to majestic mountains, it's a place that captivates the soul. I can't wait to go back.",
+      "destination": 8,
+      "user": 5
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 9,
+    "fields": {
+      "title": "A Cultural Marvel",
+      "content": "Exploring the cultural marvels of this destination was an enriching experience. The art, history, and traditions are truly remarkable. I left with a deeper appreciation for the world.",
+      "destination": 9,
+      "user": 1
+    }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 10,
+    "fields": {
+      "title": "A Journey into History",
+      "content": "My journey to this destination felt like a step back in time. The historical sites and ancient ruins are a testament to the rich heritage of this place. It's a history lover's dream.",
+      "destination": 10,
+      "user": 4
+    }
+  }
+]

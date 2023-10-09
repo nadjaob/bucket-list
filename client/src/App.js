@@ -76,7 +76,7 @@ export default function App() {
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />
           <Route path='/destinations/:id' element={<SingleDestination userId={userId} renderApp={renderApp} />} />
-          <Route path='/:username' element={<UserProfile />} />
+          <Route path='/:username' element={<UserProfile userId={userId} renderApp={renderApp} />} />
         </Routes>
         <Footer />
       </UserContext.Provider>

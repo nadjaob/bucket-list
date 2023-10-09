@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$zdwmn0ecCCe5TYNhMAS5yL$MrI4DVkC8u7gW3yFtNMfbMr6PjyhbaT9jSemRw5YlHU=",
-    "last_login": "2023-10-04T14:30:56Z",
+    "last_login": "2023-10-07T07:23:59.423Z",
     "is_superuser": true,
     "username": "nadjaob",
     "first_name": "",
@@ -13,8 +13,9 @@
     "is_staff": true,
     "is_active": true,
     "date_joined": "2023-10-04T14:30:45Z",
-    "bio": "Hi, welcome to my profile page!",
+    "bio": "Where to next?",
     "profile_image": "https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280.png",
+    "background_image": "https://switzerland-tour.com/storage/media/4-ForArticles/swiss-mountains.jpg",
     "groups": [],
     "user_permissions": []
   }
@@ -33,8 +34,9 @@
     "is_staff": false,
     "is_active": true,
     "date_joined": "2023-10-04T14:53:18Z",
-    "bio": "Hi I am Kerstin!",
-    "profile_image": "https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280.png",
+    "bio": "Adventure seeker",
+    "profile_image": "https://www.natursport.info/fileadmin/user_upload/Bilder/Seiteninhalt/Natursportarten/Im_Schnee/Snowboarden/AdobeStock_238285141_2.jpg",
+    "background_image": "https://switzerland-tour.com/storage/media/4-ForArticles/swiss-mountains.jpg",
     "groups": [],
     "user_permissions": []
   }
@@ -46,15 +48,58 @@
     "password": "pbkdf2_sha256$600000$S6IbEjwdHTfHgqOtEVUA4v$xKBXmKpOyGNdNODHnUqBQe3wDdZ+iJgliMlkJjvPoY0=",
     "last_login": null,
     "is_superuser": false,
-    "username": "lukas",
+    "username": "lukas95",
     "first_name": "",
     "last_name": "",
     "email": "",
     "is_staff": false,
     "is_active": true,
     "date_joined": "2023-10-04T15:01:01.079Z",
-    "bio": "Hi I am Lukas!!",
-    "profile_image": "https://www.senertec.de/wp-content/uploads/2020/04/blank-profile-picture-973460_1280.png",
+    "bio": "Travel enthusiast",
+    "profile_image": "https://www.westend61.de/images/0001387937pw/male-tourist-looking-away-while-standing-on-sand-dunes-in-desert-at-dubai-united-arab-emirates-SNF00244.jpg",
+    "background_image": "https://switzerland-tour.com/storage/media/4-ForArticles/swiss-mountains.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$RQqyXNOhT2iXFxcVre5l3F$+ZKWoL4YubEjjyS1Jfb5fJ5X16GrcReazjcZXnxwk0E=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "anna",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-05T09:23:03.647Z",
+    "bio": "WANDERLUST",
+    "profile_image": "https://balicheapesttours.com/dummy/bali-swing-1.jpg",
+    "background_image": "https://switzerland-tour.com/storage/media/4-ForArticles/swiss-mountains.jpg",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$CgZxUldzLwh0wmLAAY3uNB$DLIteiApXHWQ/YNFK+ruojAZVaPLr7EZoTY86k1T2Tg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "heidi",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-05T09:23:59.163Z",
+    "bio": "Let's find a new adventure!",
+    "profile_image": "https://checkyeti.imgix.net/images/prod/products/12264/scuba-diving-course-for-beginners-padi-scuba-diver-aqua-marine-diving-tenerife.jpg",
+    "background_image": "https://switzerland-tour.com/storage/media/4-ForArticles/swiss-mountains.jpg",
     "groups": [],
     "user_permissions": []
   }

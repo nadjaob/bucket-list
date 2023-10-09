@@ -71,10 +71,17 @@
 .dropdown {
   position: absolute;
   width: 100%;
+  background: $grey;
+  margin-top: 6px;
+  border-radius: 10px;
 }
 
 .search-list {
   border-bottom: 1px solid white;
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   p {
     margin-bottom: 0px;

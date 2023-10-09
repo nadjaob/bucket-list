@@ -124,6 +124,14 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
   document.addEventListener('mousedown', closeSearchList)
 
 
+  const changeUserProfile = () => {
+    if (!renderApp) {
+      setRenderApp(true)
+    } else {
+      setRenderApp(false)
+    }
+  }
+
   return (
     <>
       <nav className={navbar ? 'navbar-container scrolled' : 'navbar-container'}>
@@ -164,7 +172,7 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
               <NavLink to='/destinations'>Destinations</NavLink>
               {user ?
                 <>
-                  <NavLink to={usernameURL}>Profile</NavLink>
+                  <NavLink to={usernameURL} onClick={changeUserProfile}>Profile</NavLink>
                   <NavLink to='/' className='login-button' onClick={() => {
                     setUser(false)
                     deleteToken('access-token')
