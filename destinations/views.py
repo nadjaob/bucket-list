@@ -27,6 +27,7 @@ class DestinationView(GenericAPIView):
 # /destinations
 class DestinationListView(DestinationView, UserListCreateAPIView):
   permission_classes=[IsAuthenticatedOrReadOnly]
+  serializer_class=PopulatedDestinationSerializer
 
 # /destinations/:id
 class DestinationDetailView(DestinationView, RetrieveUpdateDestroyAPIView):

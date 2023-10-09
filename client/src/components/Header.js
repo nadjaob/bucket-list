@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import { UserContext } from '../App'
 import axios from 'axios'
 
@@ -24,6 +24,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 export default function Header({ usernameURL, setUsernameURL, setRenderApp, renderApp }) {
 
+  const catMenu = useRef(null)
   const { user, setUser } = useContext(UserContext)
   const [navbar, setNavbar] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
@@ -31,20 +32,38 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
   const [showSearch, setShowSearch] = useState(false)
   const [value, setValue] = useState('')
   const [destinations, setDestinations] = useState('')
+  const [filteredDestinations, setFilteredDestinations] = useState([])
+
 
   useEffect(() => {
     async function getDestinations(){
       try {
         const { data } = await axios.get('/api/destinations')
         setDestinations(data)
+        const regex = new RegExp(value, 'i')
+        
+        const filteredArray = destinations.filter(destination => {
+          const filteredCategories = destination.categories.map(category => {
+            return category.name
+          })
+          return (
+            value &&
+            (regex.test(destination.name) ||
+            regex.test(destination.country) 
+            // filteredCategories.map(category => {
+            //   return regex.test(category)
+            // })
+            ))
+        })
+        setFilteredDestinations(filteredArray)
       } catch (error) {
         console.log(error.message)
       }
     }
     getDestinations()
-  }, [showSearch])
+    
+  }, [showSearch, value])
 
-  console.log('destinations', destinations)
 
   // NAVBAR CHANGES ON SCROLL
   window.addEventListener('scroll', () => {
@@ -55,6 +74,7 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
     }
   })
 
+
   // POPUP LOGIN FORM
   const handleShowLogin = () => setShowLogin(true)
   const handleCloseLogin = () => {
@@ -64,13 +84,19 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
   const handleShowRegister = () => setShowRegister(true)
   const handleCloseRegister = () => setShowRegister(false)
 
+
   // SEARCH BAR
   const handleSearch = () => {
     if (!showSearch) {
       setShowSearch(true)
+      setTimeout(() => {
+        document.querySelector('.input-search').focus()
+      }, 100)
     } else {
       setShowSearch(false)
+      setValue('')
     }
+    
   }
 
   const handleInput = (e) => {
@@ -80,13 +106,23 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
   const removeSearchlist = () => {
     setValue('')
     setShowSearch(false)
+    setFilteredDestinations([])
     if (!renderApp) {
       setRenderApp(true)
     } else {
       setRenderApp(false)
     }
-    
   }
+
+  const closeSearchList = (e) => {
+    if (catMenu.current && showSearch && !catMenu.current.contains(e.target)) {
+      setShowSearch(false)
+      // setFilteredDestinations([])
+      setValue('')
+    }
+  }
+  document.addEventListener('mousedown', closeSearchList)
+
 
   return (
     <>
@@ -96,30 +132,29 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
             <Col><Link to='/'><img src={logo} /></Link></Col>
             <Col className='navbar-right'>
               {showSearch && 
-                <div className='search-container'>
-                  <input type='text' value={value} onChange={handleInput}></input>
-                  <div className='dropdown'>
-                    {destinations.filter(destination => {
-                      const searchTerm = value.toLowerCase()
-                      const name = destination.name.toLowerCase()
-                      const country = destination.country.toLowerCase()
-                      console.log('searchterm', searchTerm)
-                      console.log('name of filtered destination', name)
-                      return searchTerm && (name.startsWith(searchTerm) || country.startsWith(searchTerm))
-                    })
-                      .map(destination => {
-                        return (
-                          <div key={destination.id} className='search-list' onClick={removeSearchlist}>
-                            <Link to={`/destinations/${destination.id}`}>
-                              <p>{destination.name}</p>
-                              <div className='country-container'>
-                                <img src={destination.flag_image} alt={destination.country} />
-                                <p>{destination.country}</p>
-                              </div>
-                            </Link>
-                          </div>
-                        )
-                      })}
+                <div className='search-container' ref={catMenu}>
+                  <input type='text' value={value} onChange={handleInput} className='input-search' placeholder='Search destination...'></input>
+                  <div className='dropdown' onClick={removeSearchlist}>
+                    {filteredDestinations.map(destination => {
+                      return (
+                        <div key={destination.id} className='search-list'>
+                          <Link to={`/destinations/${destination.id}`}>
+                            <p>{destination.name}</p>
+                            <div className='country-container'>
+                              <img src={destination.flag_image} alt={destination.country} />
+                              <p>{destination.country}</p>
+                            </div>
+                          </Link>
+                        </div>
+                      )
+                    })}
+                    {(value && filteredDestinations.length < 1) &&
+                      <div className='search-list'>
+                        <Link to='/destinations/'>
+                          <p>No matching results.<br />See all destinations!</p>
+                        </Link>
+                      </div>
+                    }
                   </div>
                 </div>
               }

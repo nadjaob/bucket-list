@@ -52,7 +52,15 @@
     background: rgba(255,255,255,0.4);
     border-radius: 20px;
     border: none;
-    padding: 3px;
+    padding: 5px 3px 5px 15px;
+    color: $white;
+    font-size: 14px;
+    outline: none;
+
+    &::placeholder {
+      color: $white;
+      font-size: 14px;
+    }
   }
 
   a {
@@ -66,7 +74,22 @@
 }
 
 .search-list {
-  background: rgba(255,255,255,0.8);
+  border-bottom: 1px solid white;
+
+  p {
+    margin-bottom: 0px;
+  }
+
+  a {
+    display: block;
+    padding: 7px 0px 8px 15px !important;
+  }
+
+  &:hover {
+    background: rgba(255,255,255,0.3);
+  }
 }
 
-
+.navbar-right a {
+  z-index: 10;
+}

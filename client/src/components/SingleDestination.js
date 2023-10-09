@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCheck, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function SingleDestination({ userId }) {
+export default function SingleDestination({ userId, renderApp }) {
 
   const { id } = useParams()
   console.log('id is', id)
@@ -50,7 +50,7 @@ export default function SingleDestination({ userId }) {
       }
     }
     getDestination()
-  }, [bucketlist, visited, reviewSent, reviewDeleted])
+  }, [bucketlist, visited, reviewSent, reviewDeleted, renderApp])
 
   console.log(destination)
 

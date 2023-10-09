@@ -14,6 +14,10 @@ import Tabs from 'react-bootstrap/Tabs'
 import headerImage from '../images/rocky-mountains-canada.jpg'
 import DestinationCard from './DestinationCard'
 
+// ICONS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
+
 export default function UserProfile() {
 
   const { username } = useParams()
@@ -51,7 +55,9 @@ export default function UserProfile() {
                 <p>{userData.bio}</p>
                 <p>Destinations on your bucket list: {userData.bucketlist.length}<br />
                 Destinations visited: {userData.visited.length}</p>
-                <button className='button'>Create a new destination</button>
+                <Link className='button'><span className='space-before-icon'>Create a new destination</span>
+                  <FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} size='sm' />
+                </Link>
               </Col>
             </Row>
           </Container>

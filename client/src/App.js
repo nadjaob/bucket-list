@@ -75,7 +75,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />
-          <Route path='/destinations/:id' element={<SingleDestination userId={userId} />} />
+          <Route path='/destinations/:id' element={<SingleDestination userId={userId} renderApp={renderApp} />} />
           <Route path='/:username' element={<UserProfile />} />
         </Routes>
         <Footer />
