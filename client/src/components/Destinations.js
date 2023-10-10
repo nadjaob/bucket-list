@@ -40,7 +40,7 @@ export default function Destinations() {
   const [filteredDestinations, setFilteredDestinations] = useState([])
 
   const allCountries = destinations.map(destination => {
-    return destination.country
+    return destination.country[0].toUpperCase() + destination.country.slice(1)
   })
   const countriesList = [...new Set(allCountries)]
 
@@ -60,7 +60,11 @@ export default function Destinations() {
       } else {
         setCountryFilter([ ...countryFilter, e.target.id])
       }
-      setFilter({ ...filter, [e.target.name]: countryFilter })
+      if (countryFilter.length === 0) {
+        setFilter({ ...filter, [e.target.name]: 'All' })
+      } else {
+        setFilter({ ...filter, [e.target.name]: countryFilter })
+      }
     }
     if (e.target.name === 'categories') {
       if (!e.target.checked) {
@@ -70,7 +74,11 @@ export default function Destinations() {
       } else {
         setCategoryFilter([ ...categoryFilter, e.target.id])
       }
-      setFilter({ ...filter, [e.target.name]: categoryFilter })
+      if (categoryFilter.length === 0) {
+        setFilter({ ...filter, [e.target.name]: 'All' })
+      } else {
+        setFilter({ ...filter, [e.target.name]: categoryFilter })
+      }
     }
 
   }
@@ -88,7 +96,7 @@ export default function Destinations() {
     })
     setFilteredDestinations(filteredArray)
     console.log('filtered destinations', filteredDestinations)
-  }, [filter, destinations])
+  }, [countryFilter, categoryFilter, filter, destinations])
 
   return (
     <>

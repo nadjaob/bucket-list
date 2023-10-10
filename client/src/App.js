@@ -28,6 +28,7 @@ export default function App() {
 
   const [usernameURL, setUsernameURL] = useState('')
   const [userId, setUserId] = useState()
+  const [userImage, setUserImage] = useState()
   const [renderApp, setRenderApp] = useState(false)
 
   const [user, setUser] = useState(() => {
@@ -42,6 +43,7 @@ export default function App() {
       try {
         const { data } = await axios.get(`/api/auth/${usernameURL}`)
         setUserId(data.id)
+        setUserImage(data.profile_image)
       } catch (error) {
         console.log(error)
       }
@@ -71,7 +73,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user: user, setUser: setUser }}>
-        <Header usernameURL={usernameURL} setUsernameURL={setUsernameURL} setRenderApp={setRenderApp} renderApp={renderApp} />
+        <Header usernameURL={usernameURL} setUsernameURL={setUsernameURL} setRenderApp={setRenderApp} renderApp={renderApp} userImage={userImage} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />

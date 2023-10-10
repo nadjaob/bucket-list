@@ -26,6 +26,7 @@
       display: flex;
       justify-content: flex-end;
       gap: 30px;
+      align-items: center;
   
       a {
         color: #fff;
@@ -38,6 +39,12 @@
       }
     }
   }
+}
+
+.profile-image-header {
+  width: 35px;
+  height: 35px;
+  border-radius: 35px;
 }
 
 

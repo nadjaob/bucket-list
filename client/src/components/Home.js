@@ -14,7 +14,9 @@ import { Link } from 'react-router-dom'
 
 export default function Home() {
 
+  const itemsPerPage = 9
   const [destinations, setDestinations] = useState([])
+  const [pageNumber, setPageNumber] = useState(1)
 
   useEffect(() => {
     async function getDestinations(){
@@ -26,10 +28,10 @@ export default function Home() {
       }
     }
     getDestinations()
-  }, [])
+  }, [pageNumber])
 
   const loadMore = () => {
-    console.log('test')
+    setPageNumber(pageNumber + 1)
   }
 
 
@@ -46,16 +48,18 @@ export default function Home() {
         {destinations.length > 0 ?
           <>
             <Row className='mb-4'>
-              {destinations.slice(0,9).map(destination => {
+              {destinations.slice(0, itemsPerPage * pageNumber).map(destination => {
                 return (
                   <DestinationCard destination={destination} key={destination.id} />
                 )
               })}
             </Row>
             <Row>
+              {destinations.length > (itemsPerPage * pageNumber) &&
               <Col className='text-center mt-5 mb-5'>
                 <Link className='button' onClick={loadMore}>Load more</Link>
               </Col>
+              }
             </Row>
           </>
           :

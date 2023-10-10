@@ -90,12 +90,9 @@ export default function UserProfile({ userId, renderApp }) {
     setValidated(true)
     e.preventDefault()
     try {
-      const { data } = await axiosAuth.post(formData)
-
+      const { data } = await axiosAuth.post('/api/destinations/', formData)
       navigate('/destinations/')
-
       handleCloseForm()
-
     } catch (error) {
       console.log(error)
       const errorMessage = error.response.data.detail

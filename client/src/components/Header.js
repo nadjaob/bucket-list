@@ -22,7 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function Header({ usernameURL, setUsernameURL, setRenderApp, renderApp }) {
+export default function Header({ usernameURL, setUsernameURL, setRenderApp, renderApp, userImage }) {
 
   const catMenu = useRef(null)
   const { user, setUser } = useContext(UserContext)
@@ -169,12 +169,14 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
               <NavLink to='/destinations'>Destinations</NavLink>
               {user ?
                 <>
-                  <NavLink to={`/${usernameURL}`} onClick={changeUserProfile}>Profile</NavLink>
-                  <NavLink to='/' className='login-button' onClick={() => {
+                  <NavLink to='/' onClick={() => {
                     setUser(false)
                     deleteToken('access-token')
                     deleteToken('refresh-token')
                   }}>Logout</NavLink>
+                  <NavLink to={`/${usernameURL}`} onClick={changeUserProfile}>
+                    <img className='profile-image-header' src={userImage} />
+                  </NavLink>
                 </>
                 :
                 <NavLink onClick={handleShowLogin} className='login-button'>Login</NavLink>
