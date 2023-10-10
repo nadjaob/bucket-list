@@ -99,7 +99,7 @@ export default function Destinations() {
       </Container>
       <Container>
         <Row>
-          <Col>
+          <Col className='headings-center'>
             <h2>Where to next?</h2>
             <h1>Choose your bucket list destinations</h1>
           </Col>

@@ -287,16 +287,18 @@ export default function SingleDestination({ userId, renderApp }) {
                 {destination.visited.length > 0 &&
                 <>
                   <h4 className='h4-sidebar mt-4'>Visited by</h4>
-                  {destination.visited.map(user => {
-                    return (
-                      <div key={user.id} className='user-title-container'>
-                        <Link to={`/${user.username}`}><img className='user-img-sm' src={user.profile_image} alt={user.username} /></Link>
-                        <div className='user-title-information'>
-                          <Link to={`/${user.username}`}><p className='fw-bold'>{user.username}</p></Link>
-                          <p className='user-bio-sm'>{user.bio}</p>
+                  {destination.visited.slice(0,3).map(user => {
+                    if (user.username !== destination.user.username) {
+                      return (
+                        <div key={user.id} className='user-title-container'>
+                          <Link to={`/${user.username}`}><img className='user-img-sm' src={user.profile_image} alt={user.username} /></Link>
+                          <div className='user-title-information'>
+                            <Link to={`/${user.username}`}><p className='fw-bold'>{user.username}</p></Link>
+                            <p className='user-bio-sm'>{user.bio}</p>
+                          </div>
                         </div>
-                      </div>
-                    )
+                      )
+                    }
                   })}
                 </>
                 }
