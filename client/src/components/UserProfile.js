@@ -2,6 +2,7 @@ import { Link, NavLink, useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../App'
+import Select from 'react-select'
 
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
@@ -35,6 +36,27 @@ export default function UserProfile({ userId, renderApp }) {
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
   const navigate = useNavigate()
+
+
+  const [options, setOptions] = useState([])
+
+  useEffect(() => {
+    async function getCategories(){
+      try {
+        const { data } = await axios.get('/api/categories/')
+        setOptions(data)
+        console.log('all categories', data)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getCategories()
+  }, [])
+
+  const handleSelect = (categories) => {
+    setFormData({ ...formData, categories: categories.map(category => category.id) })
+  }
+
 
   useEffect(() => {
     const getUserData = async () => {
@@ -138,6 +160,17 @@ export default function UserProfile({ userId, renderApp }) {
                           <Form.Label hidden htmlFor='travel_experience'>Travel experience</Form.Label>
                           <Form.Control required type='text' name='travel_experience' placeholder='Travel experience' value={formData['travel_experience']} onChange={handleChange}></Form.Control>
                           <Form.Control.Feedback type="invalid">Travel experience is required.</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Label hidden htmlFor='categories'>Categories</Form.Label>
+                          <Select
+                            options={options.map(option => {
+                              return { value: option.name, label: option.name, id: option.id }
+                            })}
+                            isMulti
+                            name='categories'
+                            onChange={handleSelect}
+                          />
                         </Form.Group>
                         <button className='form-button' type='submit'>Add destination</button>
                         {errors && <p>{errors}</p>}
