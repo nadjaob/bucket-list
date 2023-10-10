@@ -8,6 +8,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 
+// COMPONENTS
+import ImageUpload from './ImageUpload'
+
 // UTILS
 import { stateValues, fieldValues } from '../utils/common'
 import { setToken } from '../lib/auth'
@@ -64,8 +67,14 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
             const { type, name, variable } = field
             return (
               <Fragment key={variable}>
-                <Form.Label hidden htmlFor={variable}>{name}</Form.Label>
-                <Form.Control required type={type} name={variable} placeholder={name} value={formData[variable]} onChange={handleChange}></Form.Control>
+                {type === 'image' ?
+                  <ImageUpload required formData={formData} setFormData={setFormData} imageType={variable} />
+                  :
+                  <>
+                    <Form.Label hidden htmlFor={variable}>{name}</Form.Label>
+                    <Form.Control required type={type} name={variable} placeholder={name} value={formData[variable]} onChange={handleChange}></Form.Control>
+                  </>
+                }  
                 <Form.Control.Feedback type="invalid">{name} is required.</Form.Control.Feedback>
               </Fragment>
             )

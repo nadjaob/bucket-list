@@ -17,14 +17,14 @@ export default function ImageUpload({ formData, setFormData, imageType }) {
   }
 
   function deleteImage() {
-    setFormData({ ...formData, image: '' })
+    setFormData({ ...formData, [imageType]: '' })
   }
 
   return (
     <>
-      {formData.image ?
+      {formData[imageType] ?
         <div className='container-delete-image'>
-          <img src={formData.image} alt="uploaded image" name='image' id='image' className='image-upload' />
+          <img src={formData[imageType]} alt="uploaded image" name='image' id='image' className='image-upload' />
           <Button onClick={deleteImage}>x</Button>
         </div>
         :

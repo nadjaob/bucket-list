@@ -1,0 +1,15 @@
+.image-upload {
+  width: 190px;
+  max-height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.container-delete-image {
+  display: flex;
+  gap: 15px;
+  button {
+    max-height: 27px;
+    padding: 0px 10px 3px;
+  }
+}
