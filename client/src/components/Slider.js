@@ -35,8 +35,7 @@ export default function Slider() {
       {slides && slides.map(slide => {
         return (
           <Carousel.Item key={slide.id}>
-            {/* <img src={slide.destination_image} alt={slide.name} /> */}
-            <img src={sliderImage} />
+            <img src={slide.destination_image} alt={slide.name} />
             <Carousel.Caption>
               <Container>
                 <Row>

@@ -134,7 +134,7 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
       <nav className={navbar ? 'navbar-container scrolled' : 'navbar-container'}>
         <Container>
           <Row className='navbar-row'>
-            <Col><Link to='/'><img src={logo} /></Link></Col>
+            <Col><Link to='/'><img src={logo} alt='BUCKET LIST' className='logo' /></Link></Col>
             <Col className='navbar-right'>
               {showSearch && 
                 <div className='search-container' ref={catMenu}>

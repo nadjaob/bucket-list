@@ -13,6 +13,7 @@
 
 .category-button {
   @extend %button-white-round;
+  padding-top: 10px;
   margin-right: 11px;
   text-transform: uppercase;
   background: rgba(255,255,255,0.3);

@@ -18,6 +18,7 @@
 
   .button {
     @extend %button-white-round;
+    padding-bottom: 10px;
   }
 }
 

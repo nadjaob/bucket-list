@@ -3,170 +3,173 @@
     "model": "destinations.destination",
     "pk": 1,
     "fields": {
-      "name": "Santorini, Greece",
-      "description": "Santorini is a picturesque island in the Aegean Sea known for its stunning sunsets, white-washed buildings, and crystal-clear waters. It's a romantic paradise for couples.",
-      "destination_image": "https://www.visitgreece.gr/wp-content/uploads/2021/05/IMG_9856.jpg",
-      "country": "Greece",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/1280px-Flag_of_Greece.svg.png",
+      "name": "Road trip through the Rocky Mountains",
+      "description": "Embark on an epic road trip through the stunning Rocky Mountains of North America. Enjoy breathtaking scenery and outdoor adventures along the way.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955166/bucket-list/rocky-mountains-canada_tg2gq7.jpg",
+      "country": "Canada",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/flag-canada_oskozs.png",
       "best_season": "Summer",
       "travel_experience": "Moderate",
-      "user": 3,
-      "categories": [2, 5, 8],
-      "bucketlist": [3, 5],
-      "visited": [2, 1]
+      "user": 2,
+      "categories": [1, 2, 5, 6, 8],
+      "bucketlist": [1, 6, 4],
+      "visited": [2, 5, 3, 7]
     }
   },
   {
     "model": "destinations.destination",
     "pk": 2,
     "fields": {
-      "name": "Val Thorens, France",
-      "description": "Val Thorens is a popular ski resort located in the French Alps. It is known for its stunning mountain views and world-class skiing and snowboarding opportunities.",
-      "destination_image": "https://www.les3vallees.com/media/cache/hero_default/hiver-paysage-village-val-thorens-1920x1080-s-berthon-otvalthorens-380.jpg",
-      "country": "France",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/255px-Flag_of_France.svg.png",
+      "name": "Safari in Serengeti National Park",
+      "description": "Embark on an unforgettable safari adventure in Serengeti National Park, Tanzania. Witness the incredible wildlife and natural beauty of the savannah.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/safari_ma1vp8.jpg",
+      "country": "Tanzania",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/flag-south-africa_qosbfj.png",
       "best_season": "Winter",
-      "travel_experience": "Experienced",
-      "user": 4,
-      "categories": [1, 4, 6],
-      "bucketlist": [2, 3],
-      "visited": [4, 5]
+      "travel_experience": "Moderate",
+      "user": 1,
+      "categories": [5, 8, 10],
+      "bucketlist": [3, 2, 6],
+      "visited": [4, 5, 7]
     }
   },
   {
     "model": "destinations.destination",
     "pk": 3,
     "fields": {
-      "name": "Machu Picchu, Peru",
-      "description": "Machu Picchu is an ancient Inca citadel located in the Andes Mountains. It's one of the most iconic archaeological sites in the world, known for its breathtaking views and historical significance.",
-      "destination_image": "https://www.peru.travel/sites/default/files/styles/hero_mobile/public/machupicchu_1.jpg?itok=9lQ-tSeT",
-      "country": "Peru",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Flag_of_Peru.svg/1280px-Flag_of_Peru.svg.png",
-      "best_season": "Dry Season",
-      "travel_experience": "Moderate",
-      "user": 5,
-      "categories": [2, 3, 9],
-      "bucketlist": [1, 4],
-      "visited": [3, 2]
+      "name": "Trek through the Himalayas",
+      "description": "Embark on an adventurous trek through the majestic Himalayan mountain range, known for its breathtaking landscapes and cultural diversity.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955167/bucket-list/himalayas_ae7swp.jpg",
+      "country": "Nepal",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696954626/bucket-list/flag-nepal_akmyxb.png",
+      "best_season": "Spring",
+      "travel_experience": "Challenging",
+      "user": 3,
+      "categories": [2, 3, 4, 6, 10],
+      "bucketlist": [4, 7, 6],
+      "visited": [3, 1, 2]
     }
   },
   {
     "model": "destinations.destination",
     "pk": 4,
     "fields": {
-      "name": "Kyoto, Japan",
-      "description": "Kyoto is a city in Japan famous for its well-preserved temples, traditional tea houses, and beautiful cherry blossoms. It's a cultural and historical gem.",
-      "destination_image": "https://www.japan-guide.com/thumb/destination/4_zoom.jpg",
-      "country": "Japan",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/1280px-Flag_of_Japan.svg.png",
-      "best_season": "Spring",
-      "travel_experience": "Novice",
-      "user": 1,
-      "categories": [3, 5, 7],
-      "bucketlist": [2, 5],
-      "visited": [1, 3]
+      "name": "Witness the Northern Lights",
+      "description": "Experience the mesmerizing beauty of the Northern Lights in locations like Iceland, Norway, or Finland. Witness the colorful dance of the auroras in the winter night sky.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955167/bucket-list/northern-lights_kvgjf7.jpg",
+      "country": "Iceland",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696954627/bucket-list/flag-iceland_xt3y5i.png",
+      "best_season": "Winter",
+      "travel_experience": "Moderate",
+      "user": 4,
+      "categories": [3, 6],
+      "bucketlist": [2, 6, 1],
+      "visited": [3, 7, 5]
     }
   },
+
   {
     "model": "destinations.destination",
     "pk": 5,
     "fields": {
-      "name": "Amalfi Coast, Italy",
-      "description": "The Amalfi Coast is a stunning stretch of coastline in southern Italy. With its dramatic cliffs, charming towns, and delicious cuisine, it's a dream destination for many.",
-      "destination_image": "https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/amalfi-coast-ITALY0919.jpg?itok=-g8FuAgx",
-      "country": "Italy",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1280px-Flag_of_Italy.svg.png",
-      "best_season": "Summer",
+      "name": "Visit the Taj Mahal",
+      "description": "Explore the iconic Taj Mahal, a breathtaking white marble mausoleum in Agra, India, known for its architectural beauty and rich history.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955167/bucket-list/taj-mahal_tmpold.jpg",
+      "country": "India",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696954626/bucket-list/flag-india_cuamen.png",
+      "best_season": "Winter",
       "travel_experience": "Moderate",
-      "user": 2,
-      "categories": [2, 4, 8],
-      "bucketlist": [1, 5],
-      "visited": [4, 2]
+      "user": 6,
+      "categories": [7, 12, 5],
+      "bucketlist": [1, 6, 3],
+      "visited": [2, 6, 4, 1]
     }
   },
   {
     "model": "destinations.destination",
     "pk": 6,
     "fields": {
-      "name": "Bora Bora, French Polynesia",
-      "description": "Bora Bora is a tropical paradise known for its overwater bungalows, clear blue waters, and coral reefs. It's a dream destination for honeymooners and beach lovers.",
-      "destination_image": "https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/bora-bora-french-polynesia-BORABORA0919.jpg?itok=B5UwDuyx",
-      "country": "French Polynesia",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Flag_of_French_Polynesia.svg/2560px-Flag_of_French_Polynesia.svg.png",
-      "best_season": "Year-round",
-      "travel_experience": "Novice",
-      "user": 3,
-      "categories": [1, 4, 10],
-      "bucketlist": [3, 2],
-      "visited": [5, 1]
+      "name": "Visit Machu Picchu",
+      "description": "Explore the ancient Inca citadel of Machu Picchu, nestled in the Andes Mountains of Peru. Discover its archaeological wonders and breathtaking views.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/machu-picchu_duxeoi.jpg",
+      "country": "Peru",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696954626/bucket-list/flag-peru_rxdsmf.png",
+      "best_season": "Summer",
+      "travel_experience": "Moderate",
+      "user": 5,
+      "categories": [2, 5, 6, 12],
+      "bucketlist": [5, 2, 1],
+      "visited": [4, 6, 3]
     }
   },
   {
     "model": "destinations.destination",
     "pk": 7,
     "fields": {
-      "name": "Cape Town, South Africa",
-      "description": "Cape Town is a vibrant city located at the tip of the African continent. It offers a mix of stunning natural beauty, diverse wildlife, and a rich cultural heritage.",
-      "destination_image": "https://www.southafrica.net/media/image/2020/12/d5127863e4974c4b9e72d1954e9f03cc.jpg",
-      "country": "South Africa",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/1280px-Flag_of_South_Africa.svg.png",
-      "best_season": "Year-round",
-      "travel_experience": "Moderate",
+      "name": "Take a romantic gondola ride through Venice",
+      "description": "Experience the charm of Venice, Italy, by taking a romantic gondola ride through its picturesque canals. Discover the city's rich history and culture.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955167/bucket-list/venice_kivvyh.jpg",
+      "country": "Italy",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696954627/bucket-list/flag-italy_hiv7hu.png",
+      "best_season": "Spring",
+      "travel_experience": "Easy",
       "user": 4,
-      "categories": [3, 6, 7],
-      "bucketlist": [1, 3],
-      "visited": [2, 5]
+      "categories": [5, 6, 9],
+      "bucketlist": [7, 1, 6],
+      "visited": [5, 4, 2, 3]
     }
   },
+
   {
     "model": "destinations.destination",
     "pk": 8,
     "fields": {
-      "name": "Marrakech, Morocco",
-      "description": "Marrakech is a city in Morocco known for its vibrant markets, historic palaces, and stunning gardens. It's a sensory delight for travelers seeking a taste of North Africa.",
-      "destination_image": "https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/marrakech-MARRAKECH0319.jpg?itok=Nz6J7Rrw",
-      "country": "Morocco",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/1280px-Flag_of_Morocco.svg.png",
+      "name": "Ascend Table Mountain",
+      "description": "Hike or take a cable car to the top of Table Mountain in Cape Town, South Africa. Enjoy panoramic views of the city and its natural beauty.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955170/bucket-list/cape-town_yqr1ce.jpg",
+      "country": "South Africa",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/flag-south-africa_qosbfj.png",
       "best_season": "Spring",
       "travel_experience": "Moderate",
-      "user": 5,
-      "categories": [2, 5, 9],
-      "bucketlist": [4, 1],
-      "visited": [3, 4]
+      "user": 7,
+      "categories": [2, 4, 10],
+      "bucketlist": [2, 3, 7],
+      "visited": [1, 5, 4, 6]
     }
   },
+
   {
     "model": "destinations.destination",
     "pk": 9,
     "fields": {
-      "name": "Santorini, Greece",
+      "name": "Watch the sunset in Santorini",
       "description": "Santorini is a picturesque island in the Aegean Sea known for its stunning sunsets, white-washed buildings, and crystal-clear waters. It's a romantic paradise for couples.",
-      "destination_image": "https://www.visitgreece.gr/wp-content/uploads/2021/05/IMG_9856.jpg",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/santorini_ngf1dz.jpg",
       "country": "Greece",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/1280px-Flag_of_Greece.svg.png",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696954626/bucket-list/flag-greece_dykb2h.png",
       "best_season": "Summer",
       "travel_experience": "Moderate",
-      "user": 2,
-      "categories": [2, 5, 8],
-      "bucketlist": [3, 5],
-      "visited": [2, 1]
+      "user": 7,
+      "categories": [1, 5, 9, 11],
+      "bucketlist": [4, 3, 5],
+      "visited": [2, 1, 6]
     }
   },
   {
     "model": "destinations.destination",
     "pk": 10,
     "fields": {
-      "name": "Val Thorens, France",
-      "description": "Val Thorens is a popular ski resort located in the French Alps. It is known for its stunning mountain views and world-class skiing and snowboarding opportunities.",
-      "destination_image": "https://www.les3vallees.com/media/cache/hero_default/hiver-paysage-village-val-thorens-1920x1080-s-berthon-otvalthorens-380.jpg",
-      "country": "France",
-      "flag_image": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/255px-Flag_of_France.svg.png",
-      "best_season": "Winter",
-      "travel_experience": "Experienced",
-      "user": 4,
-      "categories": [1, 4, 6],
-      "bucketlist": [2, 3],
-      "visited": [4, 5]
+      "name": "Scuba dive the Great Barrier Reef",
+      "description": "Explore the world-renowned Great Barrier Reef in Australia through scuba diving. Witness colorful marine life and vibrant coral reefs in their natural habitat.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/safari_ma1vp8.jpg",
+      "country": "Australia",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696954627/bucket-list/flag-australia_feqken.png",
+      "best_season": "Autumn",
+      "travel_experience": "Moderate",
+      "user": 6,
+      "categories": [1, 5, 8, 10, 12],
+      "bucketlist": [1, 2, 4],
+      "visited": [5, 3, 7]
     }
   }
 ]
