@@ -15,7 +15,7 @@
     "fields": {
       "title": "A Must-Visit Place",
       "content": "I had the chance to visit this destination, and I was blown away. The landscapes, the people, and the cuisine were all amazing. Don't miss out on the opportunity to explore this gem!",
-      "destination": 2,
+      "destination": 1,
       "user": 3
     }
   },
@@ -25,7 +25,7 @@
     "fields": {
       "title": "Incredible Memories",
       "content": "My trip to this destination was filled with incredible memories. From the historic sites to the vibrant markets, there's something for everyone. It's a place that will stay in my heart forever.",
-      "destination": 3,
+      "destination": 2,
       "user": 5
     }
   },
@@ -35,8 +35,8 @@
     "fields": {
       "title": "A Journey of Discovery",
       "content": "Exploring this destination was a journey of discovery. The local culture, traditions, and the warmth of the people were truly inspiring. I can't wait to return and explore more!",
-      "destination": 4,
-      "user": 1
+      "destination": 2,
+      "user": 7
     }
   },
   {
@@ -45,7 +45,7 @@
     "fields": {
       "title": "Traveler's Paradise",
       "content": "This destination is a traveler's paradise. From breathtaking landscapes to unique experiences, it offers a wide range of adventures. I had an amazing time exploring every corner.",
-      "destination": 5,
+      "destination": 3,
       "user": 4
     }
   },
@@ -55,7 +55,7 @@
     "fields": {
       "title": "A World of Wonders",
       "content": "Visiting this destination felt like stepping into a world of wonders. The diversity of experiences, the rich history, and the friendly locals make it a must-see place for any traveler.",
-      "destination": 6,
+      "destination": 3,
       "user": 2
     }
   },
@@ -65,7 +65,7 @@
     "fields": {
       "title": "Unforgettable Adventures",
       "content": "My adventures in this destination were truly unforgettable. Whether it was exploring ancient ruins, enjoying delicious cuisine, or meeting locals, every moment was a treasure.",
-      "destination": 7,
+      "destination": 4,
       "user": 3
     }
   },
@@ -75,7 +75,7 @@
     "fields": {
       "title": "Captivating Beauty",
       "content": "The captivating beauty of this destination is beyond words. From serene beaches to majestic mountains, it's a place that captivates the soul. I can't wait to go back.",
-      "destination": 8,
+      "destination": 4,
       "user": 5
     }
   },
@@ -85,8 +85,8 @@
     "fields": {
       "title": "A Cultural Marvel",
       "content": "Exploring the cultural marvels of this destination was an enriching experience. The art, history, and traditions are truly remarkable. I left with a deeper appreciation for the world.",
-      "destination": 9,
-      "user": 1
+      "destination": 5,
+      "user": 6
     }
   },
   {
@@ -95,8 +95,308 @@
     "fields": {
       "title": "A Journey into History",
       "content": "My journey to this destination felt like a step back in time. The historical sites and ancient ruins are a testament to the rich heritage of this place. It's a history lover's dream.",
-      "destination": 10,
+      "destination": 5,
       "user": 4
     }
+  },
+  {
+    "model": "comments.comment",
+    "pk": 11,
+    "fields": {
+        "title": "An Unforgettable Journey",
+        "content": "This destination left me in awe. It's a place where natural beauty and cultural richness come together to create an unforgettable experience. I highly recommend it!",
+        "destination": 6,
+        "user": 3
+    }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 12,
+      "fields": {
+          "title": "A Hidden Gem",
+          "content": "I stumbled upon this hidden gem and it exceeded all my expectations. The landscapes are breathtaking, and the locals are incredibly welcoming. Definitely a must-visit!",
+          "destination": 6,
+          "user": 6
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 13,
+      "fields": {
+          "title": "Cultural Delight",
+          "content": "Immersing myself in the local culture was a true delight. The traditions, cuisine, and people make this destination a cultural paradise.",
+          "destination": 7,
+          "user": 5
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 14,
+      "fields": {
+          "title": "Serenity and Tranquility",
+          "content": "If you seek serenity and tranquility, look no further. This destination offers a peaceful escape from the hustle and bustle of daily life. I left feeling refreshed and rejuvenated.",
+          "destination": 7,
+          "user": 4
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 15,
+      "fields": {
+          "title": "Adventure Awaits",
+          "content": "Adventure seekers, this is the place for you! From hiking to water sports, there's no shortage of thrilling activities to enjoy. I had an adrenaline-pumping experience here.",
+          "destination": 8,
+          "user": 2
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 16,
+      "fields": {
+          "title": "Historical Marvel",
+          "content": "This destination is a historical marvel. The ancient ruins and archaeological sites offer a fascinating glimpse into the past. I couldn't get enough of the rich history here.",
+          "destination": 8,
+          "user": 7
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 17,
+      "fields": {
+          "title": "A Food Lover's Paradise",
+          "content": "Calling all food lovers! The culinary scene in this destination is nothing short of amazing. I indulged in delicious dishes I'll never forget.",
+          "destination": 9,
+          "user": 1
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 18,
+      "fields": {
+          "title": "Nature's Beauty",
+          "content": "I was spellbound by the beauty of this place. The natural landscapes, from mountains to beaches, are a testament to Mother Nature's artistry.",
+          "destination": 9,
+          "user": 3
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 19,
+      "fields": {
+          "title": "Cultural Immersion",
+          "content": "Immersing myself in the local culture was the highlight of my trip. The people here are warm and welcoming, and I learned so much about their traditions.",
+          "destination": 10,
+          "user": 5
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 20,
+      "fields": {
+          "title": "A Relaxing Retreat",
+          "content": "This destination is a true retreat. I spent my days lounging on the beach and my nights stargazing. It was pure relaxation.",
+          "destination": 10,
+          "user": 2
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 21,
+      "fields": {
+          "title": "A Journey Back in Time",
+          "content": "Visiting this destination felt like a journey back in time. The historic architecture and preserved heritage are awe-inspiring.",
+          "destination": 11,
+          "user": 7
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 22,
+      "fields": {
+          "title": "Cultural Immersion",
+          "content": "Immersing myself in the local culture was the highlight of my trip. The people here are warm and welcoming, and I learned so much about their traditions.",
+          "destination": 11,
+          "user": 1
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 23,
+      "fields": {
+          "title": "Natural Wonders",
+          "content": "I was awestruck by the natural wonders in this destination. The waterfalls, forests, and wildlife make it a paradise for nature enthusiasts.",
+          "destination": 12,
+          "user": 3
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 24,
+      "fields": {
+          "title": "A Serene Getaway",
+          "content": "If you're looking for a serene getaway, look no further. The peaceful atmosphere and picturesque landscapes will soothe your soul.",
+          "destination": 12,
+          "user": 6
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 25,
+      "fields": {
+          "title": "A Serene Getaway",
+          "content": "If you're looking for a serene getaway, look no further. The peaceful atmosphere and picturesque landscapes will soothe your soul.",
+          "destination": 13,
+          "user": 4
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 26,
+      "fields": {
+          "title": "Thrills and Adventure",
+          "content": "Adventure enthusiasts, prepare for an adrenaline rush! This destination offers a wide range of exciting activities for the thrill-seeker in you.",
+          "destination": 13,
+          "user": 2
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 27,
+      "fields": {
+          "title": "A Walk Through History",
+          "content": "Walking through the historic streets of this destination felt like stepping back in time. The architecture and landmarks are awe-inspiring.",
+          "destination": 14,
+          "user": 7
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 28,
+      "fields": {
+          "title": "A Nature Lover's Paradise",
+          "content": "For nature lovers, this destination is a true paradise. The diverse ecosystems and wildlife make it a perfect place to connect with the natural world.",
+          "destination": 14,
+          "user": 1
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 29,
+      "fields": {
+          "title": "A Nature Lover's Paradise",
+          "content": "For nature lovers, this destination is a true paradise. The diverse ecosystems and wildlife make it a perfect place to connect with the natural world.",
+          "destination": 15,
+          "user": 3
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 30,
+      "fields": {
+          "title": "Memories to Last a Lifetime",
+          "content": "My visit to this destination created memories that will last a lifetime. It's a place where every moment is special.",
+          "destination": 15,
+          "user": 6
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 31,
+      "fields": {
+          "title": "A Photographer's Dream",
+          "content": "Photographers, rejoice! The stunning landscapes and vibrant culture make this destination a dream come true for capturing beautiful moments.",
+          "destination": 16,
+          "user": 4
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 32,
+      "fields": {
+          "title": "A Paradise for Explorers",
+          "content": "Explorers, get ready for an adventure of a lifetime. This destination offers countless opportunities to explore and discover new wonders.",
+          "destination": 16,
+          "user": 2
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 33,
+      "fields": {
+          "title": "A Paradise for Explorers",
+          "content": "Explorers, get ready for an adventure of a lifetime. This destination offers countless opportunities to explore and discover new wonders.",
+          "destination": 17,
+          "user": 7
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 34,
+      "fields": {
+          "title": "A Relaxing Getaway",
+          "content": "If you're seeking a relaxing getaway, this destination is perfect. It's a serene escape from the hustle and bustle of everyday life.",
+          "destination": 17,
+          "user": 1
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 35,
+      "fields": {
+          "title": "A Cultural Odyssey",
+          "content": "My journey through the culture of this destination was an odyssey filled with rich traditions, art, and history. It's a cultural treasure trove.",
+          "destination": 18,
+          "user": 3
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 36,
+      "fields": {
+          "title": "A Place of Wonder",
+          "content": "This destination is a place of wonder where every corner holds a surprise. It's a place that sparks curiosity and adventure.",
+          "destination": 18,
+          "user": 6
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 37,
+      "fields": {
+          "title": "A Blissful Retreat",
+          "content": "My stay at this destination was a blissful retreat. The serene landscapes and tranquil atmosphere were a balm for the soul.",
+          "destination": 19,
+          "user": 4
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 38,
+      "fields": {
+          "title": "A Diverse Experience",
+          "content": "This destination offers a diverse and enriching experience. From nature to culture, there's something for every traveler to appreciate.",
+          "destination": 19,
+          "user": 2
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 39,
+      "fields": {
+          "title": "A Place to Remember",
+          "content": "I'll always remember this destination as a place where dreams come true. It's a destination that touches the heart and leaves a lasting impression.",
+          "destination": 20,
+          "user": 7
+      }
+  },
+  {
+      "model": "comments.comment",
+      "pk": 40,
+      "fields": {
+          "title": "A Cultural Feast",
+          "content": "For those who crave culture, this destination is a feast for the senses. From art and music to local traditions, it's a cultural extravaganza.",
+          "destination": 20,
+          "user": 1
+      }
   }
 ]

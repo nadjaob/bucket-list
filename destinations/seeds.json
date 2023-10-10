@@ -11,7 +11,7 @@
       "best_season": "Summer",
       "travel_experience": "Moderate",
       "user": 2,
-      "categories": [1, 2, 5, 6, 8],
+      "categories": [1, 2, 5, 6, 8, 13],
       "bucketlist": [1, 6, 4],
       "visited": [2, 5, 3, 7]
     }
@@ -19,23 +19,6 @@
   {
     "model": "destinations.destination",
     "pk": 2,
-    "fields": {
-      "name": "Safari in Serengeti National Park",
-      "description": "Embark on an unforgettable safari adventure in Serengeti National Park, Tanzania. Witness the incredible wildlife and natural beauty of the savannah.",
-      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/safari_ma1vp8.jpg",
-      "country": "Tanzania",
-      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/flag-south-africa_qosbfj.png",
-      "best_season": "Winter",
-      "travel_experience": "Moderate",
-      "user": 1,
-      "categories": [5, 8, 10],
-      "bucketlist": [3, 2, 6],
-      "visited": [4, 5, 7]
-    }
-  },
-  {
-    "model": "destinations.destination",
-    "pk": 3,
     "fields": {
       "name": "Trek through the Himalayas",
       "description": "Embark on an adventurous trek through the majestic Himalayan mountain range, known for its breathtaking landscapes and cultural diversity.",
@@ -45,9 +28,26 @@
       "best_season": "Spring",
       "travel_experience": "Challenging",
       "user": 3,
-      "categories": [2, 3, 4, 6, 10],
+      "categories": [2, 3, 4, 6, 10, 13],
       "bucketlist": [4, 7, 6],
       "visited": [3, 1, 2]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 3,
+    "fields": {
+      "name": "Safari in Serengeti National Park",
+      "description": "Embark on an unforgettable safari adventure in Serengeti National Park, Tanzania. Witness the incredible wildlife and natural beauty of the savannah.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/safari_ma1vp8.jpg",
+      "country": "Tanzania",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/flag-south-africa_qosbfj.png",
+      "best_season": "Winter",
+      "travel_experience": "Moderate",
+      "user": 1,
+      "categories": [5, 8, 10, 13],
+      "bucketlist": [3, 2, 6],
+      "visited": [4, 5, 7]
     }
   },
   {
@@ -62,7 +62,7 @@
       "best_season": "Winter",
       "travel_experience": "Moderate",
       "user": 4,
-      "categories": [3, 6],
+      "categories": [3, 6, 13],
       "bucketlist": [2, 6, 1],
       "visited": [3, 7, 5]
     }
@@ -97,7 +97,7 @@
       "best_season": "Summer",
       "travel_experience": "Moderate",
       "user": 5,
-      "categories": [2, 5, 6, 12],
+      "categories": [2, 5, 6, 12, 14],
       "bucketlist": [5, 2, 1],
       "visited": [4, 6, 3]
     }
@@ -132,7 +132,7 @@
       "best_season": "Spring",
       "travel_experience": "Moderate",
       "user": 7,
-      "categories": [2, 4, 10],
+      "categories": [2, 4, 10, 13],
       "bucketlist": [2, 3, 7],
       "visited": [1, 5, 4, 6]
     }
@@ -150,7 +150,7 @@
       "best_season": "Summer",
       "travel_experience": "Moderate",
       "user": 7,
-      "categories": [1, 5, 9, 11],
+      "categories": [1, 5, 9, 11, 13],
       "bucketlist": [4, 3, 5],
       "visited": [2, 1, 6]
     }
@@ -161,7 +161,7 @@
     "fields": {
       "name": "Scuba dive the Great Barrier Reef",
       "description": "Explore the world-renowned Great Barrier Reef in Australia through scuba diving. Witness colorful marine life and vibrant coral reefs in their natural habitat.",
-      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696955165/bucket-list/safari_ma1vp8.jpg",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971052/bucket-list/scuba-diving_ifisaw.jpg",
       "country": "Australia",
       "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696954627/bucket-list/flag-australia_feqken.png",
       "best_season": "Autumn",
@@ -170,6 +170,176 @@
       "categories": [1, 5, 8, 10, 12],
       "bucketlist": [1, 2, 4],
       "visited": [5, 3, 7]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 11,
+    "fields": {
+      "name": "Go skiing in the French Alps",
+      "description": "Experience world-class skiing in the stunning French Alps during the winter months. Enjoy the breathtaking mountain views and pristine slopes.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696969924/bucket-list/skiing_gjaodn.jpg",
+      "country": "France",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968086/bucket-list/flag-france_cjipqu.png",
+      "best_season": "Winter",
+      "travel_experience": "Intermediate",
+      "user": 4,
+      "categories": [4, 6, 10, 13],
+      "bucketlist": [2, 6],
+      "visited": [3, 7]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 12,
+    "fields": {
+      "name": "Explore the Pyramids of Giza",
+      "description": "Discover the ancient wonders of the Pyramids of Giza in Egypt. Explore the history and architecture of these iconic structures.",
+      "destination_image": "IMAGE_URL_2",
+      "country": "Egypt",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968086/bucket-list/flag-egypt_illjjv.png",
+      "best_season": "Autumn",
+      "travel_experience": "Beginner",
+      "user": 6,
+      "categories": [7, 5, 12],
+      "bucketlist": [1, 5],
+      "visited": [2, 6, 3]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 13,
+    "fields": {
+      "name": "Stay in an overwater bungalow in Bora Bora",
+      "description": "Experience luxury and tranquility by staying in an overwater bungalow in the stunning paradise of Bora Bora in French Polynesia.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971052/bucket-list/bora-bora_gq6eye.jpg",
+      "country": "French Polynesia",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968086/bucket-list/flag-french-polynesia_zvrhvu.png",
+      "best_season": "Spring",
+      "travel_experience": "Luxury",
+      "user": 2,
+      "categories": [1, 5, 11, 13],
+      "bucketlist": [4, 7, 5],
+      "visited": [3, 1]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 14,
+    "fields": {
+      "name": "Explore cascading waterfalls & crystal-clear lakes",
+      "description": "Discover the natural beauty of Croatia by exploring its stunning waterfalls and pristine lakes, such as Plitvice Lakes National Park.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971051/bucket-list/waterfalls_v8dcp7.jpg",
+      "country": "Croatia",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968085/bucket-list/flag-croatia_xxwths.png",
+      "best_season": "Summer",
+      "travel_experience": "Moderate",
+      "user": 3,
+      "categories": [1, 5, 9, 11],
+      "bucketlist": [5, 2],
+      "visited": [4, 6]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 15,
+    "fields": {
+      "name": "Visit the Great Wall of China",
+      "description": "Walk along the ancient and iconic Great Wall of China, which stretches through various parts of the country, showcasing its rich history and grandeur.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971052/bucket-list/great-wall_dx8bun.jpg",
+      "country": "China",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968086/bucket-list/flag-china_k5csmh.png",
+      "best_season": "Spring",
+      "travel_experience": "Moderate",
+      "user": 5,
+      "categories": [2, 7, 12],
+      "bucketlist": [6, 1],
+      "visited": [5, 3]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 16,
+    "fields": {
+      "name": "Bungee jumping in Queenstown",
+      "description": "Experience the adrenaline rush of bungee jumping in Queenstown, New Zealand, known as the adventure capital of the world.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971052/bucket-list/bungee-jumping_pffkbt.jpg",
+      "country": "New Zealand",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968085/bucket-list/flag-new-zealand_v3qg2s.png",
+      "best_season": "Summer",
+      "travel_experience": "Adventure",
+      "user": 7,
+      "categories": [4, 10, 2, 14],
+      "bucketlist": [4, 7],
+      "visited": [2, 5]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 17,
+    "fields": {
+      "name": "Get splashed at Niagara Falls",
+      "description": "Niagara Falls is one of the world's most famous natural wonders, known for its breathtaking cascade of water that straddles the border between the United States and Canada. Its sheer size, power, and the mesmerizing beauty of the falls have made it a must-see destination, attracting millions of visitors from around the globe every year.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971538/bucket-list/niagara-falls_uloyrg.jpg",
+      "country": "United States",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971531/bucket-list/flag-us_jxvclf.png",
+      "best_season": "Summer",
+      "travel_experience": "Adventure",
+      "user": 2,
+      "categories": [13, 14, 5],
+      "bucketlist": [3, 5],
+      "visited": [1, 6, 7]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 18,
+    "fields": {
+      "name": "Climb an active volcano in Cotopaxi National Park",
+      "description": "Embark on a thrilling adventure by climbing the active volcano of Cotopaxi in Ecuador's Cotopaxi National Park.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971049/bucket-list/volcano-crater_yckkqq.jpg",
+      "country": "Ecuador",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968086/bucket-list/flag-ecuador_ayurtd.png",
+      "best_season": "Autumn",
+      "travel_experience": "Adventure",
+      "user": 4,
+      "categories": [2, 3, 4, 10, 13, 14],
+      "bucketlist": [6, 1],
+      "visited": [5, 3]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 19,
+    "fields": {
+      "name": "Sky dive over the Swiss Alps",
+      "description": "Experience the ultimate thrill of skydiving over the breathtaking Swiss Alps. Enjoy panoramic views of stunning landscapes.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971052/bucket-list/skydive-alps_tgsuwz.jpg",
+      "country": "Switzerland",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968086/bucket-list/flag-switzerland_gaqykx.png",
+      "best_season": "Summer",
+      "travel_experience": "Adventure",
+      "user": 6,
+      "categories": [4, 5, 6, 10, 13, 14],
+      "bucketlist": [2, 5],
+      "visited": [4, 7]
+    }
+  },
+  {
+    "model": "destinations.destination",
+    "pk": 20,
+    "fields": {
+      "name": "Explore the vast dunes of the Sahara Desert",
+      "description": "Embark on a desert adventure to explore the vast and mesmerizing dunes of the Sahara Desert in Morocco.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971049/bucket-list/sahara_lry9ig.jpg",
+      "country": "Morocco",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968086/bucket-list/flag-morocco_tz9dfz.jpg",
+      "best_season": "Spring",
+      "travel_experience": "Adventure",
+      "user": 1,
+      "categories": [5, 13, 14],
+      "bucketlist": [4, 7],
+      "visited": [2, 6]
     }
   }
 ]

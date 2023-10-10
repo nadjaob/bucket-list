@@ -22,6 +22,15 @@
   }
 }
 
+.user-bg {
+  background: black;
+  padding: 0px;
+
+  img {
+    opacity: 0.6;
+  }
+}
+
 .nav-tabs {
   display: flex;
   justify-content: center;

@@ -106,8 +106,8 @@ export default function UserProfile({ userId, renderApp }) {
     <>
       {userData ?
         <>
-          <Container fluid>
-            <img src={headerImage} className='header-image' />
+          <Container fluid className='user-bg'>
+            <img src={userData.background_image} className='header-image' />
           </Container>
 
           <Container>

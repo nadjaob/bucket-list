@@ -21,7 +21,8 @@ export default function Slider() {
     async function getDestinations(){
       try {
         const { data: destinations } = await axios.get('/api/destinations')
-        setSlides(destinations.slice(0,4))
+        console.log('destinations', destinations)
+        setSlides(destinations.sort((a,b) => a.id - b.id).slice(0, 4))
       } catch (error) {
         console.log(error.message)
       }

@@ -83,5 +83,19 @@
   "fields": {
     "name": "UNESCO World Heritage"
   }
+},
+{
+  "model": "categories.category",
+  "pk": 13,
+  "fields": {
+    "name": "landscape"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 14,
+  "fields": {
+    "name": "adventure"
+  }
 }
 ]
