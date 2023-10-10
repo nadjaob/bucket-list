@@ -28,6 +28,10 @@ export default function Home() {
     getDestinations()
   }, [])
 
+  const loadMore = () => {
+    console.log('test')
+  }
+
 
   return (
     <>
@@ -50,7 +54,7 @@ export default function Home() {
             </Row>
             <Row>
               <Col className='text-center mt-5 mb-5'>
-                <Link className='button'>Load more</Link>
+                <Link className='button' onClick={loadMore}>Load more</Link>
               </Col>
             </Row>
           </>

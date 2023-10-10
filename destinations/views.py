@@ -27,7 +27,12 @@ class DestinationView(GenericAPIView):
 # /destinations
 class DestinationListView(DestinationView, UserListCreateAPIView):
   permission_classes=[IsAuthenticatedOrReadOnly]
-  serializer_class=PopulatedDestinationSerializer
+  
+  def get_serializer_class(self):
+     if self.request.method == 'GET':
+        return PopulatedDestinationSerializer
+     return DestinationSerializer
+  
 
 # /destinations/:id
 class DestinationDetailView(DestinationView, RetrieveUpdateDestroyAPIView):

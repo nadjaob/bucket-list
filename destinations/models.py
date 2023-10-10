@@ -12,8 +12,7 @@ class Destination(models.Model):
   categories = models.ManyToManyField(
     'categories.Category',
     related_name='destinations',
-    blank=True,
-    null=True
+    blank=True
   )
   user = models.ForeignKey(
     'users.User',
@@ -25,14 +24,12 @@ class Destination(models.Model):
   bucketlist = models.ManyToManyField(
     'users.User',
     related_name='bucketlist',
-    blank=True,
-    null=True
+    blank=True
   )
   visited = models.ManyToManyField(
     'users.User',
     related_name='visited',
-    blank=True,
-    null=True
+    blank=True
   )
 
   def __str__(self):
