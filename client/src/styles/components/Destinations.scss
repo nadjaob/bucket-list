@@ -40,3 +40,13 @@
     border: white;
   }
 }
+
+@media(max-width: 767px) {
+  .accordion {
+    display: flex;
+    justify-content: space-between;
+  }
+  .accordion-item {
+    width: 34%;
+  }
+}

@@ -56,20 +56,27 @@ export default function UserProfile({ userId, renderApp }) {
       {userData ?
         <>
           <Container fluid className='user-bg'>
-            <img src={userData.background_image} className='header-image' />
+            <img src={userData.profile_image} className='header-image' />
           </Container>
 
           <Container>
             <Row>
-              <Col className='profile-image' md='4'>
+              <Col className='profile-image'>
                 <img src={userData.profile_image} />
               </Col>
-              <Col className='profile-details' md='4'>
+              <Col className='profile-details'>
                 <h1>{userData.username}</h1>
                 <p className='user-bio-sm'>{userData.bio}</p>
                 <p>Destinations on your bucket list: {userData.bucketlist.length}<br />
                 Destinations visited: {userData.visited.length}</p>
-                {userId === userData.id &&
+              </Col>
+            </Row>
+          </Container>
+
+          <Container className='mb-6'>
+            <Row>
+              <Col>
+              {userId === userData.id &&
                 <>
                   <Link className='button' onClick={createDestination}><span className='space-before-icon'>Create a new destination</span>
                     <FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} size='sm' />
@@ -81,9 +88,6 @@ export default function UserProfile({ userId, renderApp }) {
                 }
               </Col>
             </Row>
-          </Container>
-
-          <Container>
             <Tabs
               defaultActiveKey="bucket-list"
               transition={false}

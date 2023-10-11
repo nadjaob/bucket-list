@@ -117,12 +117,14 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
             <Form.Control required as='textarea' rows={3} name='description' placeholder='Description' value={formData['description']} onChange={handleChange}></Form.Control>
             <Form.Control.Feedback type="invalid">Description is required.</Form.Control.Feedback>
           </Form.Group>
+          <span>Image of destination:</span>
           <ImageUpload required formData={formData} setFormData={setFormData} imageType='destination_image' />
           <Form.Group>
             <Form.Label hidden htmlFor='country'>Country</Form.Label>
             <Form.Control required type='text' name='country' placeholder='Country' value={formData['country']} onChange={handleChange}></Form.Control>
             <Form.Control.Feedback type="invalid">Country is required.</Form.Control.Feedback>
           </Form.Group>
+          <span>Image of flag:</span>
           <ImageUpload required formData={formData} setFormData={setFormData} imageType='flag_image' />
           <Form.Group>
             <Form.Label hidden htmlFor='best_season'>Best season</Form.Label>

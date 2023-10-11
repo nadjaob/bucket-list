@@ -67,14 +67,17 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
             return (
               <Fragment key={variable}>
                 {type === 'image' ?
-                  <ImageUpload required formData={formData} setFormData={setFormData} imageType={variable} />
+                  <>
+                    <ImageUpload formData={formData} setFormData={setFormData} imageType={variable} />
+                  </>
                   :
                   <>
                     <Form.Label hidden htmlFor={variable}>{name}</Form.Label>
                     <Form.Control required type={type} name={variable} placeholder={name} value={formData[variable]} onChange={handleChange}></Form.Control>
+                    <Form.Control.Feedback type="invalid">{name} is required.</Form.Control.Feedback>
                   </>
                 }  
-                <Form.Control.Feedback type="invalid">{name} is required.</Form.Control.Feedback>
+                
               </Fragment>
             )
           })}

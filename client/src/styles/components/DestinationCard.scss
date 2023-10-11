@@ -1,6 +1,5 @@
 .destinationcard-container {
   position: relative;
-  height: 300px;
   background: $black;
   border-radius: 15px;
   cursor: pointer;
@@ -10,7 +9,6 @@
   // }
 
   > img {
-    height: 300px;
     width: 100%;
     object-fit: cover;
     border-radius: 15px;
@@ -24,11 +22,79 @@
   .details-container {
     position: absolute;
     bottom: 10px;
-    padding: 0px 10px 0 15px;
+    padding: 0px 12px 0 15px;
     color: white;
   
   }
 }
 
+.container-destination-card {
+  padding: 0px 10px;
+}
+
+.destination-card-grid {
+  padding: 5px;
+
+  h3 {
+    font-weight: 600;
+
+  }
+}
 
 
+@media(min-width: 767px) {
+  .destinationcard-container {
+    height: 180px;
+  
+    > img {
+      height: 180px;
+    }
+
+    h3 {
+      font-size: 13px;
+    }
+
+    .country-name {
+      font-size: 12px;
+    }
+  }
+}
+
+@media(min-width: 992px) {
+  .destinationcard-container {
+    height: 270px;
+  
+    > img {
+      height: 270px;
+    }
+
+    h3 {
+      font-size: 21px;
+    }
+
+    .country-name {
+      font-size: 15px;
+    }
+  }
+  
+
+  .container-destinationcard-small {
+    .destinationcard-container {
+      height: 230px;
+
+      > img {
+        height: 230px;
+      }
+
+      h3 {
+        font-size: 17px;
+      }
+    }
+  }
+}
+
+@media(max-width: 1200px) {
+  .accordion-button {
+    font-size: 16px;
+  }
+}

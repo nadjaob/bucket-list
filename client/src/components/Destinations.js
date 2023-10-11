@@ -105,9 +105,9 @@ export default function Destinations() {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid className='container-header-image'>
         <Row>
-          <Col><img src={headerImage} className='header-image' /></Col>
+          <Col><img src='https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971049/bucket-list/volcano-crater_yckkqq.jpg' className='header-image' /></Col>
         </Row>
       </Container>
       <Container>
@@ -120,7 +120,7 @@ export default function Destinations() {
       </Container>
       <Container>
         <Row>
-          <Col md='2'>
+          <Col md='2' className='mb-4'>
             <h4>Filter</h4>
             <Form>
               <Accordion defaultActiveKey={['0']} alwaysOpen>
@@ -149,7 +149,7 @@ export default function Destinations() {
           </Col>
           <Col md='10'>
             {destinations.length > 0 ?
-              <Container>
+              <Container className='container-destinationcard-small'>
                 <Row>
                   {filteredDestinations.map(destination => {
                     return (

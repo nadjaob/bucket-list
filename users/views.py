@@ -40,18 +40,3 @@ class UserProfileView(APIView):
         return Response({ 'error': str(e) }, status.HTTP_404_NOT_FOUND)
       except Exception as e:
         return Response({ 'error': str(e) }, status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-  # def get_object(self):
-  #   user = self.request.user
-  #   print(f"User: {user}")
-
-# class CustomTokenObtainPairView(TokenObtainPairView):
-#   def post(self, request, *args, **kwargs):
-#       response = super().post(request, *args, **kwargs)
-      
-#       if response.status_code == 200:
-#           user = self.request.user  # Get the user associated with the token
-#           response.data['username'] = user.username  # Add 'username' claim
-#           response.data['profile_image'] = user.profile_image  # Add 'profile_image' claim
-
-#       return response

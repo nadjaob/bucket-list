@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 
 export default function Home() {
 
-  const itemsPerPage = 9
+  const itemsPerPage = 8
   const [destinations, setDestinations] = useState([])
   const [pageNumber, setPageNumber] = useState(1)
 
@@ -51,7 +51,7 @@ export default function Home() {
         </Row>
         {destinations.length > 0 ?
           <>
-            <Row className='mb-4'>
+            <Row className='mb-4 container-destination-card'>
               {destinations.slice(0, itemsPerPage * pageNumber).map(destination => {
                 return (
                   <DestinationCard destination={destination} key={destination.id} />

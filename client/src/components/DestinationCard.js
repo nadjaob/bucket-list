@@ -7,7 +7,7 @@ export default function DestinationCard({ destination }) {
   const destinationId = `/destinations/${destination.id}`
 
   return (
-    <Col md='4'>
+    <Col md='3' className='destination-card-grid'>
       <Link to={destinationId}>
         <div className='destinationcard-container'>
           <img src={destination.destination_image} alt={destination.name} />
@@ -15,7 +15,7 @@ export default function DestinationCard({ destination }) {
             <h3>{destination.name}</h3>
             <div className='country-container'>
               <img src={destination.flag_image} alt={destination.country} />
-              <span>{destination.country}</span>
+              <span className='country-name'>{destination.country}</span>
             </div>
           </div>
         </div>
