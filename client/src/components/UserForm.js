@@ -1,6 +1,7 @@
 import { useState, Fragment, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../App'
+import axios from 'axios'
 
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
@@ -44,19 +45,21 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
         setToken('refresh-token', data.refresh)
         setUser(true)
         setUsernameURL(formData.username)
+        localStorage.setItem('usernameURL', formData.username)
         navigate(`/${formData.username}`)
       }
-
       handleCloseLogin()
       handleCloseRegister()
 
     } catch (error) {
       console.log(error)
-      const errorMessage = error.response.data.detail
+      const errorObj = error.response.data
+      const errorMessage = Object.values(errorObj)[0]
       console.error(errorMessage)
       setErrors(errorMessage)
     }
   }
+
 
   return (
     <Fragment>

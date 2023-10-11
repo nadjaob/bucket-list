@@ -65,3 +65,11 @@ a {
 .svg-inline--fa:hover {
   opacity: 0.9;
 }
+
+
+.centred {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}

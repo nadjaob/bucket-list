@@ -37,7 +37,11 @@ export default function Home() {
 
   return (
     <>
-      <Slider />
+      {destinations.length > 0 ?
+        <Slider />
+        :
+        <Spinner />
+      }
       <Container>
         <Row>
           <Col className='headings-center'>

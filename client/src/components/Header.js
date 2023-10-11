@@ -173,6 +173,7 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
                     setUser(false)
                     deleteToken('access-token')
                     deleteToken('refresh-token')
+                    deleteToken('usernameURL')
                   }}>Logout</NavLink>
                   <NavLink to={`/${usernameURL}`} onClick={changeUserProfile}>
                     <img className='profile-image-header' src={userImage} />

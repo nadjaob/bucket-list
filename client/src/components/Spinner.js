@@ -2,9 +2,8 @@ import BootstrapSpinner from 'react-bootstrap/Spinner'
 
 export default function Spinner(){
   return (
-    // <div className="centred">
-    //   <BootstrapSpinner />
-    // </div>
-    <h1>LOADiNG</h1>
+    <div className="centred">
+      <BootstrapSpinner />
+    </div>
   )
 }

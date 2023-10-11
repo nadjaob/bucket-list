@@ -16,6 +16,7 @@ import DestinationCard from './DestinationCard'
 
 // COMPONENTS
 import CreateDestination from './CreateDestination'
+import Spinner from './Spinner'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -120,7 +121,7 @@ export default function UserProfile({ userId, renderApp }) {
           </Container>
         </>
         :
-        <p>Loading</p>
+        <Spinner />
       }
     </>
   )

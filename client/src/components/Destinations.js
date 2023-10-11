@@ -60,11 +60,6 @@ export default function Destinations() {
       } else {
         setCountryFilter([ ...countryFilter, e.target.id])
       }
-      if (countryFilter.length === 0) {
-        setFilter({ ...filter, [e.target.name]: 'All' })
-      } else {
-        setFilter({ ...filter, [e.target.name]: countryFilter })
-      }
     }
     if (e.target.name === 'categories') {
       if (!e.target.checked) {
@@ -74,14 +69,24 @@ export default function Destinations() {
       } else {
         setCategoryFilter([ ...categoryFilter, e.target.id])
       }
-      if (categoryFilter.length === 0) {
-        setFilter({ ...filter, [e.target.name]: 'All' })
-      } else {
-        setFilter({ ...filter, [e.target.name]: categoryFilter })
-      }
     }
-
   }
+
+  useEffect(() => {
+    if (countryFilter.length === 0) {
+      setFilter({ ...filter, countries: 'All' })
+    } else {
+      setFilter({ ...filter, countries: countryFilter })
+    }
+  }, [countryFilter])
+
+  useEffect(() => {
+    if (categoryFilter.length === 0) {
+      setFilter({ ...filter, categories: 'All' })
+    } else {
+      setFilter({ ...filter, categories: categoryFilter })
+    }
+  }, [categoryFilter])
 
   useEffect(() => {
     const filteredArray = destinations.filter(destination => {
@@ -96,7 +101,7 @@ export default function Destinations() {
     })
     setFilteredDestinations(filteredArray)
     console.log('filtered destinations', filteredDestinations)
-  }, [countryFilter, categoryFilter, filter, destinations])
+  }, [filter, destinations])
 
   return (
     <>
@@ -120,21 +125,21 @@ export default function Destinations() {
             <Form>
               <Accordion defaultActiveKey={['0']} alwaysOpen>
                 <Accordion.Item eventKey='0'>
-                  <Accordion.Header>Country</Accordion.Header>
+                  <Accordion.Header>Categories</Accordion.Header>
                   <Accordion.Body>
-                    {countriesList.map((country, index) => {
+                    {categoriesList.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())).map((category, index) => {
                       return (
-                        <Form.Check key={index} onChange={handleChange} type='checkbox' name='countries' id={country} label={country} />
+                        <Form.Check key={index} onChange={handleChange} type='checkbox' name='categories' id={category} label={category} />
                       )
                     })}
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                  <Accordion.Header>Categories</Accordion.Header>
+                  <Accordion.Header>Country</Accordion.Header>
                   <Accordion.Body>
-                    {categoriesList.map((category, index) => {
+                    {countriesList.sort().map((country, index) => {
                       return (
-                        <Form.Check key={index} onChange={handleChange} type='checkbox' name='categories' id={category} label={category} />
+                        <Form.Check key={index} onChange={handleChange} type='checkbox' name='countries' id={country} label={country} />
                       )
                     })}
                   </Accordion.Body>
