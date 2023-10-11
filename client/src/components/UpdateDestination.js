@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import DestinationForm from './DestinationForm'
 import axios from 'axios'
 
-export default function UpdateDestination ({ handleCloseForm }) {
+export default function UpdateDestination ({ handleCloseForm, setRenderDestination, renderDestination }) {
 
   const { id } = useParams()
 
@@ -18,6 +18,6 @@ export default function UpdateDestination ({ handleCloseForm }) {
   }
 
   return (
-    <DestinationForm title='Edit' request={updateDestination} handleCloseForm={handleCloseForm} onLoad={getDestinationData} />
+    <DestinationForm title='Edit' request={updateDestination} handleCloseForm={handleCloseForm} onLoad={getDestinationData} setRenderDestination={setRenderDestination} renderDestination={renderDestination} />
   )
 }

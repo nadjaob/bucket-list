@@ -33,6 +33,7 @@ export default function SingleDestination({ userId, renderApp }) {
   const [reviewSent, setReviewSent] = useState(false)
   const [reviewDeleted, setReviewDeleted] = useState(false)
   const [show, setShow] = useState(false)
+  const [renderDestination, setRenderDestination] = useState(false)
 
   const [destination, setDestination] = useState()
   const [bucketlist, setBucketlist] = useState(false)
@@ -55,7 +56,7 @@ export default function SingleDestination({ userId, renderApp }) {
       }
     }
     getDestination()
-  }, [bucketlist, visited, reviewSent, reviewDeleted, renderApp])
+  }, [bucketlist, visited, reviewSent, reviewDeleted, renderApp, renderDestination])
 
   console.log(destination)
 
@@ -341,7 +342,7 @@ export default function SingleDestination({ userId, renderApp }) {
           </Container>
 
           <Modal show={showEdit} onHide={handleCloseForm} backdrop='static' keyboard={false} centered size='lg'>
-            <UpdateDestination handleCloseForm={handleCloseForm} />
+            <UpdateDestination handleCloseForm={handleCloseForm} setRenderDestination={setRenderDestination} renderDestination={renderDestination} />
           </Modal>
         </>
         :

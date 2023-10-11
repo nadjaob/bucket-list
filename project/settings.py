@@ -145,3 +145,14 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# SIMPLE_JWT = {
+#     'SLJWT_ACCESS_TOKEN_CLAIMS': {
+#         'username': 'users.User.username',
+#         'profile_image': 'users.User.profile_image'
+#     },
+#     'SLJWT_REFRESH_TOKEN_CLAIMS': {
+#         'username': 'users.User.username',
+#         'profile_image': 'users.User.profile_image'
+#     },
+# }

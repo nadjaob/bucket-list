@@ -16,7 +16,7 @@ import ImageUpload from './ImageUpload'
 import { stateValues, fieldValues } from '../utils/common'
 import { setToken } from '../lib/auth'
 
-export default function UserForm({ request, fields, title, handleCloseLogin, handleCloseRegister, setUsernameURL }) {
+export default function UserForm({ request, fields, title, handleCloseLogin, handleCloseRegister }) {
 
   const { user, setUser } = useContext(UserContext)
   const [formData, setFormData] = useState(stateValues(fields))
@@ -44,8 +44,6 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
         setToken('access-token', data.access)
         setToken('refresh-token', data.refresh)
         setUser(true)
-        setUsernameURL(formData.username)
-        localStorage.setItem('usernameURL', formData.username)
         navigate(`/${formData.username}`)
       }
       handleCloseLogin()
@@ -59,7 +57,6 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
       setErrors(errorMessage)
     }
   }
-
 
   return (
     <Fragment>

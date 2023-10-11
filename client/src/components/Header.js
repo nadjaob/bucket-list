@@ -16,13 +16,14 @@ import logo from '../images/logo-bucketlist.png'
 import Login from './Login'
 import Register from './Register'
 import { deleteToken } from '../lib/auth'
+import { getToken } from '../lib/auth'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function Header({ usernameURL, setUsernameURL, setRenderApp, renderApp, userImage }) {
+export default function Header({ setRenderApp, renderApp, userImage, username }) {
 
   const catMenu = useRef(null)
   const { user, setUser } = useContext(UserContext)
@@ -59,7 +60,7 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
     }
     getDestinations()
     
-  }, [showSearch, value])
+  }, [showSearch, value, user])
 
 
   // NAVBAR CHANGES ON SCROLL
@@ -173,9 +174,8 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
                     setUser(false)
                     deleteToken('access-token')
                     deleteToken('refresh-token')
-                    deleteToken('usernameURL')
                   }}>Logout</NavLink>
-                  <NavLink to={`/${usernameURL}`} onClick={changeUserProfile}>
+                  <NavLink to={`${username}`} onClick={changeUserProfile}>
                     <img className='profile-image-header' src={userImage} />
                   </NavLink>
                 </>
@@ -195,7 +195,6 @@ export default function Header({ usernameURL, setUsernameURL, setRenderApp, rend
             handleCloseLogin={handleCloseLogin}
             handleShowRegister={handleShowRegister}
             handleCloseRegister={handleCloseRegister}
-            setUsernameURL={setUsernameURL}
           />
         }
       </Modal>

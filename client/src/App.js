@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { tokenIsValid } from './lib/auth'
+import { tokenIsValid, getToken } from './lib/auth'
+import axiosAuth from './lib/axios'
 
 // GLOBAL COMPONENTS
 import Header from './components/Header'
@@ -26,9 +27,9 @@ export const UserContext = createContext(() => {
 
 export default function App() {
 
-  const [usernameURL, setUsernameURL] = useState('')
   const [userId, setUserId] = useState()
   const [userImage, setUserImage] = useState()
+  const [username, setUsername] = useState()
   const [renderApp, setRenderApp] = useState(false)
 
   const [user, setUser] = useState(() => {
@@ -41,15 +42,17 @@ export default function App() {
   useEffect(() => {
     async function getUserId() {
       try {
-        const { data } = await axios.get(`/api/auth/${usernameURL}`)
+        const { data } = await axiosAuth.get('/api/auth/userprofile/')
+        console.log('hit user profile')
         setUserId(data.id)
         setUserImage(data.profile_image)
+        setUsername(data.username)
       } catch (error) {
         console.log(error)
       }
     }
     getUserId()
-  }, [usernameURL])
+  }, [user])
 
   console.log('user id', userId)
 
@@ -73,7 +76,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user: user, setUser: setUser }}>
-        <Header usernameURL={usernameURL} setUsernameURL={setUsernameURL} setRenderApp={setRenderApp} renderApp={renderApp} userImage={userImage} />
+        <Header setRenderApp={setRenderApp} renderApp={renderApp} userImage={userImage} username={username} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />

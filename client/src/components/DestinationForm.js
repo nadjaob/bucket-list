@@ -14,7 +14,7 @@ import ImageUpload from './ImageUpload'
 
 
 
-export default function DestinationForm({ title, handleCloseForm, request, onLoad }) {
+export default function DestinationForm({ title, handleCloseForm, request, onLoad, setRenderDestination, renderDestination }) {
 
   const [formData, setFormData] = useState({})
   const [errors, setErrors] = useState('')
@@ -43,7 +43,16 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
         const { data } = await onLoad()
         data.categories = data.categories.map(category => category.id)
         console.log('my data', data)
-        setFormData(data)
+        setFormData({
+          name: data.name,
+          description: data.description,
+          destination_image: data.destination_image,
+          country: data.country,
+          flag_image: data.flag_image,
+          best_season: data.best_season,
+          travel_experience: data.travel_experience,
+          categories: data.categories,
+        })
         setSelectedCategories(formData.categories)
       } catch (error) {
         console.log(error)
@@ -75,7 +84,13 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     e.preventDefault()
     try {
       const { data } = await request(formData)
-      navigate('/destinations/')
+      console.log('the data', data)
+      navigate(`/destinations/${data.id}`)
+      if (!renderDestination) {
+        setRenderDestination(true)
+      } else {
+        setRenderDestination(false)
+      }
       handleCloseForm()
     } catch (error) {
       console.log(error)

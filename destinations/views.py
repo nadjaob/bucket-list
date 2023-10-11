@@ -37,7 +37,11 @@ class DestinationListView(DestinationView, UserListCreateAPIView):
 # /destinations/:id
 class DestinationDetailView(DestinationView, RetrieveUpdateDestroyAPIView):
   permission_classes=[IsOwnerOrReadOnly]
-  serializer_class=PopulatedDestinationSerializer
+
+  def get_serializer_class(self):
+     if self.request.method == 'PATCH':
+        return DestinationSerializer
+     return PopulatedDestinationSerializer
 
 # /destinations/:id/bucketlist
 class DestinationBucketlistView(DestinationView, UpdateAPIView):
