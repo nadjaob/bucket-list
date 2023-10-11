@@ -43,9 +43,8 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
         setToken('access-token', data.access)
         setToken('refresh-token', data.refresh)
         setUser(true)
-        const userId = formData.username
-        setUsernameURL(userId)
-        navigate(`/${userId}`)
+        setUsernameURL(formData.username)
+        navigate(`/${formData.username}`)
       }
 
       handleCloseLogin()

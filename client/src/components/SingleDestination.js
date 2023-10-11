@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../App'
 
 // BOOTSTRAP
@@ -13,10 +13,11 @@ import Modal from 'react-bootstrap/Modal'
 // COMPONENTS
 import Spinner from './Spinner'
 import axiosAuth from '../lib/axios'
+import UpdateDestination from './UpdateDestination'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faCheck, faTrashCan, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faCheck, faTrashCan, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function SingleDestination({ userId, renderApp }) {
@@ -36,6 +37,10 @@ export default function SingleDestination({ userId, renderApp }) {
   const [destination, setDestination] = useState()
   const [bucketlist, setBucketlist] = useState(false)
   const [visited, setVisited] = useState(false)
+
+  const [showEdit, setShowEdit] = useState(false)
+
+  const redirect = useNavigate()
 
 
 
@@ -148,6 +153,26 @@ export default function SingleDestination({ userId, renderApp }) {
     deleteReviewNow()
   }
 
+
+  // EDIT DESTINATION
+
+  const editDestination = () => setShowEdit(true)
+  const handleCloseForm = () => setShowEdit(false)
+
+  // DELETE DESTINATION
+
+  const deleteDestination = () => {
+    async function deleteItem() {
+      try {
+        const { data } = await axiosAuth.delete(`/api/destinations/${id}/`)
+        redirect('/destinations')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    deleteItem()
+  }
+
   return (
     <>
       {destination ?
@@ -175,6 +200,15 @@ export default function SingleDestination({ userId, renderApp }) {
             </Row>
           </Container>
           <Container>
+            {userId === destination.user.id &&
+            <Row>
+              <Col className='edit-icons'>
+                <Link onClick={editDestination}><FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} /></Link>
+                <Link onClick={deleteDestination}><FontAwesomeIcon icon={faTrash} style={{ color: '#ffffff' }} /></Link>
+              </Col>
+            </Row>
+            }
+            
             <Row>
               <Col md={{ span: 8, offset: 2 }} className='description-container'>
                 <p>{destination.description}</p>
@@ -305,6 +339,10 @@ export default function SingleDestination({ userId, renderApp }) {
               </Col>
             </Row>
           </Container>
+
+          <Modal show={showEdit} onHide={handleCloseForm} backdrop='static' keyboard={false} centered size='lg'>
+            <UpdateDestination handleCloseForm={handleCloseForm} />
+          </Modal>
         </>
         :
         <Spinner />
