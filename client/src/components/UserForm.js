@@ -62,6 +62,7 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
     <Fragment>
       {fields.length > 0 ?
         <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' lg='12'>
+          {errors && <p className='display-errors'>{errors}</p>}
           {fieldValues(fields).map(field => {
             const { type, name, variable } = field
             return (
@@ -81,9 +82,7 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
               </Fragment>
             )
           })}
-
           <button className='form-button' type='submit'>{title}</button>
-          {errors && <p>{errors}</p>}
         </Form>
         :
         'Form Error'

@@ -178,8 +178,9 @@ export default function SingleDestination({ userId, renderApp }) {
     <>
       {destination ?
         <>
-          <Container fluid className='header-bg-image' style={{ backgroundImage: `url(${destination.destination_image})` }}>
-            <Row>
+          <Container fluid className='header-bg-image'>
+            <img src={destination.destination_image} />
+            <Row className='content-after-header-img'>
               <Col>
                 <Container className='content-on-header'>
                   <Row>
@@ -211,7 +212,7 @@ export default function SingleDestination({ userId, renderApp }) {
             }
             
             <Row>
-              <Col md={{ span: 8, offset: 2 }} className='description-container'>
+              <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }} className='description-container'>
                 <p>{destination.description}</p>
                 {user &&
                 <div className='buttons-container'>
@@ -250,7 +251,7 @@ export default function SingleDestination({ userId, renderApp }) {
           <Container>
             <Row>
               <h3 className='mb-5'>Other people say about this destination:</h3>
-              <Col md='7'>
+              <Col md='7' className='mb-5'>
                 {destination.comments.length > 0 ?
                   <>
                     {destination.comments.map(comment => {

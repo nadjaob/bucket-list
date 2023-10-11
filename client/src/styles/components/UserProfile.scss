@@ -1,6 +1,4 @@
 .profile-image {
-  position: relative;
-  top: -70px;
 
   img {
     object-fit: cover;
@@ -13,12 +11,28 @@
 }
 
 .profile-details {
-  padding: 40px 0 0 40px;
+  padding: 64px 0 0 40px;
 
   .button {
     @extend %button-white-round;
     padding-bottom: 10px;
+    position: relative;
+    top: 20px;
   }
+}
+
+.container-profile-details {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: -70px;
+}
+
+.button-create-destination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: -20px;
 }
 
 .user-bg {
@@ -69,3 +83,34 @@
   }
 }
 
+
+@media (max-width: 767px) {
+  .header-image {
+    height: 230px;
+  }
+
+  .profile-image img {
+    width: 230px;
+    height: 230px;
+  }
+
+  .profile-details h1 {
+    font-size: 26px;
+  }
+
+  .profile-details {
+    padding: 94px 0 0 20px;
+}
+}
+
+@media (max-width: 576px) {
+  .profile-image {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .profile-details {
+    text-align: center;
+    padding: 30px 0 0;
+  }
+}

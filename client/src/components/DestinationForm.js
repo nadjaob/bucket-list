@@ -7,11 +7,13 @@ import axios from 'axios'
 // BOOTSTRAP
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 
 // COMPONENTS
 import ImageUpload from './ImageUpload'
-
 
 
 export default function DestinationForm({ title, handleCloseForm, request, onLoad, setRenderDestination, renderDestination }) {
@@ -100,6 +102,27 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     }
   }
 
+  // REACT SELECT STYLES
+
+  const customStyles = {
+    option: (defaultStyles, state) => ({
+      ...defaultStyles,
+      color: state.isSelected ? '#fff' : '#222',
+      backgroundColor: state.isSelected ? '#222' : '#fff',
+    }),
+
+    control: (defaultStyles) => ({
+      ...defaultStyles,
+      backgroundColor: '#fff',
+      padding: '4px',
+      borderRadius: '10px',
+      boxShadow: 'none',
+      fontSize: '14px',
+      fontWeight: '400',
+    }),
+    singleValue: (defaultStyles) => ({ ...defaultStyles, color: '#fff' }),
+  }
+
   return (
     <>
       <Modal.Header closeButton>
@@ -107,58 +130,69 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
       </Modal.Header>
       <Modal.Body>
         <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' className='form-comment'>
-          <Form.Group>
-            <Form.Label hidden htmlFor='name'>Name</Form.Label>
-            <Form.Control required type='text' name='name' placeholder='Name of destination' value={formData['name']} onChange={handleChange}></Form.Control>
-            <Form.Control.Feedback type="invalid">Name is required.</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label hidden htmlFor='description'>Description</Form.Label>
-            <Form.Control required as='textarea' rows={3} name='description' placeholder='Description' value={formData['description']} onChange={handleChange}></Form.Control>
-            <Form.Control.Feedback type="invalid">Description is required.</Form.Control.Feedback>
-          </Form.Group>
-          <span>Image of destination:</span>
-          <ImageUpload required formData={formData} setFormData={setFormData} imageType='destination_image' />
-          <Form.Group>
-            <Form.Label hidden htmlFor='country'>Country</Form.Label>
-            <Form.Control required type='text' name='country' placeholder='Country' value={formData['country']} onChange={handleChange}></Form.Control>
-            <Form.Control.Feedback type="invalid">Country is required.</Form.Control.Feedback>
-          </Form.Group>
-          <span>Image of flag:</span>
-          <ImageUpload required formData={formData} setFormData={setFormData} imageType='flag_image' />
-          <Form.Group>
-            <Form.Label hidden htmlFor='best_season'>Best season</Form.Label>
-            <Form.Control required type='text' name='best_season' placeholder='Best season' value={formData['best_season']} onChange={handleChange}></Form.Control>
-            <Form.Control.Feedback type="invalid">Season is required.</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label hidden htmlFor='travel_experience'>Travel experience</Form.Label>
-            <Form.Control required type='text' name='travel_experience' placeholder='Travel experience' value={formData['travel_experience']} onChange={handleChange}></Form.Control>
-            <Form.Control.Feedback type="invalid">Travel experience is required.</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label hidden htmlFor='categories'>Categories</Form.Label>
-            {/* {selectedCategories.length > 0 ?
-              <Select
-                options={options.map(option => {
-                  return { value: option.name, label: option.name, id: option.id }
-                })}
-                isMulti
-                name='categories'
-                onChange={handleSelect}
-                defaultValue={selectedCategories}
-              />
-              : */}
-            <Select
-              options={options.map(option => {
-                return { value: option.id, label: option.name, id: option.id }
-              })}
-              isMulti
-              name='categories'
-              onChange={handleSelect}
-            />
-            {/* } */}
-          </Form.Group>
+          <Container>
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label hidden htmlFor='name'>Name</Form.Label>
+                  <Form.Control required type='text' name='name' placeholder='Name of destination' value={formData['name']} onChange={handleChange}></Form.Control>
+                  <Form.Control.Feedback type="invalid">Name is required.</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label hidden htmlFor='description'>Description</Form.Label>
+                  <Form.Control required as='textarea' rows={3} name='description' placeholder='Description' value={formData['description']} onChange={handleChange}></Form.Control>
+                  <Form.Control.Feedback type="invalid">Description is required.</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label hidden htmlFor='country'>Country</Form.Label>
+                  <Form.Control required type='text' name='country' placeholder='Country' value={formData['country']} onChange={handleChange}></Form.Control>
+                  <Form.Control.Feedback type="invalid">Country is required.</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label hidden htmlFor='best_season'>Best season</Form.Label>
+                  <Form.Control required type='text' name='best_season' placeholder='Best season' value={formData['best_season']} onChange={handleChange}></Form.Control>
+                  <Form.Control.Feedback type="invalid">Season is required.</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label hidden htmlFor='travel_experience'>Travel experience</Form.Label>
+                  <Form.Control required type='text' name='travel_experience' placeholder='Travel experience' value={formData['travel_experience']} onChange={handleChange}></Form.Control>
+                  <Form.Control.Feedback type="invalid">Travel experience is required.</Form.Control.Feedback>
+                </Form.Group>
+              </Col>
+              <Col>
+                <span>Image of destination:</span>
+                <ImageUpload required formData={formData} setFormData={setFormData} imageType='destination_image' />
+                <span>Image of flag:</span>
+                <ImageUpload required formData={formData} setFormData={setFormData} imageType='flag_image' />
+                <Form.Group>
+                  <Form.Label hidden htmlFor='categories'>Categories</Form.Label>
+                  {/* {selectedCategories.length > 0 ?
+                    <Select
+                      options={options.map(option => {
+                        return { value: option.name, label: option.name, id: option.id }
+                      })}
+                      isMulti
+                      name='categories'
+                      onChange={handleSelect}
+                      defaultValue={selectedCategories}
+                    />
+                    : */}
+                  <Select
+                    options={options.map(option => {
+                      return { value: option.id, label: option.name, id: option.id }
+                    })}
+                    isMulti
+                    name='categories'
+                    onChange={handleSelect}
+                    styles={customStyles}
+                    placeholder={'Select categories'}
+                  />
+                  {/* } */}
+                </Form.Group>
+              </Col>
+            </Row>
+          </Container>
+
           <button className='form-button' type='submit'>{title} destination</button>
           {errors && <p>{errors}</p>}
         </Form>

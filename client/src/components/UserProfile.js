@@ -60,28 +60,30 @@ export default function UserProfile({ userId, renderApp }) {
           </Container>
 
           <Container>
-            <Row>
-              <Col className='profile-image'>
+            <Row className='container-profile-details'>
+              <Col sm='6' className='profile-image'>
                 <img src={userData.profile_image} />
               </Col>
-              <Col className='profile-details'>
+              <Col sm='6' className='profile-details'>
                 <h1>{userData.username}</h1>
                 <p className='user-bio-sm'>{userData.bio}</p>
                 <p>Destinations on your bucket list: {userData.bucketlist.length}<br />
                 Destinations visited: {userData.visited.length}</p>
+
+                
               </Col>
             </Row>
           </Container>
 
           <Container className='mb-6'>
             <Row>
-              <Col>
-              {userId === userData.id &&
+              <Col className='button-create-destination'>
+                {userId === userData.id &&
                 <>
                   <Link className='button' onClick={createDestination}><span className='space-before-icon'>Create a new destination</span>
                     <FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} size='sm' />
                   </Link>
-                  <Modal show={show} onHide={handleCloseForm} backdrop='static' keyboard={false} centered size='lg'>
+                  <Modal show={show} onHide={handleCloseForm} backdrop='static' keyboard={false} centered size='xl'>
                     <CreateDestination handleCloseForm={handleCloseForm} />
                   </Modal>
                 </>

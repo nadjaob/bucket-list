@@ -40,7 +40,7 @@ export default function Slider() {
             <Carousel.Caption>
               <Container>
                 <Row>
-                  <Col md='6'>
+                  <Col lg='6'>
                     <h1 className='mb-3'>{slide.name}</h1>
                     <Link to={`/destinations/${slide.id}`} className='button-slider'>View destination</Link>
                   </Col>

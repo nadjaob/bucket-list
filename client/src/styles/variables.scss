@@ -26,17 +26,17 @@ $black: #000;
   border-radius: 10px;
   border: 1px solid white;
   width: 100%;
-  background: none;
+  background: $white;
   margin-bottom: 10px;
-  color: $white;
+  color: $grey;
   &:focus {
-    background: none;
-    color: $white;
+    background: $white;
+    color: $grey;
     border-color: $white;
     box-shadow: 0 0 0 0.13rem rgba(255,255,255,.25);
   }
   &::placeholder {
-    color: $white;
+    color: $grey;
     font-size: 14px;
   }
 }

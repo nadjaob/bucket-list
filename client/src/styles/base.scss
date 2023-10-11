@@ -83,3 +83,19 @@ a {
     --bs-gutter-x: 0px;
   }
 }
+
+@media(max-width: 576px) {
+  .headings-center h1 {
+    font-size: 1.7rem;
+}
+}
+
+// ERROR MESSAGES
+.display-errors {
+  color: red;
+  font-weight: 700;
+}
+
+.invalid-feedback {
+  margin-top: -10px;
+}
