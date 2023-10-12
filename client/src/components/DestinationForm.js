@@ -56,6 +56,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
           categories: data.categories,
         })
         setSelectedCategories(formData.categories)
+        console.log('selected categories', selectedCategories)
       } catch (error) {
         console.log(error)
         setErrors(error)
@@ -161,10 +162,6 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
                 </Form.Group>
               </Col>
               <Col>
-                <span>Image of destination:</span>
-                <ImageUpload required formData={formData} setFormData={setFormData} imageType='destination_image' />
-                <span>Image of flag:</span>
-                <ImageUpload required formData={formData} setFormData={setFormData} imageType='flag_image' />
                 <Form.Group>
                   <Form.Label hidden htmlFor='categories'>Categories</Form.Label>
                   {/* {selectedCategories.length > 0 ?
@@ -179,18 +176,24 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
                     />
                     : */}
                   <Select
-                    className='mt-3'
+                    className='mb-3'
                     options={options.map(option => {
-                      return { value: option.id, label: option.name, id: option.id }
+                      return { value: option.name, label: option.name, id: option.id }
                     })}
                     isMulti
                     name='categories'
                     onChange={handleSelect}
                     styles={customStyles}
                     placeholder={'Select categories'}
+                    defaultValue={[1, 2]}
                   />
                   {/* } */}
                 </Form.Group>
+                <span>Image of destination:</span>
+                <ImageUpload required formData={formData} setFormData={setFormData} imageType='destination_image' />
+                <span>Image of flag:</span>
+                <ImageUpload required formData={formData} setFormData={setFormData} imageType='flag_image' />
+                
               </Col>
             </Row>
           </Container>

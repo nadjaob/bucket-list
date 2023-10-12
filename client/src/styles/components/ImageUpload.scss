@@ -1,6 +1,6 @@
 .image-upload {
-  width: 190px;
-  max-height: 100px;
+  width: 180px;
+  max-height: 89px;
   object-fit: cover;
   margin-bottom: 10px;
 }
@@ -9,15 +9,18 @@
   position: relative;
   display: flex;
   gap: 15px;
+  width: 240px;
   button {
     background: none;
     border: none;
     font-size: 24px;
     position: absolute;
-    right: 48px;
-    top: -4px;
-    &:hover {
-      background: none;
+    right: 58px;
+    top: -7px;
+    &:hover, &:focus-visible, &:active {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
       font-size: 25px;
       transition: all .2s ease-in-out;
     }
