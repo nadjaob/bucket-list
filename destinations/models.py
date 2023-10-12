@@ -31,6 +31,11 @@ class Destination(models.Model):
     related_name='visited',
     blank=True
   )
+  invited = models.ManyToManyField(
+    'users.User',
+    related_name='invitations',
+    blank=True
+  )
 
   def __str__(self):
     return f"{self.name} - {self.country}"

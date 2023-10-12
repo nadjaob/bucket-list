@@ -9,6 +9,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
+import Dropdown from 'react-bootstrap/Dropdown'
+import Button from 'react-bootstrap/Button'
 
 // COMPONENTS
 import Spinner from './Spinner'
@@ -34,6 +36,11 @@ export default function SingleDestination({ userId, renderApp }) {
   const [reviewDeleted, setReviewDeleted] = useState(false)
   const [show, setShow] = useState(false)
   const [renderDestination, setRenderDestination] = useState(false)
+  const [allUsers, setAllUsers] = useState([])
+  const [invitationData, setInvitationData] = useState({})
+  const [invitedUser, setInvitedUser] = useState()
+  const [invitedUser2, setInvitedUser2] = useState()
+  const [errorInvitation, setErrorInvitation] = useState()
 
   const [destination, setDestination] = useState()
   const [bucketlist, setBucketlist] = useState(false)
@@ -56,7 +63,7 @@ export default function SingleDestination({ userId, renderApp }) {
       }
     }
     getDestination()
-  }, [bucketlist, visited, reviewSent, reviewDeleted, renderApp, renderDestination])
+  }, [bucketlist, visited, reviewSent, reviewDeleted, renderApp, renderDestination, invitedUser2])
 
   console.log(destination)
 
@@ -174,6 +181,42 @@ export default function SingleDestination({ userId, renderApp }) {
     deleteItem()
   }
 
+
+  // INVITE A FRIEND
+
+  useEffect(() => {
+    async function getUsers(){
+      try {
+        const { data } = await axios.get('/api/auth/users/')
+        console.log('all users', data)
+        setAllUsers(data)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getUsers()
+  }, [])
+
+  const handleInvitationData = (e) => {
+    setInvitationData({ 'user_id_to_invite': e.target.value })
+    setErrorInvitation()
+    setInvitedUser(e.target.name)
+  }
+
+  async function handleInvitation(e) {
+    console.log('hit invitation button')
+    e.preventDefault()
+    try {
+      const { data } = await axiosAuth.patch(`/api/destinations/${id}/invitations/`, invitationData)
+      setInvitedUser2(invitedUser)
+    } catch (error) {
+      console.log(error)
+      const errorMessageInvitation = error.response.data.error
+      console.error(errorMessageInvitation)
+      setErrorInvitation(errorMessageInvitation)
+    }
+  }
+
   return (
     <>
       {destination ?
@@ -239,7 +282,25 @@ export default function SingleDestination({ userId, renderApp }) {
                 
                 }
                 
+                {user &&
+                  <div className='container-invite-friend'>
+                    <p>Invite a friend to this journey!</p>
 
+                    <Form.Select onChange={handleInvitationData} aria-label="Default select example">
+                      <option selected disabled>Invite a friend:</option>
+                      {allUsers.length > 0 && allUsers.map(user => {
+                        if (userId !== user.id) {
+                          return (
+                            <option value={user.id} key={user.id} name={user.username}>{user.username}</option>
+                          )
+                        }
+                      })}
+                    </Form.Select>
+                    <Button onClick={handleInvitation}>Invite this friend</Button>
+                    {errorInvitation && <p>{errorInvitation}</p>}
+                    <p>You successfully invited {invitedUser}</p>
+                  </div>
+                }
                 <div className='details-container-w-border'>
                   <p>Travel experience: {destination.travel_experience}<br />
                   Best season: {destination.best_season}</p>

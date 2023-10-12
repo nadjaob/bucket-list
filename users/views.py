@@ -1,6 +1,6 @@
-from rest_framework.generics import CreateAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView, ListCreateAPIView
 from django.views.generic import DetailView
-from .serializers.common import RegistrationSerializer, UserSerializer
+from .serializers.common import RegistrationSerializer, UserSerializer, UserSerializerMinimalized
 from .serializers.populated import PopulatedUserSerializer
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import IsAuthenticated
@@ -40,3 +40,8 @@ class UserProfileView(APIView):
         return Response({ 'error': str(e) }, status.HTTP_404_NOT_FOUND)
       except Exception as e:
         return Response({ 'error': str(e) }, status.HTTP_500_INTERNAL_SERVER_ERROR)
+      
+
+class UserListView(ListCreateAPIView):
+  queryset = User.objects.all()
+  serializer_class = UserSerializerMinimalized

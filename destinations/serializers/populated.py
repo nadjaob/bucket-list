@@ -9,3 +9,4 @@ class PopulatedDestinationSerializer(DestinationSerializer):
   categories = CategorySerializer(many=True)
   visited = UserSerializer(many=True)
   user = UserSerializer()
+  invited = UserSerializer(many=True)

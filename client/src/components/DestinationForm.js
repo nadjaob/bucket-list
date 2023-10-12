@@ -18,11 +18,11 @@ import ImageUpload from './ImageUpload'
 
 export default function DestinationForm({ title, handleCloseForm, request, onLoad, setRenderDestination, renderDestination }) {
 
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState({ categories: [] })
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
   const navigate = useNavigate()
-  const [selectedCategories, setSelectedCategories] = useState([])
+  const [selectedCategories, setSelectedCategories] = useState()
 
   const [options, setOptions] = useState([])
 
@@ -43,8 +43,15 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     async function fillFormFields() {
       try {
         const { data } = await onLoad()
-        data.categories = data.categories.map(category => category.id)
-        console.log('my data', data)
+        console.log('my data', data.categories)
+        // data.categories = data.categories.map(category => category.id)
+        // console.log('new categories with value', data.categories.forEach(category => category['value'] = category.id ))
+        // data.categories.forEach(category => category['value'] = category.id )
+        // data.categories.forEach(category => {
+          
+        // })
+        console.log('test', data.categories)
+        setSelectedCategories(data.categories)
         setFormData({
           name: data.name,
           description: data.description,
@@ -53,10 +60,11 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
           flag_image: data.flag_image,
           best_season: data.best_season,
           travel_experience: data.travel_experience,
-          categories: data.categories,
+          categories: data.categories.map(category => {
+            return { ...category, label: category.name, value: category.id }
+          }),
         })
-        setSelectedCategories(formData.categories)
-        console.log('selected categories', selectedCategories)
+        // console.log('selected categories', selectedCategories)
       } catch (error) {
         console.log(error)
         setErrors(error)
@@ -67,6 +75,8 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     }
   }, [onLoad])
 
+  console.log('formdata.categories', formData.categories)
+
   
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -74,7 +84,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
   }
 
   const handleSelect = (categories) => {
-    setFormData({ ...formData, categories: categories.map(category => category.id) })
+    setFormData({ ...formData, categories })
   }
 
   async function handleSubmit(e) {
@@ -85,8 +95,9 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     }
     setValidated(true)
     e.preventDefault()
+    const reformattedFormdata = { ...formData, categories: formData.categories.map(category => category.id) }
     try {
-      const { data } = await request(formData)
+      const { data } = await request(reformattedFormdata)
       console.log('the data', data)
       navigate(`/destinations/${data.id}`)
       if (!renderDestination) {
@@ -163,17 +174,6 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
               <Col>
                 <Form.Group>
                   <Form.Label hidden htmlFor='categories'>Categories</Form.Label>
-                  {/* {selectedCategories.length > 0 ?
-                    <Select
-                      options={options.map(option => {
-                        return { value: option.name, label: option.name, id: option.id }
-                      })}
-                      isMulti
-                      name='categories'
-                      onChange={handleSelect}
-                      defaultValue={selectedCategories}
-                    />
-                    : */}
                   <Select
                     className='mb-3'
                     options={options.map(option => {
@@ -184,8 +184,12 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
                     onChange={handleSelect}
                     styles={customStyles}
                     placeholder={'Select categories'}
-                    defaultValue={selectedCategories}
+                    // defaultValue={selectedCategories}
+                    value={formData.categories}
+                    // defaultValue={selectedCategories.length > 0 ? selectedCategories : []}
+                    // defaultValue={[ { id: 2, name: 'hiking', label: 'hiking', value: 2 }, { id: 5, name: 'summer', label: 'summer', value: 5 } ]}
                   />
+                  {console.log('selected categories', selectedCategories)}
                   {/* } */}
                 </Form.Group>
                 <span>Image of destination:</span>

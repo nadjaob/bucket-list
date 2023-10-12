@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, Fragment } from 'react'
 import { UserContext } from '../App'
+import axiosAuth from '../lib/axios'
 
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
@@ -10,6 +11,8 @@ import Col from 'react-bootstrap/Col'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Modal from 'react-bootstrap/Modal'
+import Carousel from 'react-bootstrap/Carousel'
+
 
 // IMAGES
 import DestinationCard from './DestinationCard'
@@ -20,7 +23,7 @@ import Spinner from './Spinner'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faCheck, faTrashCan, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function UserProfile({ userId, renderApp }) {
@@ -30,6 +33,7 @@ export default function UserProfile({ userId, renderApp }) {
   const { user, setUser } = useContext(UserContext)
   const [userData, setUserData] = useState()
   const [show, setShow] = useState(false)
+  const [removeInvitation, setRemoveInvitation] = useState(false)
 
 
   useEffect(() => {
@@ -42,13 +46,55 @@ export default function UserProfile({ userId, renderApp }) {
       }
     }
     getUserData()
-  }, [renderApp])
+  }, [renderApp, removeInvitation])
 
 
   // CREATE DESTINATION
 
   const createDestination = () => setShow(true)
   const handleCloseForm = () => setShow(false)
+
+  
+  // HANDLE INVITATION
+
+  async function handleAcceptInvitation(destinationId) {
+    console.log('id of invitation', destinationId)
+    console.log('first condition', userData.bucketlist.some(destination => destination['id'] === destinationId))
+    try {
+      if (!userData.bucketlist.some(destination => destination['id'] === destinationId)) {
+        const { data } = await axiosAuth.patch(`/api/destinations/${destinationId}/bucketlist/`)
+        if (userData.visited.some(destination => destination['id'] === destinationId)) {
+          const { data } = await axiosAuth.patch(`/api/destinations/${destinationId}/visited/`)
+        }
+      } else {
+        console.log('destination is already in bucket list')
+      }
+      console.log('accepted invitation')
+      handleDeleteInvitation(destinationId)
+    } catch (error) {
+      console.log(error)
+      console.log('failed invitation')
+    }
+  }
+
+
+  async function handleDeleteInvitation(destinationId) {
+    console.log('destination id', destinationId)
+    console.log('user id', userId)
+    console.log('request body')
+    try {
+      const { data } = await axiosAuth.delete(`/api/destinations/${destinationId}/invitations/delete/`, { data: { invitation_id: userId } })
+      console.log('deleted invitation')
+      if (!removeInvitation) {
+        setRemoveInvitation(true)
+      } else {
+        setRemoveInvitation(false)
+      }
+    } catch (error) {
+      console.log(error)
+      console.log('failed invitation')
+    }
+  }
 
 
   return (
@@ -119,6 +165,25 @@ export default function UserProfile({ userId, renderApp }) {
                   {userData.created.map(destination => {
                     return (
                       <DestinationCard destination={destination} key={destination.id} />
+                    )
+                  })}
+                </Row>
+              </Tab>
+              <Tab eventKey="invitations" title="INVITATIONS">
+                <Row>
+                  {userData.invitations.map(destination => {
+                    return (
+                      <Fragment key={destination.id}>
+                        <DestinationCard destination={destination} />
+                        <div className='buttons-container'>
+                          <Link onClick={() => handleAcceptInvitation(destination.id)}><span className='space-before-icon'>Accept invitation</span>
+                            <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
+                          </Link>
+                          <Link onClick={() => handleDeleteInvitation(destination.id)}><span className='space-before-icon'>Decline invitation</span>
+                            <FontAwesomeIcon icon={faTrashCan} style={{ color: '#ffffff' }} />
+                          </Link>
+                        </div>
+                      </Fragment>
                     )
                   })}
                 </Row>
