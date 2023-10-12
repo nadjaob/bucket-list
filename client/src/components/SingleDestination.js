@@ -39,8 +39,11 @@ export default function SingleDestination({ userId, renderApp }) {
   const [allUsers, setAllUsers] = useState([])
   const [invitationData, setInvitationData] = useState({})
   const [invitedUser, setInvitedUser] = useState()
-  const [invitedUser2, setInvitedUser2] = useState()
+  const [successfulInvitation, setSuccessfulInvitation] = useState()
   const [errorInvitation, setErrorInvitation] = useState()
+  const [value, setValue] = useState('')
+  const [filteredUsers, setFilteredUsers] = useState([])
+  const [friend, setFriend] = useState()
 
   const [destination, setDestination] = useState()
   const [bucketlist, setBucketlist] = useState(false)
@@ -63,7 +66,7 @@ export default function SingleDestination({ userId, renderApp }) {
       }
     }
     getDestination()
-  }, [bucketlist, visited, reviewSent, reviewDeleted, renderApp, renderDestination, invitedUser2])
+  }, [bucketlist, visited, reviewSent, reviewDeleted, renderApp, renderDestination])
 
   console.log(destination)
 
@@ -197,10 +200,30 @@ export default function SingleDestination({ userId, renderApp }) {
     getUsers()
   }, [])
 
+  useEffect(() => {
+    async function getUsers(){
+      try {
+        const { data } = await axios.get('/api/auth/users/')
+        setAllUsers(data)
+        const regex = new RegExp(value, 'i')
+        const filteredArray = allUsers.filter(user => {
+          if (user.id !== userId) {
+            return value && (regex.test(user.username))
+          }
+        })
+        setFilteredUsers(filteredArray)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getUsers()
+    
+  }, [value])
+
   const handleInvitationData = (e) => {
-    setInvitationData({ 'user_id_to_invite': e.target.value })
+    setValue(e.target.value)
     setErrorInvitation()
-    setInvitedUser(e.target.name)
+    setSuccessfulInvitation()
   }
 
   async function handleInvitation(e) {
@@ -208,13 +231,30 @@ export default function SingleDestination({ userId, renderApp }) {
     e.preventDefault()
     try {
       const { data } = await axiosAuth.patch(`/api/destinations/${id}/invitations/`, invitationData)
-      setInvitedUser2(invitedUser)
+      setSuccessfulInvitation(friend)
     } catch (error) {
       console.log(error)
       const errorMessageInvitation = error.response.data.error
       console.error(errorMessageInvitation)
       setErrorInvitation(errorMessageInvitation)
     }
+    setFriend()
+  }
+
+
+  const removeSearchlist = () => {
+    setValue('')
+    setFilteredUsers([])
+    // if (!renderApp) {
+    //   setRenderApp(true)
+    // } else {
+    //   setRenderApp(false)
+    // }
+  }
+
+  const handleFriend = (name, id) => {
+    setFriend(name)
+    setInvitationData({ 'user_id_to_invite': id })
   }
 
   return (
@@ -279,36 +319,44 @@ export default function SingleDestination({ userId, renderApp }) {
                     </>
                   }
                 </div>
-                
-                }
-                
-                {user &&
-                  <div className='container-invite-friend'>
-                    <p>Invite a friend to this journey!</p>
-
-                    <Form.Select onChange={handleInvitationData} aria-label="Default select example">
-                      <option selected disabled>Invite a friend:</option>
-                      {allUsers.length > 0 && allUsers.map(user => {
-                        if (userId !== user.id) {
-                          return (
-                            <option value={user.id} key={user.id} name={user.username}>{user.username}</option>
-                          )
-                        }
-                      })}
-                    </Form.Select>
-                    <Button onClick={handleInvitation}>Invite this friend</Button>
-                    {errorInvitation && <p>{errorInvitation}</p>}
-                    <p>You successfully invited {invitedUser}</p>
-                  </div>
                 }
                 <div className='details-container-w-border'>
                   <p>Travel experience: {destination.travel_experience}<br />
                   Best season: {destination.best_season}</p>
                 </div>
               </Col>
+              <Col>
+                {user &&
+                  <>
+                    <div className='container-user-search'>
+                      <input type='text' className='search-container-input input-search' value={value} onChange={handleInvitationData} placeholder='Search friends...'></input>
+                      <Button className='button-invite' onClick={handleInvitation}>Invite {friend ? friend : 'a friend!'}</Button>
+                      <div className='dropdown-user-search' onClick={removeSearchlist}>
+                        {filteredUsers.map(user => {
+                          return (
+                            <div key={user.id} className='search-list'>
+                              <Link onClick={() => handleFriend(user.username, user.id)}>
+                                <p>{user.username}</p>
+                              </Link>
+                            </div>
+                          )
+                        })}
+                        {(value && filteredUsers.length < 1) &&
+                        <div className='search-list'>
+                          <Link to='/destinations/'>
+                            <p>No matching results<br />See all destinations!</p>
+                          </Link>
+                        </div>
+                        }
+                      </div>
+                    </div>
+                    {errorInvitation && <p className='error-invitation'>{errorInvitation}!</p>}
+                    {successfulInvitation && <p className='successful-invitation'>You successfully invited {successfulInvitation}!</p>}
+                  </>
+                }
+              </Col>
             </Row>
           </Container>
-
           <Container>
             <Row>
               <h3 className='mb-5'>Other people say about this destination:</h3>

@@ -90,12 +90,16 @@ class DestinationInvitationsView(DestinationView, UpdateAPIView):
  
   def patch(self, request, *args, **kwargs):
     destination = self.get_object()
+    # user_id_of_inviter = request.data.get('user_id_of_inviter')
     user_id_to_invite = request.data.get('user_id_to_invite')
 
-    if not user_id_to_invite:
-      return Response({ 'error: User ID not found' }, status.HTTP_404_NOT_FOUND)
+    # if not user_id_of_inviter:
+    #   return Response({ 'error: User ID of inviter not found' }, status.HTTP_404_NOT_FOUND)
     
-    if request.user is user_id_to_invite:
+    if not user_id_to_invite:
+      return Response({ 'error: User ID of user to invite not found' }, status.HTTP_404_NOT_FOUND)
+    
+    if request.user.id is user_id_to_invite:
       return Response({"error": "Cant invite yourself"}, status.HTTP_400_BAD_REQUEST)
     
     try:

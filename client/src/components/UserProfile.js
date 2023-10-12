@@ -12,6 +12,7 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Modal from 'react-bootstrap/Modal'
 import Carousel from 'react-bootstrap/Carousel'
+import Accordion from 'react-bootstrap/Accordion'
 
 
 // IMAGES
@@ -122,6 +123,34 @@ export default function UserProfile({ userId, renderApp }) {
           </Container>
 
           <Container className='mb-6'>
+            {(userId === userData.id) && userData.invitations.length > 0 && 
+              <Row style={{ marginTop: '-50px', marginBottom: '50px' }}>
+                <Col sm='12' md={{ span: 8, offset: 2 }} lg={{ span: 4, offset: 4 }} >
+                  <Accordion>
+                    <Accordion.Item eventKey='0' className='accordion-invitations'>
+                      <Accordion.Header>You have {userData.invitations.length} new invitation{userData.invitations.length > 1 ? 's' : ''}!</Accordion.Header>
+                      <Accordion.Body>
+                        {userData.invitations.map(destination => {
+                          return (
+                            <Fragment key={destination.id}>
+                              <DestinationCard destination={destination} />
+                              <div className='buttons-container mb-4'>
+                                <Link onClick={() => handleAcceptInvitation(destination.id)}><span className='space-before-icon'>Accept invitation</span>
+                                  <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
+                                </Link>
+                                <Link onClick={() => handleDeleteInvitation(destination.id)}><span className='space-before-icon'>Decline invitation</span>
+                                  <FontAwesomeIcon icon={faTrashCan} style={{ color: '#ffffff' }} />
+                                </Link>
+                              </div>
+                            </Fragment>
+                          )
+                        })}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+                </Col>
+              </Row>
+            }
             <Row>
               <Col className='button-create-destination'>
                 {userId === userData.id &&
@@ -165,25 +194,6 @@ export default function UserProfile({ userId, renderApp }) {
                   {userData.created.map(destination => {
                     return (
                       <DestinationCard destination={destination} key={destination.id} />
-                    )
-                  })}
-                </Row>
-              </Tab>
-              <Tab eventKey="invitations" title="INVITATIONS">
-                <Row>
-                  {userData.invitations.map(destination => {
-                    return (
-                      <Fragment key={destination.id}>
-                        <DestinationCard destination={destination} />
-                        <div className='buttons-container'>
-                          <Link onClick={() => handleAcceptInvitation(destination.id)}><span className='space-before-icon'>Accept invitation</span>
-                            <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
-                          </Link>
-                          <Link onClick={() => handleDeleteInvitation(destination.id)}><span className='space-before-icon'>Decline invitation</span>
-                            <FontAwesomeIcon icon={faTrashCan} style={{ color: '#ffffff' }} />
-                          </Link>
-                        </div>
-                      </Fragment>
                     )
                   })}
                 </Row>
