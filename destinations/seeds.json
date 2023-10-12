@@ -195,7 +195,7 @@
     "fields": {
       "name": "Explore the Pyramids of Giza",
       "description": "Discover the ancient wonders of the Pyramids of Giza in Egypt. Explore the history and architecture of these iconic structures.",
-      "destination_image": "IMAGE_URL_2",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697048360/bucket-list/pyramid_qibsay.jpg",
       "country": "Egypt",
       "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1696968086/bucket-list/flag-egypt_illjjv.png",
       "best_season": "Autumn",

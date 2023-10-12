@@ -24,6 +24,8 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
   const [validated, setValidated] = useState(false)
   const navigate = useNavigate()
 
+  console.log('formdata', stateValues(fields))
+
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     setErrors('')
@@ -64,11 +66,13 @@ export default function UserForm({ request, fields, title, handleCloseLogin, han
         <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' lg='12'>
           {errors && <p className='display-errors'>{errors}</p>}
           {fieldValues(fields).map(field => {
+            console.log(field)
             const { type, name, variable } = field
             return (
               <Fragment key={variable}>
                 {type === 'image' ?
                   <>
+                    <span>Upload a profile image:</span>
                     <ImageUpload formData={formData} setFormData={setFormData} imageType={variable} />
                   </>
                   :

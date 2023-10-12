@@ -120,6 +120,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
       fontSize: '14px',
       fontWeight: '400',
     }),
+    
     singleValue: (defaultStyles) => ({ ...defaultStyles, color: '#fff' }),
   }
 
@@ -130,7 +131,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
       </Modal.Header>
       <Modal.Body>
         <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' className='form-comment'>
-          <Container>
+          <Container style={{ padding: '0px' }}>
             <Row>
               <Col>
                 <Form.Group>
@@ -178,6 +179,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
                     />
                     : */}
                   <Select
+                    className='mt-3'
                     options={options.map(option => {
                       return { value: option.id, label: option.name, id: option.id }
                     })}
