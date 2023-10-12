@@ -119,7 +119,6 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
       borderRadius: '10px',
       boxShadow: 'none',
       fontSize: '14px',
-      fontWeight: '400',
     }),
     
     singleValue: (defaultStyles) => ({ ...defaultStyles, color: '#fff' }),
@@ -185,7 +184,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
                     onChange={handleSelect}
                     styles={customStyles}
                     placeholder={'Select categories'}
-                    defaultValue={[1, 2]}
+                    defaultValue={selectedCategories}
                   />
                   {/* } */}
                 </Form.Group>

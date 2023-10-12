@@ -13,7 +13,7 @@
   button {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 22px;
     position: absolute;
     right: 58px;
     top: -7px;
@@ -21,8 +21,6 @@
       background: none !important;
       border: none !important;
       box-shadow: none !important;
-      font-size: 25px;
-      transition: all .2s ease-in-out;
     }
   }
 }
