@@ -10,3 +10,6 @@ class PopulatedDestinationSerializer(DestinationSerializer):
   visited = UserSerializer(many=True)
   user = UserSerializer()
   invited = UserSerializer(many=True)
+
+class SlightlyPopulatedDestinationSerializer(DestinationSerializer):
+  categories = CategorySerializer(many=True)

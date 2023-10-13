@@ -22,7 +22,7 @@ export default function Destinations() {
   useEffect(() => {
     async function getDestinations(){
       try {
-        const { data } = await axios.get('/api/destinations/')
+        const { data } = await axios.get('/api/destinations/search/')
         setDestinations(data)
       } catch (error) {
         console.log(error.message)
@@ -107,7 +107,7 @@ export default function Destinations() {
     <>
       <Container fluid className='container-header-image'>
         <Row>
-          <Col><img src='https://res.cloudinary.com/djhbqxz1j/image/upload/v1696971049/bucket-list/volcano-crater_yckkqq.jpg' className='header-image' /></Col>
+          <Col><img src='https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229335/bucket-list/volcano-crater_hum7gh.jpg' className='header-image' /></Col>
         </Row>
       </Container>
       <Container>

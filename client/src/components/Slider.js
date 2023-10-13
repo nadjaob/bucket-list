@@ -15,14 +15,14 @@ import { Link } from 'react-router-dom'
 
 export default function Slider() {
 
-  const [slides, setSlides] = useState()
+  const [slides, setSlides] = useState([])
 
   useEffect(() => {
     async function getDestinations(){
       try {
-        const { data: destinations } = await axios.get('/api/destinations/')
-        console.log('destinations', destinations)
-        setSlides(destinations.sort((a,b) => a.id - b.id).slice(0, 4))
+        const { data } = await axios.get('/api/destinations/slider/?limit=4&offset=4')
+        console.log('destinations for slider', data.results)
+        setSlides(data.results)
       } catch (error) {
         console.log(error.message)
       }
@@ -33,7 +33,7 @@ export default function Slider() {
 
   return (
     <Carousel fade>
-      {slides && slides.map(slide => {
+      {slides.length > 0 && slides.map(slide => {
         return (
           <Carousel.Item key={slide.id}>
             <img src={slide.destination_image} alt={slide.name} />

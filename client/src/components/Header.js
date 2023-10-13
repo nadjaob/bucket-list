@@ -39,7 +39,7 @@ export default function Header({ setRenderApp, renderApp, userImage, username })
   useEffect(() => {
     async function getDestinations(){
       try {
-        const { data } = await axios.get('/api/destinations/')
+        const { data } = await axios.get('/api/destinations/search/')
         setDestinations(data)
       } catch (error) {
         console.log(error.message)

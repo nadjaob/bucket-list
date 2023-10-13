@@ -18,11 +18,18 @@ from .models import Destination
 
 # Serializer
 from .serializers.common import DestinationSerializer
-from .serializers.populated import PopulatedDestinationSerializer
+from .serializers.populated import PopulatedDestinationSerializer, SlightlyPopulatedDestinationSerializer
+
+from rest_framework.pagination import PageNumberPagination
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 4
+    page_size_query_param = 'page_size'
+    max_page_size = 4
 
 # Generic view
 class DestinationView(GenericAPIView):
@@ -34,10 +41,18 @@ class DestinationListView(DestinationView, UserListCreateAPIView):
   permission_classes=[IsAuthenticatedOrReadOnly]
   
   def get_serializer_class(self):
-     if self.request.method == 'GET':
+     use_populated_serializer = self.request.query_params.get('use_populated_serializer')
+     if self.request.method == 'GET' and use_populated_serializer == 'true':
         return PopulatedDestinationSerializer
      return DestinationSerializer
   
+# /destinations/slider
+class DestinationSliderListView(DestinationView, UserListCreateAPIView):
+  pagination_class = StandardResultsSetPagination
+
+# /destinations/search
+class DestinationSearchListView(DestinationView, UserListCreateAPIView):
+  serializer_class = SlightlyPopulatedDestinationSerializer
 
 # /destinations/:id
 class DestinationDetailView(DestinationView, RetrieveUpdateDestroyAPIView):
