@@ -1,6 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.1cce7bbc.css",
+<<<<<<< HEAD
     "main.js": "/static/js/main.a834c77a.js",
     "static/media/rocky-mountains-canada.jpg": "/static/media/rocky-mountains-canada.85d199277ce3c423e057.jpg",
     "index.html": "/index.html",
@@ -10,5 +11,16 @@
   "entrypoints": [
     "static/css/main.1cce7bbc.css",
     "static/js/main.a834c77a.js"
+=======
+    "main.js": "/static/js/main.e5bb0147.js",
+    "static/media/rocky-mountains-canada.jpg": "/static/media/rocky-mountains-canada.85d199277ce3c423e057.jpg",
+    "index.html": "/index.html",
+    "main.1cce7bbc.css.map": "/static/css/main.1cce7bbc.css.map",
+    "main.e5bb0147.js.map": "/static/js/main.e5bb0147.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1cce7bbc.css",
+    "static/js/main.e5bb0147.js"
+>>>>>>> development
   ]
 }

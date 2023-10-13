@@ -32,12 +32,31 @@ export default function Header({ setRenderApp, renderApp, userImage, username, d
   const [showRegister, setShowRegister] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [value, setValue] = useState('')
+<<<<<<< HEAD
 
+=======
+  const [destinations, setDestinations] = useState([])
+>>>>>>> development
   const [filteredDestinations, setFilteredDestinations] = useState([])
 
 
 
   useEffect(() => {
+<<<<<<< HEAD
+=======
+    async function getDestinations(){
+      try {
+        const { data } = await axios.get('/api/destinations/')
+        setDestinations(data)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getDestinations()    
+  }, [])
+
+  useEffect(() => {
+>>>>>>> development
     console.log('all destinations', destinations)
     const regex = new RegExp(value, 'i')
     const filteredArray = destinations.filter(destination => {
