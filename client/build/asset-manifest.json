@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.1cce7bbc.css",
-    "main.js": "/static/js/main.7861c4ba.js",
+    "main.css": "/static/css/main.f1b53485.css",
+    "main.js": "/static/js/main.cdb8d6f7.js",
     "static/media/rocky-mountains-canada.jpg": "/static/media/rocky-mountains-canada.85d199277ce3c423e057.jpg",
     "index.html": "/index.html",
-    "main.1cce7bbc.css.map": "/static/css/main.1cce7bbc.css.map",
-    "main.7861c4ba.js.map": "/static/js/main.7861c4ba.js.map"
+    "main.f1b53485.css.map": "/static/css/main.f1b53485.css.map",
+    "main.cdb8d6f7.js.map": "/static/js/main.cdb8d6f7.js.map"
   },
   "entrypoints": [
-    "static/css/main.1cce7bbc.css",
-    "static/js/main.7861c4ba.js"
+    "static/css/main.f1b53485.css",
+    "static/js/main.cdb8d6f7.js"
   ]
 }
