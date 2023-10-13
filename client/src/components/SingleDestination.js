@@ -59,7 +59,7 @@ export default function SingleDestination({ userId, renderApp }) {
   useEffect(() => {
     async function getDestination(){
       try {
-        const { data } = await axios.get(`/api/destinations/${id}/`)
+        const { data } = await axios.get(`/api/destinations/${id}`)
         console.log('first render', data)
         setDestination(data)
       } catch (error) {
@@ -337,13 +337,13 @@ export default function SingleDestination({ userId, renderApp }) {
                             </div>
                           )
                         })}
-                        {(value && filteredUsers.length < 1) &&
-                        <div className='mt-4' style={{ textAlign: 'center' }}>
-                          <p>No users with this name found!</p>
-                        </div>
-                        }
                       </div>
                     </div>
+                    {(value && filteredUsers.length < 1) &&
+                        <div style={{ textAlign: 'center', color: 'red', position: 'relative', top: '-60px', marginBottom: '-38px' }}>
+                          <p>No users with this name found!</p>
+                        </div>
+                    }
                     {errorInvitation && <p className='error-invitation'>{errorInvitation}!</p>}
                     {successfulInvitation && <p className='successful-invitation'>You successfully invited {successfulInvitation}!</p>}
                   </>
