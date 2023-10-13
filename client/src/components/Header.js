@@ -23,7 +23,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function Header({ setRenderApp, renderApp, userImage, username }) {
+export default function Header({ setRenderApp, renderApp, userImage, username, destinations }) {
 
   const catMenu = useRef(null)
   const { user, setUser } = useContext(UserContext)
@@ -32,38 +32,27 @@ export default function Header({ setRenderApp, renderApp, userImage, username })
   const [showRegister, setShowRegister] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [value, setValue] = useState('')
-  const [destinations, setDestinations] = useState('')
+
   const [filteredDestinations, setFilteredDestinations] = useState([])
 
 
+
   useEffect(() => {
-    async function getDestinations(){
-      try {
-        const { data } = await axios.get('/api/destinations/')
-        setDestinations(data)
-        const regex = new RegExp(value, 'i')
-        const filteredArray = destinations.filter(destination => {
-          const filteredCategories = destination.categories.map(category => {
-            return category.name
-          })
-          return (
-            value &&
-            (regex.test(destination.name) ||
-            regex.test(destination.country) ||
-            regex.test(filteredCategories)
-            ))
-        })
-        setFilteredDestinations(filteredArray)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    // getDestinations()
-    if (destinations) {
-      getDestinations()
-    }
-    
-  }, [showSearch, value, user])
+    console.log('all destinations', destinations)
+    const regex = new RegExp(value, 'i')
+    const filteredArray = destinations.filter(destination => {
+      const filteredCategories = destination.categories.map(category => {
+        return category.name
+      })
+      return (
+        value &&
+        (regex.test(destination.name) ||
+        regex.test(destination.country) ||
+        regex.test(filteredCategories)
+        ))
+    })
+    setFilteredDestinations(filteredArray)
+  }, [destinations, showSearch, value])
 
 
   // NAVBAR CHANGES ON SCROLL

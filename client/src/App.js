@@ -31,6 +31,20 @@ export default function App() {
   const [userImage, setUserImage] = useState()
   const [username, setUsername] = useState()
   const [renderApp, setRenderApp] = useState(false)
+  const [destinations, setDestinations] = useState([])
+
+  useEffect(() => {
+    async function getDestinations(){
+      try {
+        const { data } = await axios.get('/api/destinations/')
+        setDestinations(data)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getDestinations()    
+  }, [])
+
 
   const [user, setUser] = useState(() => {
     if (tokenIsValid('refresh-token')) {
@@ -60,23 +74,10 @@ export default function App() {
     console.log('app was rendered')
   }, [renderApp])
 
-
-  // useEffect(() => {
-  //   async function getData(){
-  //     try {
-  //       const { data } = await axios.get('/api/auth/nadjaob') // <---- Replace with your endpoint to test the proxy
-  //       console.log(data)
-  //     } catch (error) {
-  //       console.log(error.response.data)
-  //     }
-  //   }
-  //   getData()
-  // }, [])
-
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user: user, setUser: setUser }}>
-        <Header setRenderApp={setRenderApp} renderApp={renderApp} userImage={userImage} username={username} />
+        <Header setRenderApp={setRenderApp} renderApp={renderApp} userImage={userImage} username={username} destinations={destinations} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/destinations' element={<Destinations />} />

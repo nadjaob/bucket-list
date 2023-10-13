@@ -59,7 +59,7 @@ export default function SingleDestination({ userId, renderApp }) {
   useEffect(() => {
     async function getDestination(){
       try {
-        const { data } = await axios.get(`/api/destinations/${id}`)
+        const { data } = await axios.get(`/api/destinations/${id}/`)
         console.log('first render', data)
         setDestination(data)
       } catch (error) {
