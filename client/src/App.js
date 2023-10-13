@@ -7,6 +7,7 @@ import axiosAuth from './lib/axios'
 // GLOBAL COMPONENTS
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 // PAGE COMPONENTS
 import Home from './components/Home'
@@ -64,6 +65,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        <ScrollToTop />
         <Header setRenderApp={setRenderApp} renderApp={renderApp} userImage={userImage} username={username} destinations={destinations} />
         <Routes>
           <Route path='/' element={<Home />} />
