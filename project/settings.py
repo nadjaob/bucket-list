@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 import environ
+import django_on_heroku
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -70,7 +71,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'client')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,14 +147,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'client', "build", "static"),
+)
 
-# SIMPLE_JWT = {
-#     'SLJWT_ACCESS_TOKEN_CLAIMS': {
-#         'username': 'users.User.username',
-#         'profile_image': 'users.User.profile_image'
-#     },
-#     'SLJWT_REFRESH_TOKEN_CLAIMS': {
-#         'username': 'users.User.username',
-#         'profile_image': 'users.User.profile_image'
-#     },
-# }
+django_on_heroku.settings(locals())
