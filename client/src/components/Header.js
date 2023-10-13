@@ -58,6 +58,7 @@ export default function Header({ setRenderApp, renderApp, userImage, username })
         console.log(error.message)
       }
     }
+    // getDestinations()
     if (destinations) {
       getDestinations()
     }
