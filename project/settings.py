@@ -93,15 +93,27 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
   'default': {
-    'ENGINE': 'django_cockroachdb',
+    'ENGINE': 'django.db.backends.postgresql',
     'NAME': env('DATABASE_NAME'),
     'USER': env('DATABASE_USER'),
     'PASSWORD': env('DATABASE_PASS'),
     'HOST': env('DATABASE_HOST'),
-    'PORT': env('DATABASE_PORT'),
+    'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
 }
+
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django_cockroachdb',
+#     'NAME': env('DATABASE_NAME'),
+#     'USER': env('DATABASE_USER'),
+#     'PASSWORD': env('DATABASE_PASS'),
+#     'HOST': env('DATABASE_HOST'),
+#     'PORT': env('DATABASE_PORT'),
+#     'OPTIONS': {'sslmode': 'require'},
+#   }
+# }
 
 
 # Password validation
