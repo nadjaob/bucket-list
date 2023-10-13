@@ -16,6 +16,7 @@
   .button {
     @extend %button-white-round;
     padding-bottom: 10px;
+    padding-top: 11px;
     position: relative;
     top: 20px;
   }
@@ -85,11 +86,7 @@
 
 // NEW INVITATIONS
 
-.accordion-body .destination-card-grid {
-  width: 100%;
-}
-
-.accordion-invitations.accordion-item {
+.container-invitations .destination-card-grid {
   width: 100%;
 }
 

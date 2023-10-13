@@ -24,7 +24,7 @@ import Spinner from './Spinner'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faCheck, faTrashCan, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faCheck, faTrashCan, faPen, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function UserProfile({ userId, renderApp }) {
@@ -34,6 +34,7 @@ export default function UserProfile({ userId, renderApp }) {
   const { user, setUser } = useContext(UserContext)
   const [userData, setUserData] = useState()
   const [show, setShow] = useState(false)
+  const [showInvitationsModal, setShowInvitationsModal] = useState(false)
   const [removeInvitation, setRemoveInvitation] = useState(false)
 
 
@@ -58,20 +59,28 @@ export default function UserProfile({ userId, renderApp }) {
   
   // HANDLE INVITATION
 
+  const handleInvitationsModal = () => setShowInvitationsModal(true)
+  const closeInvitationsModal = () => setShowInvitationsModal(false)
+
   async function handleAcceptInvitation(destinationId) {
     console.log('id of invitation', destinationId)
-    console.log('first condition', userData.bucketlist.some(destination => destination['id'] === destinationId))
+    console.log('condition to check', !userData.bucketlist.some(destination => destination['id'] === destinationId))
     try {
+      handleDeleteInvitation(destinationId)
+      console.log('deleted invitation')
+      // check if bucketlist contains destination not yet, then add it to bucketlist
       if (!userData.bucketlist.some(destination => destination['id'] === destinationId)) {
         const { data } = await axiosAuth.patch(`/api/destinations/${destinationId}/bucketlist/`)
+        console.log('added to bucketlist')
+        // remove from visited in case its there
         if (userData.visited.some(destination => destination['id'] === destinationId)) {
           const { data } = await axiosAuth.patch(`/api/destinations/${destinationId}/visited/`)
         }
       } else {
         console.log('destination is already in bucket list')
       }
-      console.log('accepted invitation')
-      handleDeleteInvitation(destinationId)
+      
+      
     } catch (error) {
       console.log(error)
       console.log('failed invitation')
@@ -117,40 +126,41 @@ export default function UserProfile({ userId, renderApp }) {
                 <p>Destinations on your bucket list: {userData.bucketlist.length}<br />
                 Destinations visited: {userData.visited.length}</p>
 
+                {(userId === userData.id) && userData.invitations.length > 0 && 
+                <>
+                  <Link className='button' onClick={handleInvitationsModal}><span className='space-before-icon'>You have {userData.invitations.length} new invitation{userData.invitations.length > 1 ? 's' : ''}!</span>
+                    <FontAwesomeIcon icon={faEnvelope} style={{ color: '#ffffff' }} size='sm' />
+                  </Link>
+                  <Modal className='container-invitations' show={showInvitationsModal} onHide={closeInvitationsModal} backdrop='static' keyboard={false} centered size='md'>
+                    <Modal.Header closeButton>
+                      <Modal.Title>You have {userData.invitations.length} new invitation{userData.invitations.length > 1 ? 's' : ''}!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      {userData.invitations.map(destination => {
+                        return (
+                          <Fragment key={destination.id}>
+                            <DestinationCard destination={destination} />
+                            <div className='buttons-container mb-4'>
+                              <Link onClick={() => handleAcceptInvitation(destination.id)}><span className='space-before-icon'>Accept invitation</span>
+                                <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
+                              </Link>
+                              <Link onClick={() => handleDeleteInvitation(destination.id)}><span className='space-before-icon'>Decline invitation</span>
+                                <FontAwesomeIcon icon={faTrashCan} style={{ color: '#ffffff' }} />
+                              </Link>
+                            </div>
+                          </Fragment>
+                        )
+                      })}
+                    </Modal.Body>
+                  </Modal>
+                </>
+                }
                 
               </Col>
             </Row>
           </Container>
 
           <Container className='mb-6'>
-            {(userId === userData.id) && userData.invitations.length > 0 && 
-              <Row style={{ marginTop: '-50px', marginBottom: '50px' }}>
-                <Col sm='12' md={{ span: 8, offset: 2 }} lg={{ span: 4, offset: 4 }} >
-                  <Accordion>
-                    <Accordion.Item eventKey='0' className='accordion-invitations'>
-                      <Accordion.Header>You have {userData.invitations.length} new invitation{userData.invitations.length > 1 ? 's' : ''}!</Accordion.Header>
-                      <Accordion.Body>
-                        {userData.invitations.map(destination => {
-                          return (
-                            <Fragment key={destination.id}>
-                              <DestinationCard destination={destination} />
-                              <div className='buttons-container mb-4'>
-                                <Link onClick={() => handleAcceptInvitation(destination.id)}><span className='space-before-icon'>Accept invitation</span>
-                                  <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
-                                </Link>
-                                <Link onClick={() => handleDeleteInvitation(destination.id)}><span className='space-before-icon'>Decline invitation</span>
-                                  <FontAwesomeIcon icon={faTrashCan} style={{ color: '#ffffff' }} />
-                                </Link>
-                              </div>
-                            </Fragment>
-                          )
-                        })}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                </Col>
-              </Row>
-            }
             <Row>
               <Col className='button-create-destination'>
                 {userId === userData.id &&

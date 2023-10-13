@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext, useRef } from 'react'
 import axios from 'axios'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../App'
@@ -26,6 +26,7 @@ export default function SingleDestination({ userId, renderApp }) {
 
   const { id } = useParams()
   console.log('id is', id)
+  const catMenu = useRef(null)
 
   console.log(userId)
   const { user, setUser } = useContext(UserContext)
@@ -191,19 +192,6 @@ export default function SingleDestination({ userId, renderApp }) {
     async function getUsers(){
       try {
         const { data } = await axios.get('/api/auth/users/')
-        console.log('all users', data)
-        setAllUsers(data)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    getUsers()
-  }, [])
-
-  useEffect(() => {
-    async function getUsers(){
-      try {
-        const { data } = await axios.get('/api/auth/users/')
         setAllUsers(data)
         const regex = new RegExp(value, 'i')
         const filteredArray = allUsers.filter(user => {
@@ -256,6 +244,14 @@ export default function SingleDestination({ userId, renderApp }) {
     setFriend(name)
     setInvitationData({ 'user_id_to_invite': id })
   }
+
+  const closeSearchList = (e) => {
+    if (catMenu.current && !catMenu.current.contains(e.target)) {
+      // setFilteredDestinations([])
+      setValue('')
+    }
+  }
+  document.addEventListener('mousedown', closeSearchList)
 
   return (
     <>
@@ -328,7 +324,7 @@ export default function SingleDestination({ userId, renderApp }) {
               <Col>
                 {user &&
                   <>
-                    <div className='container-user-search'>
+                    <div className='container-user-search'  ref={catMenu}>
                       <input type='text' className='search-container-input input-search' value={value} onChange={handleInvitationData} placeholder='Search friends...'></input>
                       <Button className='button-invite' onClick={handleInvitation}>Invite {friend ? friend : 'a friend!'}</Button>
                       <div className='dropdown-user-search' onClick={removeSearchlist}>
@@ -342,10 +338,8 @@ export default function SingleDestination({ userId, renderApp }) {
                           )
                         })}
                         {(value && filteredUsers.length < 1) &&
-                        <div className='search-list'>
-                          <Link to='/destinations/'>
-                            <p>No matching results<br />See all destinations!</p>
-                          </Link>
+                        <div className='mt-4' style={{ textAlign: 'center' }}>
+                          <p>No users with this name found!</p>
                         </div>
                         }
                       </div>
