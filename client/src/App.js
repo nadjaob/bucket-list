@@ -33,19 +33,6 @@ export default function App() {
   const [renderApp, setRenderApp] = useState(false)
   const [destinations, setDestinations] = useState([])
 
-  useEffect(() => {
-    async function getDestinations(){
-      try {
-        const { data } = await axios.get('/api/destinations/')
-        setDestinations(data)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    getDestinations()    
-  }, [])
-
-
   const [user, setUser] = useState(() => {
     if (tokenIsValid('refresh-token')) {
       return true

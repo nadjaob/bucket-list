@@ -23,7 +23,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function Header({ setRenderApp, renderApp, userImage, username, destinations }) {
+export default function Header({ setRenderApp, renderApp, userImage, username }) {
 
   const catMenu = useRef(null)
   const { user, setUser } = useContext(UserContext)
@@ -32,18 +32,11 @@ export default function Header({ setRenderApp, renderApp, userImage, username, d
   const [showRegister, setShowRegister] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [value, setValue] = useState('')
-<<<<<<< HEAD
-
-=======
   const [destinations, setDestinations] = useState([])
->>>>>>> development
   const [filteredDestinations, setFilteredDestinations] = useState([])
 
 
-
   useEffect(() => {
-<<<<<<< HEAD
-=======
     async function getDestinations(){
       try {
         const { data } = await axios.get('/api/destinations/')
@@ -56,7 +49,6 @@ export default function Header({ setRenderApp, renderApp, userImage, username, d
   }, [])
 
   useEffect(() => {
->>>>>>> development
     console.log('all destinations', destinations)
     const regex = new RegExp(value, 'i')
     const filteredArray = destinations.filter(destination => {
