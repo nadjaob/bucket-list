@@ -136,7 +136,7 @@ export default function UserProfile({ userId, renderApp }) {
                       <Modal.Title>You have {userData.invitations.length} new invitation{userData.invitations.length > 1 ? 's' : ''}!</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                      {userData.invitations.map(destination => {
+                      {userData.invitations.slice(0,1).map((destination, index) => {
                         return (
                           <Fragment key={destination.id}>
                             <DestinationCard destination={destination} />

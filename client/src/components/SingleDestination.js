@@ -19,7 +19,7 @@ import UpdateDestination from './UpdateDestination'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faCheck, faTrashCan, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faCheck, faTrashCan, faPen, faTrash, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function SingleDestination({ userId, renderApp }) {
@@ -216,6 +216,7 @@ export default function SingleDestination({ userId, renderApp }) {
 
   async function handleInvitation(e) {
     console.log('hit invitation button')
+    setValue('')
     e.preventDefault()
     try {
       const { data } = await axiosAuth.patch(`/api/destinations/${id}/invitations/`, invitationData)
@@ -326,7 +327,7 @@ export default function SingleDestination({ userId, renderApp }) {
                   <>
                     <div className='container-user-search'  ref={catMenu}>
                       <input type='text' className='search-container-input input-search' value={value} onChange={handleInvitationData} placeholder='Search friends...'></input>
-                      <Button className='button-invite' onClick={handleInvitation}>Invite {friend ? friend : 'a friend!'}</Button>
+                      <Button className='button-invite' onClick={handleInvitation}>Invite {friend ? <><span className='space-before-icon'>{friend}</span><FontAwesomeIcon icon={faEnvelope} shake style={{ color: '#ffffff' }} size='sm' /></> : 'a friend!'}</Button>
                       <div className='dropdown-user-search' onClick={removeSearchlist}>
                         {filteredUsers.map(user => {
                           return (

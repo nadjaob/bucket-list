@@ -14,6 +14,7 @@ import Home from './components/Home'
 import Destinations from './components/Destinations'
 import UserProfile from './components/UserProfile'
 import SingleDestination from './components/SingleDestination'
+import NotFound from './components/NotFound'
 
 
 // USER
@@ -72,6 +73,7 @@ export default function App() {
           <Route path='/destinations' element={<Destinations />} />
           <Route path='/destinations/:id' element={<SingleDestination userId={userId} renderApp={renderApp} />} />
           <Route path='/:username' element={<UserProfile userId={userId} renderApp={renderApp} />} />
+          {/* <Route path='*' element={<NotFound />} /> */}
         </Routes>
         <Footer />
       </UserContext.Provider>
