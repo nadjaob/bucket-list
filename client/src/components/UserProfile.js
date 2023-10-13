@@ -129,7 +129,7 @@ export default function UserProfile({ userId, renderApp }) {
                 {(userId === userData.id) && userData.invitations.length > 0 && 
                 <>
                   <Link className='button' onClick={handleInvitationsModal}><span className='space-before-icon'>You have {userData.invitations.length} new invitation{userData.invitations.length > 1 ? 's' : ''}!</span>
-                    <FontAwesomeIcon icon={faEnvelope} style={{ color: '#ffffff' }} size='sm' />
+                    <FontAwesomeIcon icon={faEnvelope} shake style={{ color: '#ffffff' }} size='sm' />
                   </Link>
                   <Modal className='container-invitations' show={showInvitationsModal} onHide={closeInvitationsModal} backdrop='static' keyboard={false} centered size='md'>
                     <Modal.Header closeButton>
