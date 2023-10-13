@@ -20,7 +20,7 @@ export default function Slider() {
   useEffect(() => {
     async function getDestinations(){
       try {
-        const { data: destinations } = await axios.get('/api/destinations')
+        const { data: destinations } = await axios.get('/api/destinations/')
         console.log('destinations', destinations)
         setSlides(destinations.sort((a,b) => a.id - b.id).slice(0, 4))
       } catch (error) {
@@ -42,7 +42,7 @@ export default function Slider() {
                 <Row>
                   <Col lg='6'>
                     <h1 className='mb-3'>{slide.name}</h1>
-                    <Link to={`/destinations/${slide.id}`} className='button-slider'>View destination</Link>
+                    <Link to={`/destinations/${slide.id}/`} className='button-slider'>View destination</Link>
                   </Col>
                 </Row>
               </Container>

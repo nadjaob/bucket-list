@@ -41,7 +41,7 @@ export default function UserProfile({ userId, renderApp }) {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const { data } = await axios.get(`/api/auth/${username}`)
+        const { data } = await axios.get(`/api/auth/${username}/`)
         setUserData(data)
       } catch (error) {
         console.log(error)

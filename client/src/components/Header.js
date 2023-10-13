@@ -39,7 +39,7 @@ export default function Header({ setRenderApp, renderApp, userImage, username })
   useEffect(() => {
     async function getDestinations(){
       try {
-        const { data } = await axios.get('/api/destinations')
+        const { data } = await axios.get('/api/destinations/')
         setDestinations(data)
         const regex = new RegExp(value, 'i')
         const filteredArray = destinations.filter(destination => {
@@ -58,7 +58,9 @@ export default function Header({ setRenderApp, renderApp, userImage, username })
         console.log(error.message)
       }
     }
-    getDestinations()
+    if (destinations) {
+      getDestinations()
+    }
     
   }, [showSearch, value, user])
 

@@ -22,7 +22,7 @@ export default function Destinations() {
   useEffect(() => {
     async function getDestinations(){
       try {
-        const { data } = await axios.get('/api/destinations')
+        const { data } = await axios.get('/api/destinations/')
         setDestinations(data)
       } catch (error) {
         console.log(error.message)
