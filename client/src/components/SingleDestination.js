@@ -21,7 +21,7 @@ import { faHeart, faCheck, faTrashCan, faPen, faTrash, faEnvelope } from '@forta
 import AddComment from './AddComment'
 
 
-export default function SingleDestination({ user, userID, username }) {
+export default function SingleDestination({ user, userID, username, renderApp }) {
 
   const { id } = useParams()
   const catMenu = useRef(null)
@@ -57,7 +57,7 @@ export default function SingleDestination({ user, userID, username }) {
       }
     }
     getDestination()
-  }, [reviewSent, reviewDeleted, renderDestination])
+  }, [reviewSent, reviewDeleted, renderDestination, renderApp])
 
   // BUTTONS ADD AND REMOVE FROM BUCKETLIST
   async function handleBucketlist() {

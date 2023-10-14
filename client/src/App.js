@@ -45,12 +45,6 @@ export default function App() {
     getActiveUserDetails()
   }, [user])
 
-
-
-  useEffect(() => {
-    console.log('app was rendered')
-  }, [renderApp])
-
   return (
     <>
       <ScrollToTop />
@@ -58,7 +52,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/destinations' element={<Destinations />} />
-        <Route path='/destinations/:id' element={<SingleDestination user={user} userID={userID} username={username} />} />
+        <Route path='/destinations/:id' element={<SingleDestination user={user} userID={userID} username={username} renderApp={renderApp} />} />
         <Route path='/:username' element={<UserProfile userID={userID} renderApp={renderApp} />} />
         {/* <Route path='*' element={<NotFound />} /> */}
       </Routes>
