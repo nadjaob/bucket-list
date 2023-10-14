@@ -129,7 +129,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
         <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' className='form-comment'>
           <Container style={{ padding: '0px' }}>
             <Row>
-              <Col>
+              <Col sm='12' md='6'>
                 <Form.Group>
                   <Form.Label hidden htmlFor='name'>Name</Form.Label>
                   <Form.Control required type='text' name='name' placeholder='Name of destination' value={formData['name']} onChange={handleChange}></Form.Control>
@@ -156,7 +156,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
                   <Form.Control.Feedback type="invalid">Travel experience is required.</Form.Control.Feedback>
                 </Form.Group>
               </Col>
-              <Col>
+              <Col sm='12' md='6'>
                 <Form.Group>
                   <Form.Label hidden htmlFor='categories'>Categories</Form.Label>
                   <Select

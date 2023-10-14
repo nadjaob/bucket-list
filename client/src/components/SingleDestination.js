@@ -25,6 +25,7 @@ export default function SingleDestination({ user, userID, username, renderApp })
 
   const { id } = useParams()
   const catMenu = useRef(null)
+  const redirect = useNavigate()
 
   const [reviewSent, setReviewSent] = useState(true)
   const [reviewDeleted, setReviewDeleted] = useState(false)
@@ -32,19 +33,13 @@ export default function SingleDestination({ user, userID, username, renderApp })
   const [renderDestination, setRenderDestination] = useState(false)
   const [allUsers, setAllUsers] = useState([])
   const [invitationData, setInvitationData] = useState({})
-  const [invitedUser, setInvitedUser] = useState()
   const [successfulInvitation, setSuccessfulInvitation] = useState()
   const [errorInvitation, setErrorInvitation] = useState()
   const [value, setValue] = useState('')
   const [filteredUsers, setFilteredUsers] = useState([])
   const [friend, setFriend] = useState()
-
   const [destination, setDestination] = useState()
-
-
   const [showEdit, setShowEdit] = useState(false)
-
-  const redirect = useNavigate()
 
 
   useEffect(() => {

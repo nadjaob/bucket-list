@@ -31,6 +31,7 @@ export default function Header({ user, setUser, userImage, username, setRenderAp
   const [value, setValue] = useState('')
   const [destinations, setDestinations] = useState([])
   const [filteredDestinations, setFilteredDestinations] = useState([])
+  const [showMobileNav, setShowMobileNav] = useState(false)
 
 
   // NAVBAR CHANGES ON SCROLL
@@ -135,6 +136,41 @@ export default function Header({ user, setUser, userImage, username, setRenderAp
         <Container>
           <Row className='navbar-row'>
             <Col className='navbar-logo'><Link to='/'><img src={logo} alt='BUCKET LIST' className='logo' /></Link></Col>
+            
+            <Col className='nav-mobile'>
+              <div onClick={() => setShowMobileNav(true)}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              {user &&
+              <NavLink to={`${username}`} onClick={changeUserProfile}>
+                <img className='profile-image-header' src={userImage} />
+              </NavLink>  
+              }
+            </Col>
+            <Modal show={showMobileNav} fullscreen={true} onHide={() => setShowMobileNav(false)}>
+              <Modal.Header closeButton>
+              </Modal.Header>
+              <Modal.Body>
+                <nav onClick={() => setShowMobileNav(false)} className='nav-mobile-modal'>
+                  <Link to="/">Home</Link>
+                  <NavLink to='/destinations'>Destinations</NavLink>
+                  {user ?
+                    <>
+                      <NavLink to='/' onClick={() => {
+                        setUser(false)
+                        deleteToken('access-token')
+                        deleteToken('refresh-token')
+                      }}>Logout</NavLink>
+                    </>
+                    :
+                    <NavLink onClick={handleShowLogin} className='login-button'>Login</NavLink>
+                  }
+                </nav>
+              </Modal.Body>
+            </Modal>
+            
             <Col className='navbar-right'>
               {showSearch && 
                 <div className='search-container' ref={catMenu}>
@@ -182,6 +218,7 @@ export default function Header({ user, setUser, userImage, username, setRenderAp
                 <NavLink onClick={handleShowLogin} className='login-button'>Login</NavLink>
               }
             </Col>
+            
           </Row>
         </Container>
       </nav>

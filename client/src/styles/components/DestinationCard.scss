@@ -37,7 +37,7 @@
 
   h3 {
     font-weight: 600;
-
+    margin-bottom: 2px;
   }
 }
 
@@ -76,7 +76,6 @@
       font-size: 15px;
     }
   }
-  
 
   .container-destinationcard-small {
     .destinationcard-container {
@@ -96,5 +95,15 @@
 @media(max-width: 1200px) {
   .accordion-button {
     font-size: 16px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .destinationcard-container {
+    height: 280px;
+    > img {
+      height: 280px;
+    }
   }
 }
