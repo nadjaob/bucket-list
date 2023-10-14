@@ -1,7 +1,6 @@
-import { createContext, useEffect, useState } from 'react'
-import axios from 'axios'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { tokenIsValid, getToken, getUserID } from './lib/auth'
+import { useEffect, useState } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { tokenIsValid, getUserID } from './lib/auth'
 import axiosAuth from './lib/axios'
 
 // GLOBAL COMPONENTS
@@ -17,48 +16,26 @@ import SingleDestination from './components/SingleDestination'
 import NotFound from './components/NotFound'
 
 
-// // USER
-// export const UserContext = createContext(() => {
-//   if (tokenIsValid('refresh-token')) {
-//     return true
-//   }
-//   return false
-// })
-
-
 export default function App() {
 
-  // const [userId, setUserId] = useState()
-
   const [renderApp, setRenderApp] = useState(false)
-  const [destinations, setDestinations] = useState([])
-  const location = useLocation()
 
   const [user, setUser] = useState(tokenIsValid('refresh-token'))
   const [userID, setUserID] = useState(getUserID('refresh-token'))
-
   const [userImage, setUserImage] = useState()
   const [username, setUsername] = useState()
 
-  console.log('this is my user id from auth.js', userID)
+  const location = useLocation()
 
   useEffect(() => {
     setUser(tokenIsValid('refresh-token'))
     setUserID(getUserID('refresh-token'))
   }, [location])
 
-  // const [user, setUser] = useState(() => {
-  //   if (tokenIsValid('refresh-token')) {
-  //     return true
-  //   }
-  //   return false
-  // })
-
   useEffect(() => {
     async function getActiveUserDetails() {
       try {
         const { data } = await axiosAuth.get('/api/auth/userprofile/')
-        console.log('hit user profile')
         setUserImage(data.profile_image)
         setUsername(data.username)
       } catch (error) {
@@ -76,9 +53,8 @@ export default function App() {
 
   return (
     <>
-      {/* <UserContext.Provider value={{ user: user, setUser: setUser }}> */}
       <ScrollToTop />
-      <Header user={user} setUser={setUser} userImage={userImage} username={username} setRenderApp={setRenderApp} renderApp={renderApp} destinations={destinations} />
+      <Header user={user} setUser={setUser} userImage={userImage} username={username} setRenderApp={setRenderApp} renderApp={renderApp} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/destinations' element={<Destinations />} />
@@ -87,7 +63,6 @@ export default function App() {
         {/* <Route path='*' element={<NotFound />} /> */}
       </Routes>
       <Footer />
-      {/* </UserContext.Provider> */}
     </>
   )
 }

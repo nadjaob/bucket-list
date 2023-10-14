@@ -1,7 +1,6 @@
-import { useEffect, useState, useContext, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { UserContext } from '../App'
 
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
@@ -9,7 +8,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
-import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 
 // COMPONENTS
@@ -177,7 +175,7 @@ export default function SingleDestination({ user, userID, username, renderApp })
     async function deleteItem() {
       try {
         const { data } = await axiosAuth.delete(`/api/destinations/${id}/`)
-        redirect(`/${username}`)
+        redirect(`/${username}/`)
       } catch (error) {
         console.log(error)
       }

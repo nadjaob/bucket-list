@@ -3,14 +3,12 @@ import { useState, useEffect } from 'react'
 import Select from 'react-select'
 import axios from 'axios'
 
-
 // BOOTSTRAP
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
 
 // COMPONENTS
 import ImageUpload from './ImageUpload'
@@ -19,19 +17,18 @@ import ImageUpload from './ImageUpload'
 export default function DestinationForm({ title, handleCloseForm, request, onLoad, setRenderDestination, renderDestination }) {
 
   const [formData, setFormData] = useState({ categories: [] })
+  const [options, setOptions] = useState([])
+  const [selectedCategories, setSelectedCategories] = useState()
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
   const navigate = useNavigate()
-  const [selectedCategories, setSelectedCategories] = useState()
 
-  const [options, setOptions] = useState([])
 
   useEffect(() => {
     async function getCategories(){
       try {
         const { data } = await axios.get('/api/categories/')
         setOptions(data)
-        console.log('all categories', data)
       } catch (error) {
         console.log(error.message)
       }
@@ -43,14 +40,6 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     async function fillFormFields() {
       try {
         const { data } = await onLoad()
-        console.log('my data', data.categories)
-        // data.categories = data.categories.map(category => category.id)
-        // console.log('new categories with value', data.categories.forEach(category => category['value'] = category.id ))
-        // data.categories.forEach(category => category['value'] = category.id )
-        // data.categories.forEach(category => {
-          
-        // })
-        console.log('test', data.categories)
         setSelectedCategories(data.categories)
         setFormData({
           name: data.name,
@@ -64,7 +53,6 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
             return { ...category, label: category.name, value: category.id }
           }),
         })
-        // console.log('selected categories', selectedCategories)
       } catch (error) {
         console.log(error)
         setErrors(error)
@@ -75,9 +63,6 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     }
   }, [onLoad])
 
-  console.log('formdata.categories', formData.categories)
-
-  
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     setErrors('')
@@ -98,8 +83,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     const reformattedFormdata = { ...formData, categories: formData.categories.map(category => category.id) }
     try {
       const { data } = await request(reformattedFormdata)
-      console.log('the data', data)
-      navigate(`/destinations/${data.id}`)
+      navigate(`/destinations/${data.id}/`)
       if (!renderDestination) {
         setRenderDestination(true)
       } else {
@@ -114,8 +98,8 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     }
   }
 
-  // REACT SELECT STYLES
 
+  // REACT SELECT STYLING
   const customStyles = {
     option: (defaultStyles, state) => ({
       ...defaultStyles,
@@ -134,6 +118,7 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
     
     singleValue: (defaultStyles) => ({ ...defaultStyles, color: '#fff' }),
   }
+
 
   return (
     <>
@@ -184,13 +169,9 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
                     onChange={handleSelect}
                     styles={customStyles}
                     placeholder={'Select categories'}
-                    // defaultValue={selectedCategories}
                     value={formData.categories}
-                    // defaultValue={selectedCategories.length > 0 ? selectedCategories : []}
-                    // defaultValue={[ { id: 2, name: 'hiking', label: 'hiking', value: 2 }, { id: 5, name: 'summer', label: 'summer', value: 5 } ]}
                   />
                   {console.log('selected categories', selectedCategories)}
-                  {/* } */}
                 </Form.Group>
                 <span>Image of destination:</span>
                 <ImageUpload required formData={formData} setFormData={setFormData} imageType='destination_image' />
@@ -200,7 +181,6 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
               </Col>
             </Row>
           </Container>
-
           <button className='form-button' type='submit'>{title} destination</button>
           {errors && <p>{errors}</p>}
         </Form>

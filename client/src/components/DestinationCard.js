@@ -2,10 +2,12 @@
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 
+
 export default function DestinationCard({ destination }) {
 
   const destinationId = `/destinations/${destination.id}`
 
+  
   return (
     <Col md='3' className='destination-card-grid'>
       <Link to={destinationId}>

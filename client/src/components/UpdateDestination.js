@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import DestinationForm from './DestinationForm'
 import axios from 'axios'
 
+
 export default function UpdateDestination ({ handleCloseForm, setRenderDestination, renderDestination }) {
 
   const { id } = useParams()

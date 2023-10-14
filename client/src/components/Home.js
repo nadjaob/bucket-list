@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 // BOOTSTRAP
@@ -10,7 +11,7 @@ import Col from 'react-bootstrap/Col'
 import Slider from './Slider'
 import DestinationCard from './DestinationCard'
 import Spinner from './Spinner'
-import { Link } from 'react-router-dom'
+
 
 export default function Home() {
 
@@ -18,6 +19,7 @@ export default function Home() {
   const [destinations, setDestinations] = useState([])
   const [pageNumber, setPageNumber] = useState(1)
 
+  
   useEffect(() => {
     async function getDestinations(){
       try {

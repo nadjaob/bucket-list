@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 // BOOTSTRAP
@@ -6,11 +7,6 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Carousel from 'react-bootstrap/Carousel'
-
-import sliderImage from '../images/rocky-mountains-canada.jpg'
-import { Link } from 'react-router-dom'
-
-
 
 
 export default function Slider() {
@@ -20,8 +16,7 @@ export default function Slider() {
   useEffect(() => {
     async function getDestinations(){
       try {
-        const { data } = await axios.get('/api/destinations/slider/?limit=4&offset=4')
-        console.log('destinations for slider', data.results)
+        const { data } = await axios.get('/api/destinations/slider/?limit=4&offset=4/')
         setSlides(data.results)
       } catch (error) {
         console.log(error.message)
@@ -50,7 +45,6 @@ export default function Slider() {
           </Carousel.Item>
         )
       })}
-      
     </Carousel>
   )
 }

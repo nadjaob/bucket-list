@@ -8,16 +8,22 @@ import Col from 'react-bootstrap/Col'
 import Accordion from 'react-bootstrap/Accordion'
 import Form from 'react-bootstrap/Form'
 
-// IMAGES
-import headerImage from '../images/rocky-mountains-canada.jpg'
-
 // COMPONENTS
 import Spinner from './Spinner'
 import DestinationCard from './DestinationCard'
 
+
 export default function Destinations() {
 
   const [destinations, setDestinations] = useState([])
+  const [filter, setFilter] = useState({
+    countries: 'All',
+    categories: 'All',
+  })
+  const [countryFilter, setCountryFilter] = useState([])
+  const [categoryFilter, setCategoryFilter] = useState([])
+  const [filteredDestinations, setFilteredDestinations] = useState([])
+
 
   useEffect(() => {
     async function getDestinations(){
@@ -31,19 +37,8 @@ export default function Destinations() {
     getDestinations()
   }, [])
 
-  const [filter, setFilter] = useState({
-    countries: 'All',
-    categories: 'All',
-  })
-  const [countryFilter, setCountryFilter] = useState([])
-  const [categoryFilter, setCategoryFilter] = useState([])
-  const [filteredDestinations, setFilteredDestinations] = useState([])
 
-  const allCountries = destinations.map(destination => {
-    return destination.country[0].toUpperCase() + destination.country.slice(1)
-  })
-  const countriesList = [...new Set(allCountries)]
-
+  // LIST COUNTRIES AND CATEGORIES
   const allCategories = destinations.map(destination => {
     return destination.categories.map(category => {
       return category.name
@@ -51,6 +46,13 @@ export default function Destinations() {
   })
   const categoriesList = [...new Set(allCategories.flat())]
 
+  const allCountries = destinations.map(destination => {
+    return destination.country[0].toUpperCase() + destination.country.slice(1)
+  })
+  const countriesList = [...new Set(allCountries)]
+
+
+  // FILTER
   const handleChange = (e) => {
     if (e.target.name === 'countries') {
       if (!e.target.checked) {
@@ -93,15 +95,14 @@ export default function Destinations() {
       const categoriesArray = destination.categories.map(category => {
         return category.name
       })
-      console.log('my categories', categoriesArray)
       return (
         (filter.countries.includes(destination.country) || filter.countries === 'All') &&
         (categoriesArray.some(r => filter.categories.indexOf(r) >= 0) || filter.categories === 'All')
       )
     })
     setFilteredDestinations(filteredArray)
-    console.log('filtered destinations', filteredDestinations)
   }, [filter, destinations])
+
 
   return (
     <>
@@ -164,7 +165,6 @@ export default function Destinations() {
           </Col>
         </Row>
       </Container>
-
     </>
   )
 }

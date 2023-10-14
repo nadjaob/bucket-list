@@ -14,10 +14,6 @@ export default function Register({ handleCloseLogin, handleCloseRegister }) {
       type: 'text',
       name: 'Username',
     },
-    // {
-    //   type: 'email',
-    //   name: 'Email',
-    // },
     {
       type: 'text',
       name: 'Bio',

@@ -3,6 +3,7 @@ import axiosAuth from '../lib/axios'
 // COMPONENTS
 import DestinationForm from './DestinationForm'
 
+
 export default function CreateDestination({ handleCloseForm }) {
 
   function createDestination(formData) {

@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
-import { useState, useEffect, useContext, Fragment } from 'react'
-import { UserContext } from '../App'
+import { useState, useEffect, Fragment } from 'react'
 import axiosAuth from '../lib/axios'
 
 // BOOTSTRAP
@@ -11,27 +10,20 @@ import Col from 'react-bootstrap/Col'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Modal from 'react-bootstrap/Modal'
-import Carousel from 'react-bootstrap/Carousel'
-import Accordion from 'react-bootstrap/Accordion'
-
-
-// IMAGES
-import DestinationCard from './DestinationCard'
 
 // COMPONENTS
+import DestinationCard from './DestinationCard'
 import CreateDestination from './CreateDestination'
 import Spinner from './Spinner'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faCheck, faTrashCan, faPen, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faTrashCan, faPen, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function UserProfile({ userID, renderApp }) {
 
   const { username } = useParams()
-
-  // const { user, setUser } = useContext(UserContext)
   const [userData, setUserData] = useState()
   const [show, setShow] = useState(false)
   const [showInvitationsModal, setShowInvitationsModal] = useState(false)
@@ -52,49 +44,33 @@ export default function UserProfile({ userID, renderApp }) {
 
 
   // CREATE DESTINATION
-
   const createDestination = () => setShow(true)
   const handleCloseForm = () => setShow(false)
 
   
   // HANDLE INVITATION
-
   const handleInvitationsModal = () => setShowInvitationsModal(true)
   const closeInvitationsModal = () => setShowInvitationsModal(false)
 
   async function handleAcceptInvitation(destinationId) {
-    console.log('id of invitation', destinationId)
-    console.log('condition to check', !userData.bucketlist.some(destination => destination['id'] === destinationId))
     try {
       handleDeleteInvitation(destinationId)
-      console.log('deleted invitation')
-      // check if bucketlist contains destination not yet, then add it to bucketlist
       if (!userData.bucketlist.some(destination => destination['id'] === destinationId)) {
         const { data } = await axiosAuth.patch(`/api/destinations/${destinationId}/bucketlist/`)
-        console.log('added to bucketlist')
-        // remove from visited in case its there
         if (userData.visited.some(destination => destination['id'] === destinationId)) {
           const { data } = await axiosAuth.patch(`/api/destinations/${destinationId}/visited/`)
         }
       } else {
         console.log('destination is already in bucket list')
       }
-      
-      
     } catch (error) {
       console.log(error)
-      console.log('failed invitation')
     }
   }
 
-
   async function handleDeleteInvitation(destinationId) {
-    console.log('destination id', destinationId)
-    console.log('user id', userID)
-    console.log('request body')
     try {
       const { data } = await axiosAuth.delete(`/api/destinations/${destinationId}/invitations/delete/`, { data: { invitation_id: userID } })
-      console.log('deleted invitation')
       if (!removeInvitation) {
         setRemoveInvitation(true)
       } else {
@@ -102,7 +78,6 @@ export default function UserProfile({ userID, renderApp }) {
       }
     } catch (error) {
       console.log(error)
-      console.log('failed invitation')
     }
   }
 
@@ -114,7 +89,6 @@ export default function UserProfile({ userID, renderApp }) {
           <Container fluid className='user-bg'>
             <img src={userData.profile_image} className='header-image' />
           </Container>
-
           <Container>
             <Row className='container-profile-details'>
               <Col sm='6' className='profile-image'>
@@ -125,7 +99,6 @@ export default function UserProfile({ userID, renderApp }) {
                 <p className='user-bio-sm'>{userData.bio}</p>
                 <p>Destinations on your bucket list: {userData.bucketlist.length}<br />
                 Destinations visited: {userData.visited.length}</p>
-
                 {(userID === userData.id) && userData.invitations.length > 0 && 
                 <>
                   <Link className='button' onClick={handleInvitationsModal}><span className='space-before-icon'>You have {userData.invitations.length} new invitation{userData.invitations.length > 1 ? 's' : ''}!</span>
@@ -155,11 +128,9 @@ export default function UserProfile({ userID, renderApp }) {
                   </Modal>
                 </>
                 }
-                
               </Col>
             </Row>
           </Container>
-
           <Container className='mb-6'>
             <Row>
               <Col className='button-create-destination'>

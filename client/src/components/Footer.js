@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom'
 

@@ -1,12 +1,7 @@
-import { useState, Fragment, useContext } from 'react'
+import { useState, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../App'
-import axios from 'axios'
 
 // BOOTSTRAP
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 
 // COMPONENTS
@@ -18,13 +13,10 @@ import { setToken } from '../lib/auth'
 
 export default function UserForm({ setUser, request, fields, title, handleCloseLogin, handleCloseRegister }) {
 
-  // const { user, setUser } = useContext(UserContext)
   const [formData, setFormData] = useState(stateValues(fields))
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
   const navigate = useNavigate()
-
-  console.log('formdata', stateValues(fields))
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -41,7 +33,6 @@ export default function UserForm({ setUser, request, fields, title, handleCloseL
     e.preventDefault()
     try {
       const { data } = await request(formData)
-
       if (data.access) {
         setToken('access-token', data.access)
         setToken('refresh-token', data.refresh)
@@ -50,7 +41,6 @@ export default function UserForm({ setUser, request, fields, title, handleCloseL
       }
       handleCloseLogin()
       handleCloseRegister()
-
     } catch (error) {
       console.log(error)
       const errorObj = error.response.data

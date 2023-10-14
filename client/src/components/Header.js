@@ -1,8 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
-import { useContext, useEffect, useState, useRef } from 'react'
-import { UserContext } from '../App'
+import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
-import axiosAuth from '../lib/axios'
 
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
@@ -17,7 +15,6 @@ import logo from '../images/logo-bucketlist.png'
 import Login from './Login'
 import Register from './Register'
 import { deleteToken } from '../lib/auth'
-import { getToken } from '../lib/auth'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -26,10 +23,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 export default function Header({ user, setUser, userImage, username, setRenderApp, renderApp }) {
 
-
-
   const catMenu = useRef(null)
-  // const { user, setUser } = useContext(UserContext)
   const [navbar, setNavbar] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
   const [showRegister, setShowRegister] = useState(false)
@@ -37,38 +31,6 @@ export default function Header({ user, setUser, userImage, username, setRenderAp
   const [value, setValue] = useState('')
   const [destinations, setDestinations] = useState([])
   const [filteredDestinations, setFilteredDestinations] = useState([])
-
-  
-
-
-  useEffect(() => {
-    async function getDestinations(){
-      try {
-        const { data } = await axios.get('/api/destinations/search/')
-        setDestinations(data)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    getDestinations()    
-  }, [])
-
-  useEffect(() => {
-    console.log('all destinations', destinations)
-    const regex = new RegExp(value, 'i')
-    const filteredArray = destinations.filter(destination => {
-      const filteredCategories = destination.categories.map(category => {
-        return category.name
-      })
-      return (
-        value &&
-        (regex.test(destination.name) ||
-        regex.test(destination.country) ||
-        regex.test(filteredCategories)
-        ))
-    })
-    setFilteredDestinations(filteredArray)
-  }, [destinations, showSearch, value])
 
 
   // NAVBAR CHANGES ON SCROLL
@@ -92,6 +54,35 @@ export default function Header({ user, setUser, userImage, username, setRenderAp
 
 
   // SEARCH BAR
+
+  useEffect(() => {
+    async function getDestinations(){
+      try {
+        const { data } = await axios.get('/api/destinations/search/')
+        setDestinations(data)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    getDestinations()    
+  }, [])
+
+  useEffect(() => {
+    const regex = new RegExp(value, 'i')
+    const filteredArray = destinations.filter(destination => {
+      const filteredCategories = destination.categories.map(category => {
+        return category.name
+      })
+      return (
+        value &&
+        (regex.test(destination.name) ||
+        regex.test(destination.country) ||
+        regex.test(filteredCategories)
+        ))
+    })
+    setFilteredDestinations(filteredArray)
+  }, [showSearch, value])
+
   const handleSearch = () => {
     if (!showSearch) {
       setShowSearch(true)
@@ -123,8 +114,8 @@ export default function Header({ user, setUser, userImage, username, setRenderAp
   const closeSearchList = (e) => {
     if (catMenu.current && showSearch && !catMenu.current.contains(e.target)) {
       setShowSearch(false)
-      // setFilteredDestinations([])
       setValue('')
+      setFilteredDestinations([])
     }
   }
   document.addEventListener('mousedown', closeSearchList)
