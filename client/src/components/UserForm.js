@@ -16,9 +16,9 @@ import ImageUpload from './ImageUpload'
 import { stateValues, fieldValues } from '../utils/common'
 import { setToken } from '../lib/auth'
 
-export default function UserForm({ request, fields, title, handleCloseLogin, handleCloseRegister }) {
+export default function UserForm({ setUser, request, fields, title, handleCloseLogin, handleCloseRegister }) {
 
-  const { user, setUser } = useContext(UserContext)
+  // const { user, setUser } = useContext(UserContext)
   const [formData, setFormData] = useState(stateValues(fields))
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)

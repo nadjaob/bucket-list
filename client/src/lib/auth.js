@@ -11,11 +11,22 @@ export const tokenIsValid = (tokenName) => {
 
   if (!token) return false
 
-  const exp = JSON.parse(atob(token.split('.')[1])).exp
+  const payload = JSON.parse(atob(token.split('.')[1]))
+  const exp = payload.exp
   const now = Date.now() / 1000
 
   if (exp > now) {
     return true
+  }
+}
+
+export const getUserID = (tokenName) => {
+  if (tokenIsValid(tokenName)) {
+    const token = getToken(tokenName)
+    const userID = JSON.parse(atob(token.split('.')[1])).user_id
+    return userID
+  } else {
+    return false
   }
 }
 

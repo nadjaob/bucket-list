@@ -33,6 +33,12 @@ class UserSerializer(serializers.ModelSerializer):
     fields = ('id', 'username', 'bio', 'profile_image', 'bucketlist', 'visited', 'created', 'invitations')
 
 
+class UserProfileSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ('id', 'username', 'profile_image')
+
+
 class UserSerializerMinimalized(serializers.ModelSerializer):
   class Meta:
     model = User

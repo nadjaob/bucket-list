@@ -22,14 +22,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCheck, faTrashCan, faPen, faTrash, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function SingleDestination({ userId, renderApp }) {
+export default function SingleDestination({ user, userID, username, renderApp }) {
 
   const { id } = useParams()
   console.log('id is', id)
   const catMenu = useRef(null)
 
-  console.log(userId)
-  const { user, setUser } = useContext(UserContext)
+  console.log(userID)
+  // const { user, setUser } = useContext(UserContext)
   const [formData, setFormData] = useState({ 'destination': id })
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
@@ -74,7 +74,7 @@ export default function SingleDestination({ userId, renderApp }) {
 
   async function handleBucketlist() {
     try {
-      if (destination.visited.some(destination => destination['id'] === userId) && !destination.bucketlist.includes(userId)) {
+      if (destination.visited.some(destination => destination['id'] === userID) && !destination.bucketlist.includes(userID)) {
         const { data } = await axiosAuth.patch(`/api/destinations/${id}/visited/`)
       } else {
         const { data } = await axiosAuth.patch(`/api/destinations/${id}/bucketlist/`)
@@ -96,7 +96,7 @@ export default function SingleDestination({ userId, renderApp }) {
   async function handleVisited() {
     try {
       const { data } = await axiosAuth.patch(`/api/destinations/${id}/visited/`)
-      if (destination.bucketlist.includes(userId)) {
+      if (destination.bucketlist.includes(userID)) {
         const { data } = await axiosAuth.patch(`/api/destinations/${id}/bucketlist/`)
       }
       
@@ -177,7 +177,7 @@ export default function SingleDestination({ userId, renderApp }) {
     async function deleteItem() {
       try {
         const { data } = await axiosAuth.delete(`/api/destinations/${id}/`)
-        redirect('/destinations')
+        redirect(`/${username}`)
       } catch (error) {
         console.log(error)
       }
@@ -195,7 +195,7 @@ export default function SingleDestination({ userId, renderApp }) {
         setAllUsers(data)
         const regex = new RegExp(value, 'i')
         const filteredArray = allUsers.filter(user => {
-          if (user.id !== userId) {
+          if (user.id !== userID) {
             return value && (regex.test(user.username))
           }
         })
@@ -282,7 +282,7 @@ export default function SingleDestination({ userId, renderApp }) {
             </Row>
           </Container>
           <Container>
-            {userId === destination.user.id &&
+            {userID === destination.user.id &&
             <Row>
               <Col className='edit-icons'>
                 <Link onClick={editDestination}><FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} /></Link>
@@ -296,7 +296,7 @@ export default function SingleDestination({ userId, renderApp }) {
                 <p>{destination.description}</p>
                 {user &&
                 <div className='buttons-container'>
-                  {destination.visited.some(destination => destination['id'] === userId) ?
+                  {destination.visited.some(destination => destination['id'] === userID) ?
                     <>
                       <Link onClick={handleBucketlist}><span className='space-before-icon'>Remove from my bucket list</span>
                         <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
@@ -307,7 +307,7 @@ export default function SingleDestination({ userId, renderApp }) {
                     </>
                     :
                     <>
-                      <Link onClick={handleBucketlist}><span className='space-before-icon'>{destination.bucketlist.includes(userId) ? 'Remove from' : 'Add to'} my bucket list</span>
+                      <Link onClick={handleBucketlist}><span className='space-before-icon'>{destination.bucketlist.includes(userID) ? 'Remove from' : 'Add to'} my bucket list</span>
                         <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
                       </Link>
                       <Link onClick={handleVisited}><span className='space-before-icon'>Cross off my bucket list</span>
@@ -369,7 +369,7 @@ export default function SingleDestination({ userId, renderApp }) {
                                 <p className='fw-bold'>{comment.title}</p>
                               </div>
                             </div>
-                            {userId === comment.user.id &&
+                            {userID === comment.user.id &&
                             <div className='trash-icon'>
                               <FontAwesomeIcon onClick={(e) => deleteComment(e, comment.id)} icon={faTrashCan} style={{ color: '#fff' }} />
                             </div>

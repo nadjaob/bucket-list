@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { tokenIsValid, getToken } from './lib/auth'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { tokenIsValid, getToken, getUserID } from './lib/auth'
 import axiosAuth from './lib/axios'
 
 // GLOBAL COMPONENTS
@@ -17,66 +17,77 @@ import SingleDestination from './components/SingleDestination'
 import NotFound from './components/NotFound'
 
 
-// USER
-export const UserContext = createContext(() => {
-  if (tokenIsValid('refresh-token')) {
-    return true
-  }
-  return false
-})
-
+// // USER
+// export const UserContext = createContext(() => {
+//   if (tokenIsValid('refresh-token')) {
+//     return true
+//   }
+//   return false
+// })
 
 
 export default function App() {
 
-  const [userId, setUserId] = useState()
-  const [userImage, setUserImage] = useState()
-  const [username, setUsername] = useState()
+  // const [userId, setUserId] = useState()
+
   const [renderApp, setRenderApp] = useState(false)
   const [destinations, setDestinations] = useState([])
+  const location = useLocation()
 
-  const [user, setUser] = useState(() => {
-    if (tokenIsValid('refresh-token')) {
-      return true
-    }
-    return false
-  })
+  const [user, setUser] = useState(tokenIsValid('refresh-token'))
+  const [userID, setUserID] = useState(getUserID('refresh-token'))
+
+  const [userImage, setUserImage] = useState()
+  const [username, setUsername] = useState()
+
+  console.log('this is my user id from auth.js', userID)
 
   useEffect(() => {
-    async function getUserId() {
+    setUser(tokenIsValid('refresh-token'))
+    setUserID(getUserID('refresh-token'))
+  }, [location])
+
+  // const [user, setUser] = useState(() => {
+  //   if (tokenIsValid('refresh-token')) {
+  //     return true
+  //   }
+  //   return false
+  // })
+
+  useEffect(() => {
+    async function getActiveUserDetails() {
       try {
         const { data } = await axiosAuth.get('/api/auth/userprofile/')
         console.log('hit user profile')
-        setUserId(data.id)
         setUserImage(data.profile_image)
         setUsername(data.username)
       } catch (error) {
         console.log(error)
       }
     }
-    getUserId()
+    getActiveUserDetails()
   }, [user])
 
-  console.log('user id', userId)
+
 
   useEffect(() => {
     console.log('app was rendered')
   }, [renderApp])
 
   return (
-    <BrowserRouter>
-      <UserContext.Provider value={{ user: user, setUser: setUser }}>
-        <ScrollToTop />
-        <Header setRenderApp={setRenderApp} renderApp={renderApp} userImage={userImage} username={username} destinations={destinations} />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/destinations' element={<Destinations />} />
-          <Route path='/destinations/:id' element={<SingleDestination userId={userId} renderApp={renderApp} />} />
-          <Route path='/:username' element={<UserProfile userId={userId} renderApp={renderApp} />} />
-          {/* <Route path='*' element={<NotFound />} /> */}
-        </Routes>
-        <Footer />
-      </UserContext.Provider>
-    </BrowserRouter>
+    <>
+      {/* <UserContext.Provider value={{ user: user, setUser: setUser }}> */}
+      <ScrollToTop />
+      <Header user={user} setUser={setUser} userImage={userImage} username={username} setRenderApp={setRenderApp} renderApp={renderApp} destinations={destinations} />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/destinations' element={<Destinations />} />
+        <Route path='/destinations/:id' element={<SingleDestination user={user} userID={userID} username={username} renderApp={renderApp} />} />
+        <Route path='/:username' element={<UserProfile userID={userID} renderApp={renderApp} />} />
+        {/* <Route path='*' element={<NotFound />} /> */}
+      </Routes>
+      <Footer />
+      {/* </UserContext.Provider> */}
+    </>
   )
 }

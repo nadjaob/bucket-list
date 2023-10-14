@@ -7,7 +7,7 @@ import Modal from 'react-bootstrap/Modal'
 // COMPONENTS
 import UserForm from './UserForm'
 
-export default function Login({ handleCloseLogin, handleShowRegister, handleCloseRegister, setUsernameURL }) {
+export default function Login({ setUser, handleCloseLogin, handleShowRegister, handleCloseRegister, setUsernameURL }) {
 
   const fields = [
     {
@@ -31,7 +31,7 @@ export default function Login({ handleCloseLogin, handleShowRegister, handleClos
       </Modal.Header>
       <Modal.Body>
         <p>Log in to be able to add your favourite destinations to your bucket list!</p>
-        <UserForm fields={fields} request={login} title='Login' handleCloseLogin={handleCloseLogin} handleCloseRegister={handleCloseRegister} setUsernameURL={setUsernameURL} />
+        <UserForm setUser={setUser} fields={fields} request={login} title='Login' handleCloseLogin={handleCloseLogin} handleCloseRegister={handleCloseRegister} setUsernameURL={setUsernameURL} />
       </Modal.Body>
       <Modal.Footer>Don&apos;t have an account? <Link className='fw-bold' onClick={handleShowRegister}>Sign up</Link></Modal.Footer>
     </>

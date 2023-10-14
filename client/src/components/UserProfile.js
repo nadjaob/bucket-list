@@ -27,11 +27,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCheck, faTrashCan, faPen, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function UserProfile({ userId, renderApp }) {
+export default function UserProfile({ userID, renderApp }) {
 
   const { username } = useParams()
 
-  const { user, setUser } = useContext(UserContext)
+  // const { user, setUser } = useContext(UserContext)
   const [userData, setUserData] = useState()
   const [show, setShow] = useState(false)
   const [showInvitationsModal, setShowInvitationsModal] = useState(false)
@@ -90,10 +90,10 @@ export default function UserProfile({ userId, renderApp }) {
 
   async function handleDeleteInvitation(destinationId) {
     console.log('destination id', destinationId)
-    console.log('user id', userId)
+    console.log('user id', userID)
     console.log('request body')
     try {
-      const { data } = await axiosAuth.delete(`/api/destinations/${destinationId}/invitations/delete/`, { data: { invitation_id: userId } })
+      const { data } = await axiosAuth.delete(`/api/destinations/${destinationId}/invitations/delete/`, { data: { invitation_id: userID } })
       console.log('deleted invitation')
       if (!removeInvitation) {
         setRemoveInvitation(true)
@@ -126,7 +126,7 @@ export default function UserProfile({ userId, renderApp }) {
                 <p>Destinations on your bucket list: {userData.bucketlist.length}<br />
                 Destinations visited: {userData.visited.length}</p>
 
-                {(userId === userData.id) && userData.invitations.length > 0 && 
+                {(userID === userData.id) && userData.invitations.length > 0 && 
                 <>
                   <Link className='button' onClick={handleInvitationsModal}><span className='space-before-icon'>You have {userData.invitations.length} new invitation{userData.invitations.length > 1 ? 's' : ''}!</span>
                     <FontAwesomeIcon icon={faEnvelope} shake style={{ color: '#ffffff' }} size='sm' />
@@ -163,7 +163,7 @@ export default function UserProfile({ userId, renderApp }) {
           <Container className='mb-6'>
             <Row>
               <Col className='button-create-destination'>
-                {userId === userData.id &&
+                {userID === userData.id &&
                 <>
                   <Link className='button' onClick={createDestination}><span className='space-before-icon'>Create a new destination</span>
                     <FontAwesomeIcon icon={faPen} style={{ color: '#ffffff' }} size='sm' />

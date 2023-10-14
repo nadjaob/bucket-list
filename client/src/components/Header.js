@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { useContext, useEffect, useState, useRef } from 'react'
 import { UserContext } from '../App'
 import axios from 'axios'
+import axiosAuth from '../lib/axios'
 
 // BOOTSTRAP
 import Container from 'react-bootstrap/Container'
@@ -23,10 +24,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function Header({ setRenderApp, renderApp, userImage, username }) {
+export default function Header({ user, setUser, userImage, username, setRenderApp, renderApp }) {
+
+
 
   const catMenu = useRef(null)
-  const { user, setUser } = useContext(UserContext)
+  // const { user, setUser } = useContext(UserContext)
   const [navbar, setNavbar] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
   const [showRegister, setShowRegister] = useState(false)
@@ -34,6 +37,8 @@ export default function Header({ setRenderApp, renderApp, userImage, username })
   const [value, setValue] = useState('')
   const [destinations, setDestinations] = useState([])
   const [filteredDestinations, setFilteredDestinations] = useState([])
+
+  
 
 
   useEffect(() => {
@@ -195,6 +200,7 @@ export default function Header({ setRenderApp, renderApp, userImage, username })
           <Register handleCloseLogin={handleCloseLogin} handleCloseRegister={handleCloseRegister} />
           :
           <Login
+            setUser={setUser}
             handleCloseLogin={handleCloseLogin}
             handleShowRegister={handleShowRegister}
             handleCloseRegister={handleCloseRegister}
