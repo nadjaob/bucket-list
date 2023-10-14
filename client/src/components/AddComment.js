@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal'
 
 export default function AddComment({ id, handleClose, setReviewSent }) {
 
-  const [formData, setFormData] = useState({ 'destination': id })
+  const [formData, setFormData] = useState({ 'destination': id, 'title': '', 'content': '' })
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
 
@@ -28,7 +28,7 @@ export default function AddComment({ id, handleClose, setReviewSent }) {
     e.preventDefault()
     try {
       const { data } = await axiosAuth.post('/api/comments/', formData)
-      setFormData({ 'destination': id })
+      setFormData({ 'destination': id, 'title': '', 'content': '' })
       e.target.reset()
       setValidated(false)
       setReviewSent(true)

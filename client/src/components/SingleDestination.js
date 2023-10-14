@@ -21,7 +21,7 @@ import { faHeart, faCheck, faTrashCan, faPen, faTrash, faEnvelope } from '@forta
 import AddComment from './AddComment'
 
 
-export default function SingleDestination({ user, userID, username, renderApp }) {
+export default function SingleDestination({ user, userID, username }) {
 
   const { id } = useParams()
   const catMenu = useRef(null)
@@ -40,31 +40,26 @@ export default function SingleDestination({ user, userID, username, renderApp })
   const [friend, setFriend] = useState()
 
   const [destination, setDestination] = useState()
-  const [bucketlist, setBucketlist] = useState(false)
-  const [visited, setVisited] = useState(false)
+
 
   const [showEdit, setShowEdit] = useState(false)
 
   const redirect = useNavigate()
 
 
-
   useEffect(() => {
     async function getDestination(){
       try {
         const { data } = await axios.get(`/api/destinations/${id}/`)
-        console.log('first render', data)
         setDestination(data)
       } catch (error) {
         console.log(error.message)
       }
     }
     getDestination()
-  }, [bucketlist, visited, reviewSent, reviewDeleted, renderApp, renderDestination])
+  }, [reviewSent, reviewDeleted, renderDestination])
 
-  console.log(destination)
-
-
+  // BUTTONS ADD AND REMOVE FROM BUCKETLIST
   async function handleBucketlist() {
     try {
       if (destination.visited.some(destination => destination['id'] === userID) && !destination.bucketlist.includes(userID)) {
@@ -72,19 +67,15 @@ export default function SingleDestination({ user, userID, username, renderApp })
       } else {
         const { data } = await axiosAuth.patch(`/api/destinations/${id}/bucketlist/`)
       }
-      
-      console.log('success bucketlist')
-      if (!bucketlist) {
-        setBucketlist(true)
+      if (!renderDestination) {
+        setRenderDestination(true)
       } else {
-        setBucketlist(false)
+        setRenderDestination(false)
       }
     } catch (error) {
       console.log(error)
-      console.log('failed bucketlist')
     }
   }
-
 
   async function handleVisited() {
     try {
@@ -92,30 +83,22 @@ export default function SingleDestination({ user, userID, username, renderApp })
       if (destination.bucketlist.includes(userID)) {
         const { data } = await axiosAuth.patch(`/api/destinations/${id}/bucketlist/`)
       }
-      
-      console.log('success visited')
-      if (!visited) {
-        setVisited(true)
+      if (!renderDestination) {
+        setRenderDestination(true)
       } else {
-        setVisited(false)
+        setRenderDestination(false)
       }
     } catch (error) {
       console.log(error)
-      console.log('failed visited')
     }
   }
 
 
   // ADD COMMENT
-
-
-
   const handleShow = () => setShow(true)
   const handleClose = () => setShow(false)
 
-
   // DELETE COMMENT
-
   const deleteComment = (e, index) => {
     setReviewDeleted(false)
     e.preventDefault()
@@ -155,19 +138,22 @@ export default function SingleDestination({ user, userID, username, renderApp })
       try {
         const { data } = await axios.get('/api/auth/users/')
         setAllUsers(data)
-        const regex = new RegExp(value, 'i')
-        const filteredArray = allUsers.filter(user => {
-          if (user.id !== userID) {
-            return value && (regex.test(user.username))
-          }
-        })
-        setFilteredUsers(filteredArray)
       } catch (error) {
         console.log(error.message)
       }
     }
     getUsers()
     
+  }, [])
+
+  useEffect(() => {
+    const regex = new RegExp(value, 'i')
+    const filteredArray = allUsers.filter(user => {
+      if (user.id !== userID) {
+        return value && (regex.test(user.username))
+      }
+    })
+    setFilteredUsers(filteredArray)
   }, [value])
 
   const handleInvitationData = (e) => {
@@ -176,8 +162,12 @@ export default function SingleDestination({ user, userID, username, renderApp })
     setSuccessfulInvitation()
   }
 
+  const handleFriend = (name, id) => {
+    setFriend(name)
+    setInvitationData({ 'user_id_to_invite': id })
+  }
+
   async function handleInvitation(e) {
-    console.log('hit invitation button')
     setValue('')
     e.preventDefault()
     try {
@@ -192,29 +182,18 @@ export default function SingleDestination({ user, userID, username, renderApp })
     setFriend()
   }
 
-
   const removeSearchlist = () => {
     setValue('')
     setFilteredUsers([])
-    // if (!renderApp) {
-    //   setRenderApp(true)
-    // } else {
-    //   setRenderApp(false)
-    // }
-  }
-
-  const handleFriend = (name, id) => {
-    setFriend(name)
-    setInvitationData({ 'user_id_to_invite': id })
   }
 
   const closeSearchList = (e) => {
     if (catMenu.current && !catMenu.current.contains(e.target)) {
-      // setFilteredDestinations([])
       setValue('')
     }
   }
   document.addEventListener('mousedown', closeSearchList)
+
 
   return (
     <>
@@ -252,7 +231,6 @@ export default function SingleDestination({ user, userID, username, renderApp })
               </Col>
             </Row>
             }
-            
             <Row>
               <Col md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }} className='description-container'>
                 <p>{destination.description}</p>
@@ -366,7 +344,6 @@ export default function SingleDestination({ user, userID, username, renderApp })
                     <p className='user-bio-sm'>{destination.user.bio}</p>
                   </div>
                 </div>
-
                 {destination.visited.length > 0 &&
                 <>
                   <h4 className='h4-sidebar mt-4'>Visited by</h4>
