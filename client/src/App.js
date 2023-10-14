@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { tokenIsValid, getUserID } from './lib/auth'
 import axiosAuth from './lib/axios'
+import icon from './images/favicon.ico'
 
 // GLOBAL COMPONENTS
 import Header from './components/Header'
@@ -26,6 +27,11 @@ export default function App() {
   const [username, setUsername] = useState()
 
   const location = useLocation()
+
+  useEffect(() => {
+    const favicon = document.getElementById('favicon')
+    favicon.setAttribute('href', icon)
+  }, [])
 
   useEffect(() => {
     setUser(tokenIsValid('refresh-token'))
