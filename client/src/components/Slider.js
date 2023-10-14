@@ -16,7 +16,7 @@ export default function Slider() {
   useEffect(() => {
     async function getDestinations(){
       try {
-        const { data } = await axios.get('/api/destinations/slider/?limit=4&offset=4/')
+        const { data } = await axios.get('/api/destinations/slider/')
         setSlides(data.results)
       } catch (error) {
         console.log(error.message)

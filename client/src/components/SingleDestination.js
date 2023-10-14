@@ -23,11 +23,8 @@ import { faHeart, faCheck, faTrashCan, faPen, faTrash, faEnvelope } from '@forta
 export default function SingleDestination({ user, userID, username, renderApp }) {
 
   const { id } = useParams()
-  console.log('id is', id)
   const catMenu = useRef(null)
-
-  console.log(userID)
-  // const { user, setUser } = useContext(UserContext)
+  
   const [formData, setFormData] = useState({ 'destination': id })
   const [errors, setErrors] = useState('')
   const [validated, setValidated] = useState(false)
@@ -165,12 +162,10 @@ export default function SingleDestination({ user, userID, username, renderApp })
 
 
   // EDIT DESTINATION
-
   const editDestination = () => setShowEdit(true)
   const handleCloseForm = () => setShowEdit(false)
 
   // DELETE DESTINATION
-
   const deleteDestination = () => {
     async function deleteItem() {
       try {
@@ -185,7 +180,6 @@ export default function SingleDestination({ user, userID, username, renderApp })
 
 
   // INVITE A FRIEND
-
   useEffect(() => {
     async function getUsers(){
       try {

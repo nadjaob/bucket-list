@@ -1,4 +1,4 @@
-from .common import DestinationSerializer
+from .common import DestinationSerializer, DestinationSerializerMinimalizedWithCategories
 from comments.serializers.populated import PopulatedCommentSerializer
 from categories.serializers.common import CategorySerializer
 from users.serializers.common import UserSerializer
@@ -11,5 +11,5 @@ class PopulatedDestinationSerializer(DestinationSerializer):
   user = UserSerializer()
   invited = UserSerializer(many=True)
 
-class SlightlyPopulatedDestinationSerializer(DestinationSerializer):
+class SlightlyPopulatedDestinationSerializer(DestinationSerializerMinimalizedWithCategories):
   categories = CategorySerializer(many=True)

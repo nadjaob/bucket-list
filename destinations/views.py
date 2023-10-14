@@ -1,5 +1,4 @@
 from rest_framework.generics import (
-  ListCreateAPIView,
   RetrieveUpdateDestroyAPIView,
   DestroyAPIView,
   UpdateAPIView,
@@ -17,7 +16,7 @@ from rest_framework import status
 from .models import Destination
 
 # Serializer
-from .serializers.common import DestinationSerializer
+from .serializers.common import DestinationSerializer, DestinationSerializerMinimalized, DestinationSerializerMinimalizedSlider
 from .serializers.populated import PopulatedDestinationSerializer, SlightlyPopulatedDestinationSerializer
 
 from rest_framework.pagination import PageNumberPagination
@@ -29,7 +28,7 @@ User = get_user_model()
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 4
     page_size_query_param = 'page_size'
-    max_page_size = 20
+    max_page_size = 4
 
 # Generic view
 class DestinationView(GenericAPIView):
@@ -39,6 +38,7 @@ class DestinationView(GenericAPIView):
 # /destinations
 class DestinationListView(DestinationView, UserListCreateAPIView):
   permission_classes=[IsAuthenticatedOrReadOnly]
+  serializer_class=DestinationSerializerMinimalized
   
   # def get_serializer_class(self):
   #    use_populated_serializer = self.request.query_params.get('use_populated_serializer')
@@ -48,11 +48,12 @@ class DestinationListView(DestinationView, UserListCreateAPIView):
   
 # /destinations/slider
 class DestinationSliderListView(DestinationView, UserListCreateAPIView):
-  pagination_class = StandardResultsSetPagination
+  pagination_class=StandardResultsSetPagination
+  serializer_class=DestinationSerializerMinimalizedSlider
 
 # /destinations/search
 class DestinationSearchListView(DestinationView, UserListCreateAPIView):
-  serializer_class = SlightlyPopulatedDestinationSerializer
+  serializer_class=SlightlyPopulatedDestinationSerializer
 
 # /destinations/:id
 class DestinationDetailView(DestinationView, RetrieveUpdateDestroyAPIView):

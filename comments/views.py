@@ -4,7 +4,6 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Comment
 
 from .serializers.common import CommentSerializer
-from .serializers.populated import PopulatedCommentSerializer
 
 from lib.views import UserListCreateAPIView
 from lib.permissions import IsOwnerOrReadOnly
