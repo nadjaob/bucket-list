@@ -29,22 +29,22 @@ User = get_user_model()
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 4
     page_size_query_param = 'page_size'
-    max_page_size = 4
+    max_page_size = 20
 
 # Generic view
 class DestinationView(GenericAPIView):
-  queryset=Destination.objects.all()
+  queryset=Destination.objects.all().order_by('id')
   serializer_class=DestinationSerializer
 
 # /destinations
 class DestinationListView(DestinationView, UserListCreateAPIView):
   permission_classes=[IsAuthenticatedOrReadOnly]
   
-  def get_serializer_class(self):
-     use_populated_serializer = self.request.query_params.get('use_populated_serializer')
-     if self.request.method == 'GET' and use_populated_serializer == 'true':
-        return PopulatedDestinationSerializer
-     return DestinationSerializer
+  # def get_serializer_class(self):
+  #    use_populated_serializer = self.request.query_params.get('use_populated_serializer')
+  #    if self.request.method == 'GET' and use_populated_serializer == 'true':
+  #       return PopulatedDestinationSerializer
+  #    return DestinationSerializer
   
 # /destinations/slider
 class DestinationSliderListView(DestinationView, UserListCreateAPIView):

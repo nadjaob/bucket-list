@@ -37,17 +37,17 @@
     "model": "destinations.destination",
     "pk": 3,
     "fields": {
-      "name": "Safari in Serengeti National Park",
-      "description": "Embark on an unforgettable safari adventure in Serengeti National Park, Tanzania. Witness the incredible wildlife and natural beauty of the savannah.",
-      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229337/bucket-list/safari_mb2xqq.jpg",
-      "country": "Tanzania",
-      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229381/bucket-list/flag-tanzania_rot6uv.jpg",
-      "best_season": "Winter",
-      "travel_experience": "Moderate",
-      "user": 1,
-      "categories": [5, 8, 10, 13],
-      "bucketlist": [3, 2, 6],
-      "visited": [4, 5, 7]
+      "name": "Climb an active volcano in Cotopaxi National Park",
+      "description": "Embark on a thrilling adventure by climbing the active volcano of Cotopaxi in Ecuador's Cotopaxi National Park.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229335/bucket-list/volcano-crater_hum7gh.jpg",
+      "country": "Ecuador",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229383/bucket-list/flag-ecuador_i6kfqj.png",
+      "best_season": "Autumn",
+      "travel_experience": "Adventure",
+      "user": 4,
+      "categories": [2, 3, 4, 10, 13, 14],
+      "bucketlist": [6, 1],
+      "visited": [5, 3]
     }
   },
   {
@@ -295,17 +295,17 @@
     "model": "destinations.destination",
     "pk": 18,
     "fields": {
-      "name": "Climb an active volcano in Cotopaxi National Park",
-      "description": "Embark on a thrilling adventure by climbing the active volcano of Cotopaxi in Ecuador's Cotopaxi National Park.",
-      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229335/bucket-list/volcano-crater_hum7gh.jpg",
-      "country": "Ecuador",
-      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229383/bucket-list/flag-ecuador_i6kfqj.png",
-      "best_season": "Autumn",
-      "travel_experience": "Adventure",
-      "user": 4,
-      "categories": [2, 3, 4, 10, 13, 14],
-      "bucketlist": [6, 1],
-      "visited": [5, 3]
+      "name": "Safari in Serengeti National Park",
+      "description": "Embark on an unforgettable safari adventure in Serengeti National Park, Tanzania. Witness the incredible wildlife and natural beauty of the savannah.",
+      "destination_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229337/bucket-list/safari_mb2xqq.jpg",
+      "country": "Tanzania",
+      "flag_image": "https://res.cloudinary.com/djhbqxz1j/image/upload/v1697229381/bucket-list/flag-tanzania_rot6uv.jpg",
+      "best_season": "Winter",
+      "travel_experience": "Moderate",
+      "user": 1,
+      "categories": [5, 8, 10, 13],
+      "bucketlist": [3, 2, 6],
+      "visited": [4, 5, 7]
     }
   },
   {
