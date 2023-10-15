@@ -171,13 +171,11 @@ export default function DestinationForm({ title, handleCloseForm, request, onLoa
                     placeholder={'Select categories'}
                     value={formData.categories}
                   />
-                  {console.log('selected categories', selectedCategories)}
                 </Form.Group>
                 <span>Image of destination:</span>
                 <ImageUpload required formData={formData} setFormData={setFormData} imageType='destination_image' />
                 <span>Image of flag:</span>
                 <ImageUpload required formData={formData} setFormData={setFormData} imageType='flag_image' />
-                
               </Col>
             </Row>
           </Container>
