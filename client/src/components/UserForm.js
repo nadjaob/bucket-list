@@ -65,7 +65,7 @@ export default function UserForm({ setUser, request, fields, title, handleCloseL
                   :
                   <>
                     <Form.Label hidden htmlFor={variable}>{name}</Form.Label>
-                    <Form.Control required type={type} name={variable} placeholder={name} value={formData[variable]} onChange={handleChange}></Form.Control>
+                    <Form.Control autoComplete='off' required type={type} name={variable} placeholder={name} value={formData[variable]} onChange={handleChange}></Form.Control>
                     <Form.Control.Feedback type="invalid">{name} is required.</Form.Control.Feedback>
                   </>
                 }  
