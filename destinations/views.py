@@ -17,7 +17,7 @@ from .models import Destination
 
 # Serializer
 from .serializers.common import DestinationSerializer, DestinationSerializerMinimalized, DestinationSerializerMinimalizedSlider
-from .serializers.populated import PopulatedDestinationSerializer, SlightlyPopulatedDestinationSerializer
+from .serializers.populated import PopulatedDestinationSerializer, SlightlyPopulatedDestinationSerializer, PopulatedDestinationSerializerLikes
 
 from rest_framework.pagination import PageNumberPagination
 
@@ -67,7 +67,7 @@ class DestinationDetailView(DestinationView, RetrieveUpdateDestroyAPIView):
 # /destinations/:id/bucketlist
 class DestinationBucketlistView(DestinationView, UpdateAPIView):
   permission_classes = [IsAuthenticated]
-  serializer_class=PopulatedDestinationSerializer
+  serializer_class=PopulatedDestinationSerializerLikes
  
   def patch(self, request, *args, **kwargs):
     destination = self.get_object()
@@ -85,6 +85,7 @@ class DestinationBucketlistView(DestinationView, UpdateAPIView):
 # /destinations/:id/visited
 class DestinationVisitedView(DestinationView, UpdateAPIView):
   permission_classes = [IsAuthenticated]
+  serializer_class=PopulatedDestinationSerializerLikes
  
   def patch(self, request, *args, **kwargs):
     destination = self.get_object()

@@ -11,6 +11,11 @@ class DestinationSerializerMinimalizedSlider(serializers.ModelSerializer):
     model = Destination
     fields = ('id', 'name', 'destination_image')
 
+class DestinationSerializerMinimalizedLikes(serializers.ModelSerializer):
+  class Meta:
+    model = Destination
+    fields = ('id')
+
 class DestinationSerializerMinimalized(serializers.ModelSerializer):
   class Meta:
     model = Destination

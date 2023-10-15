@@ -1,6 +1,6 @@
 from .common import CommentSerializer
-from users.serializers.common import UserSerializer
+from users.serializers.common import UserProfileSerializer
 
 
 class PopulatedCommentSerializer(CommentSerializer):
-  user = UserSerializer()
+  user = UserProfileSerializer()
