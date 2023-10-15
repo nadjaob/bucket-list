@@ -20,12 +20,10 @@ import NotFound from './components/NotFound'
 export default function App() {
 
   const [renderApp, setRenderApp] = useState(false)
-
   const [user, setUser] = useState(tokenIsValid('refresh-token'))
   const [userID, setUserID] = useState(getUserID('refresh-token'))
   const [userImage, setUserImage] = useState()
   const [username, setUsername] = useState()
-
   const location = useLocation()
 
   useEffect(() => {

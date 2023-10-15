@@ -33,30 +33,27 @@ export default function UserForm({ setUser, request, fields, title, handleCloseL
     e.preventDefault()
     try {
       const { data } = await request(formData)
-      if (data.access) {
-        setToken('access-token', data.access)
-        setToken('refresh-token', data.refresh)
-        setUser(true)
-        navigate(`/${formData.username}`)
-      }
+      setToken('access-token', data.access)
+      setToken('refresh-token', data.refresh)
       handleCloseLogin()
       handleCloseRegister()
+      navigate(`/${formData.username}`)
     } catch (error) {
-      console.log(error)
-      const errorObj = error.response.data
-      const errorMessage = Object.values(errorObj)[0]
-      console.error(errorMessage)
-      setErrors(errorMessage)
+      if (error.response.data.detail) {
+        setErrors(error.response.data.detail)
+      } else if (error.response.status === 422) {
+        setErrors(error.response.data.non_field_errors)
+      }
     }
   }
 
+  
   return (
     <Fragment>
       {fields.length > 0 ?
         <Form noValidate validated={validated} onSubmit={handleSubmit} autoComplete='off' lg='12'>
           {errors && <p className='display-errors'>{errors}</p>}
           {fieldValues(fields).map(field => {
-            console.log(field)
             const { type, name, variable } = field
             return (
               <Fragment key={variable}>
