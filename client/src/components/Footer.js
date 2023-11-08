@@ -18,7 +18,7 @@ export default function Footer() {
             <Col className='footer-container'>
               <p>© Nadja Oblaender 2023</p>
               <div className='footer-icons'>
-                <Link to='https://www.linkedin.com/in/nadja-oblaender-00b05b265/' target='_blank'><FontAwesomeIcon icon={faLinkedin} size='xl' style={{ color: '#fff' }} /></Link>
+                <Link to='https://www.linkedin.com/in/nadja-oblaender/' target='_blank'><FontAwesomeIcon icon={faLinkedin} size='xl' style={{ color: '#fff' }} /></Link>
                 <Link to='https://github.com/nadjaob' target='_blank'><FontAwesomeIcon icon={faGithub} size='xl' style={{ color: '#fff' }} /></Link>
               </div>
             </Col>
