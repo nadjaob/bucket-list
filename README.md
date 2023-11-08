@@ -155,6 +155,10 @@ Frontend:
 
 ![Alt text](README-files/handle-invitation.png)
 
+Whenever a user logs into their account, the invitations will pop up and can be accessed by clicking a button.
+
+![Alt text](README-files/invitation-user-profile.png)
+
 My second stretch goal was to implement a burger menu for the mobile view as my navigation didn’t display well and was difficult to use. This feature really upgraded the first impression when opening my web application.
 
 
