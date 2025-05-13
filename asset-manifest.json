@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/bucket-list/static/css/main.421a45ef.css",
+    "main.js": "/bucket-list/static/js/main.88fab26a.js",
+    "static/media/favicon.ico": "/bucket-list/static/media/favicon.37d434bd3462ae7459f9.ico",
+    "index.html": "/bucket-list/index.html",
+    "main.421a45ef.css.map": "/bucket-list/static/css/main.421a45ef.css.map",
+    "main.88fab26a.js.map": "/bucket-list/static/js/main.88fab26a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.421a45ef.css",
+    "static/js/main.88fab26a.js"
+  ]
+}
